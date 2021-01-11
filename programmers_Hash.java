@@ -1,35 +1,27 @@
 package CodingTest;
 
+import java.util.Arrays;
+
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        
-        for(int i=0;i<participant.length;i++){
-            for(int j=0;j<completion.length;j++){
-                if(participant[i].equals(completion[j])){
-                   participant[i]=" ";
-                    completion[j]=" ";
-                    continue;             
-                }
-            }
-        }
+        Arrays.sort(participant);
+        Arrays.sort(completion);
 
-        for(int i=0;i<participant.length;i++){
-            if(!(participant[i].equals(" "))){
+        for(int i=0;i<completion.length;i++){
+            if(!participant[i].equals(completion[i])){
                 return participant[i];
             }
         }
-        return "";
+        return participant[participant.length-1];
     }
 }
 
 public class programmers_Hash {
     public static void main(String[] args) {
         Solution loss = new Solution();
-        // String[] participant={"marina", "josipa", "nikola", "vinko", "filipa"};
-        // String[] completion = {"josipa","filipa","marina","nikola"};
 
-        String[] participant={"misiav","stanko","mislav","ana"};
-        String[] completion = {"stanko","ana","mislav"};
+        String[] participant={"marina", "josipa", "nikola", "vinko", "filipa"};
+        String[] completion = {"josipa", "filipa", "marina", "nikola"};
 
         System.out.println(loss.solution(participant,completion));
     }
