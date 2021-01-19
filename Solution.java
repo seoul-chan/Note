@@ -3,19 +3,18 @@ package CodingTest;
 class Solution {
     public String solution(String s) {
         String answer = "";
-        int index = s.length()/2;
+        
         if(s.length()%2==0) {
-        	answer+=s.charAt(index-1);
-        	answer+=s.charAt(index);
+        	answer+=s.substring(s.length()/2-1, s.length()/2+1);
         } else {
-        	answer+=s.charAt(index);
+        	answer+=s.substring(s.length()/2, s.length()/2+1);
         }
         return answer;
     }
     
     public static void main(String[] args) {
     	Solution sol = new Solution();
-    	String str = "abcde";
+    	String str = "qwer";
     	
     	System.out.println(sol.solution(str));    	
     }
