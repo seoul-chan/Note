@@ -1,24 +1,22 @@
 package CodingTest;
 
 class Solution {
-    public int solution(String s) {
-        int answer = 0, sum = 0;
-        boolean plus = true;
-        
-        for(int i=0;i<s.length();i++) {
-        	if(s.charAt(i)=='-') {
-        		plus = false;
-        	}
-        	else {
-        		int k = s.charAt(i)-48;
-            	sum = k + sum * 10;
-        	}
+    public String solution(String s) {
+        String answer = "";
+        int index = s.length()/2;
+        if(s.length()%2==0) {
+        	answer+=s.charAt(index-1);
+        	answer+=s.charAt(index);
+        } else {
+        	answer+=s.charAt(index);
         }
-        return (plus==true)?sum:-1*sum;
+        return answer;
     }
     
     public static void main(String[] args) {
-		Solution so = new Solution();
-		System.out.println(so.solution("6789"));
-	}
+    	Solution sol = new Solution();
+    	String str = "abcde";
+    	
+    	System.out.println(sol.solution(str));    	
+    }
 }
