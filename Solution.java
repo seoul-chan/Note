@@ -1,21 +1,25 @@
 package CodingTest;
 
 class Solution {
-    public String solution(String s) {
-        String answer = "";
+    public String solution(int n) {
+    	String answer = "";
+    	
+    	for(int i=0;i<n;i++) {
+    		if(i%2==0) {
+    			answer+="¼ö";
+    		} else {
+    			answer+="¹Ú";
+    		}
+    	}
         
-        if(s.length()%2==0) {
-        	answer+=s.substring(s.length()/2-1, s.length()/2+1);
-        } else {
-        	answer+=s.substring(s.length()/2, s.length()/2+1);
-        }
         return answer;
     }
     
     public static void main(String[] args) {
     	Solution sol = new Solution();
-    	String str = "qwer";
+    	int count = 10;
+    	System.out.println(sol.solution(count));
     	
-    	System.out.println(sol.solution(str));    	
+    	
     }
 }
