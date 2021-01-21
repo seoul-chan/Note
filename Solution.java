@@ -1,25 +1,33 @@
 package CodingTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 class Solution {
-    public String solution(int n) {
-    	String answer = "";
-    	
-    	for(int i=0;i<n;i++) {
-    		if(i%2==0) {
-    			answer+="¼ö";
-    		} else {
-    			answer+="¹Ú";
-    		}
-    	}
+    public int[] solution(int[] arr, int divisor) {
+        ArrayList<Integer> arrlist = new ArrayList<Integer>();
         
+        for(int i=0;i<arr.length;i++) {
+        if(arr[i]%divisor==0) {
+        	arrlist.add(arr[i]);
+         }
+       }
+        
+        if(arrlist.size()==0) arrlist.add(-1);
+        
+        int[] answer = new int[arrlist.size()];
+        
+        for(int i=0;i<arrlist.size();i++) {
+        	answer[i]=arrlist.get(i);
+        }
+        Arrays.sort(answer);
         return answer;
     }
     
     public static void main(String[] args) {
     	Solution sol = new Solution();
-    	int count = 10;
-    	System.out.println(sol.solution(count));
-    	
-    	
+    	int[] arr  = {3,2,6};
+    	int divisor = 10;
+    	System.out.println(Arrays.toString(sol.solution(arr,divisor)));
     }
 }
