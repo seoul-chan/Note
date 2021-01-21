@@ -1,24 +1,22 @@
 package CodingTest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 class Solution {
     public int[] solution(int[] arr, int divisor) {
-        ArrayList<Integer> arrlist = new ArrayList<Integer>();
-        
+        int count = 0,two=0;
         for(int i=0;i<arr.length;i++) {
-        if(arr[i]%divisor==0) {
-        	arrlist.add(arr[i]);
-         }
-       }
+        	if(arr[i]%divisor==0) count++;
+        }
         
-        if(arrlist.size()==0) arrlist.add(-1);
+        if(count==0) {
+        	int[] answer = {-1};
+        	return answer;
+        }
         
-        int[] answer = new int[arrlist.size()];
-        
-        for(int i=0;i<arrlist.size();i++) {
-        	answer[i]=arrlist.get(i);
+        int[] answer = new int[count];
+        for(int i=0;i<arr.length;i++) {
+        	if(arr[i]%divisor==0) answer[two++]=arr[i];
         }
         Arrays.sort(answer);
         return answer;
@@ -26,8 +24,8 @@ class Solution {
     
     public static void main(String[] args) {
     	Solution sol = new Solution();
-    	int[] arr  = {3,2,6};
-    	int divisor = 10;
+    	int[] arr  = {2,36,1,3};
+    	int divisor = 1;
     	System.out.println(Arrays.toString(sol.solution(arr,divisor)));
     }
 }
