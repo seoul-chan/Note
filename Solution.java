@@ -1,23 +1,20 @@
 package CodingTest;
 
-// 프로그래머스 Level 1 - 두 정수 사이의 합
+// 프로그래머스 Level 1 - 서울에서 김서방 찾기
 class Solution {
-    public long solution(int a, int b) {
-        int max=(a>b)?a:b,
-        	min=(a<b)?a:b;
-        long answer=0;
-        
-        if(a==b) return a;
-        for(int i=min;i<=max;i++) {
-        	answer+=i;
+    public String solution(String[] seoul) {
+    	int i;
+    	for(i=0;i<seoul.length;i++) {
+    		if(seoul[i].equals("Kim")) break;
         }
+    	String answer = "김서방은 " + i + "에 있다";
         return answer;
     }
     
-    public static void main(String[] args) {
+    public void main(String[] args) {
     	Solution sol = new Solution();
-    	int a = 5;
-    	int b = 6;
-    	System.out.println(sol.solution(a, b));
+    	String[] seoul = {"Jane","Kim"};
+    	
+    	System.out.println(sol.solution(seoul));
     }
 }
