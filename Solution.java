@@ -9,9 +9,9 @@ public class Solution {
         ArrayList<Integer> arrlist = new ArrayList<Integer>();
         int prev=10;
         
-        for(int i=0;i<arr.length;i++) {
-        	if(prev!=arr[i]) arrlist.add(arr[i]);
-        	prev = arr[i];
+        for(int num : arr) {
+        	if(prev!=num) arrlist.add(num);
+        	prev = num;
         }
         
         int[] answer = new int[arrlist.size()];
