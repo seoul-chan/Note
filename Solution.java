@@ -1,20 +1,29 @@
-package CodingTest;
+package codingTest;
 
-// 프로그래머스 Level 1 - 서울에서 김서방 찾기
-class Solution {
-    public String solution(String[] seoul) {
-    	int i;
-    	for(i=0;i<seoul.length;i++) {
-    		if(seoul[i].equals("Kim")) break;
+import java.util.Arrays;
+
+//프로그래머스 Level 1 - 같은 숫자는 싫어
+public class Solution {
+    public int[] solution(int []arr) {
+        int prev=1;
+        
+        for(int i=0;i<arr.length-1;i++) {
+        	if(arr[i]!=arr[i+1]) prev++; 
         }
-    	String answer = "김서방은 " + i + "에 있다";
+        
+        int[] answer = new int[prev];
+        prev=1;
+        answer[0]=arr[0];
+        for(int i=0;i<arr.length-1;i++) {
+        	if(arr[i]!=arr[i+1]) answer[prev++]=arr[i+1];
+        }
         return answer;
     }
     
-    public void main(String[] args) {
+    public static void main(String[] args) {
     	Solution sol = new Solution();
-    	String[] seoul = {"Jane","Kim"};
+    	int[] arr = {5000,56222,56222,8888,8999};
     	
-    	System.out.println(sol.solution(seoul));
+    	System.out.println(Arrays.toString(sol.solution(arr)));
     }
 }
