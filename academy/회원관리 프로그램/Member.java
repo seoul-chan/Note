@@ -7,9 +7,13 @@ public class Member {
 	private String address;
 	private String id;
 	private int pw;
+	private static int count;
+	private int memberNo;
 	
-	
-	
+	{
+		count++;
+		memberNo=count;
+	}
 	
 	public Member(){}
 	public Member(String name, String id, int pw, String address, int age, char gender){
@@ -27,6 +31,7 @@ public class Member {
 	public void setAddress(String address) {this.address=address;}
 	public void setAge(int age) {this.age=age;}
 	public void setGender(char gender) {this.gender=gender;}
+	public void setMemberNo(int memberNo) {this.memberNo=memberNo;}
 	
 	public String getName() {return name;}
 	public String getId() {return id;}
@@ -34,10 +39,11 @@ public class Member {
 	public String getAddress() {return address;}
 	public int getAge() {return age;}
 	public char getGender() {return gender;}
+	public int getMemberNo() {return memberNo;}
 	
 	public String serchAll() {
 		String info="";
-		info+=name+"\t"+age+"\t"+gender+"\t"+address+"\t"+id+"\t"+pw+"\n";
+		info+=memberNo+"\t"+name+"\t"+age+"\t"+gender+"\t"+address+"\t"+id+"\t"+"#####"+"\n";
 		
 		return info;
 	}

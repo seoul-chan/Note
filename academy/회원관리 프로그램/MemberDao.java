@@ -3,35 +3,26 @@ package com.member.model.dao;
 import com.member.model.vo.Member;
 
 public class MemberDao {
-	private Member m1;
-	private Member m2;
-	private Member m3;
-	private Member m4;
-	private Member m5;
+	private Member[] m=new Member[5];
 	
 	//1. 전체회원 조회
 	public String serchAll() {
 		String mem = "";
-
-		if(m1!=null) {mem+=m1.serchAll();}
-		if(m2!=null) {mem+=m2.serchAll();}
-		if(m3!=null) {mem+=m3.serchAll();}
-		if(m4!=null) {mem+=m4.serchAll();}
-		if(m5!=null) {mem+=m5.serchAll();}
-		
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null) {mem+=m[i].serchAll();}
+		}
 		return mem;
 	}
 	
 	//2. 회원 등록
 	public boolean insertMember(Member mem) {
-		boolean flag = true;
-		if(m1==null) {m1=mem;}
-		else if (m2==null) {m2=mem;}
-		else if (m3==null) {m3=mem;}
-		else if (m4==null) {m4=mem;}
-		else if (m5==null) {m5=mem;}
-		else {
-			flag = false;
+		boolean flag = false;
+		for(int i=0;i<m.length;i++) {
+			if(m[i]==null) {
+				m[i]=mem;
+				flag=true;
+				break;
+			}
 		}
 		return flag;
 	}
@@ -39,22 +30,48 @@ public class MemberDao {
 	//3. 아이디로 회원 조회
 	public String serchId(String id) {
 		String mem ="";
-		if(m1!=null&&m1.getId().equals(id)) {mem+=m1.serchAll();}
-		if(m2!=null&&m2.getId().equals(id)) {mem+=m2.serchAll();}
-		if(m3!=null&&m3.getId().equals(id)) {mem+=m3.serchAll();}
-		if(m4!=null&&m4.getId().equals(id)) {mem+=m4.serchAll();}
-		if(m5!=null&&m5.getId().equals(id)) {mem+=m5.serchAll();}
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getId().equals(id)) {mem+=m[i].serchAll();}
+		}
 		return mem;
 	}
 	
 	//4. 이름으로 회원 조회
 	public String serchName(String name) {
 		String mem ="";
-		if(m1!=null&&m1.getName().equals(name)) {mem+=m1.serchAll();}
-		if(m2!=null&&m2.getName().equals(name)) {mem+=m2.serchAll();}
-		if(m3!=null&&m3.getName().equals(name)) {mem+=m3.serchAll();}
-		if(m4!=null&&m4.getName().equals(name)) {mem+=m4.serchAll();}
-		if(m5!=null&&m5.getName().equals(name)) {mem+=m5.serchAll();}
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getName().equals(name)) {mem+=m[i].serchAll();}
+		}
 		return mem;
+	}
+	
+	//5. 회원 정보 수정
+	public boolean updateMember(Member mem) {
+		boolean flag = false;
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getName().equals(mem.getName())) {
+				if(mem.getAge()!=0) m[i].setAge(mem.getAge());
+				if(mem.getGender()!='\u0000')m[i].setGender(mem.getGender());
+				if(mem.getAddress()!=null)m[i].setAddress(mem.getAddress());
+				if(mem.getId()!=null)m[i].setId(mem.getId());
+				if(mem.getPw()!=0)m[i].setPw(mem.getPw());
+				flag=true;
+				break;
+			}
+		}
+		return flag;
+	}
+	
+	//6. 회원 정보 제거
+	public boolean removeMember(Member mem) {
+		boolean flag = false;
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getMemberNo()==mem.getMemberNo()&&m[i].getName().equals(mem.getName())) {
+				m[i]=null;
+				flag=true;
+				break;
+			}
+		}
+		return flag;
 	}
 }
