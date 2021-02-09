@@ -3,6 +3,7 @@ package com.kh.hw.memberview;
 import java.util.Scanner;
 
 import com.kh.hw.member.controller.MemberController;
+import com.kh.hw.member.model.vo.Member;
 
 public class MemberMenu {
 	private Scanner sc = new Scanner(System.in);
@@ -13,6 +14,7 @@ public class MemberMenu {
 	public void maintMenu() {
 		
 		while(true) {
+			System.out.println();
 			System.out.println("최대 등록 가능한 회원 수는 "+mc.SIZE+"명 입니다.");
 			System.out.println("현재 등록된 회원 수는 "+mc.existMemberNum()+"명 입니다.");
 			
@@ -97,7 +99,19 @@ public class MemberMenu {
 	}
 	
 	public void searchName() {
-		
+		System.out.println("검색할 이름 : ");
+		String name = sc.next();
+		Member[] search = mc.searchName(name);
+		if(search==null) {	//equals와 무슨 차이???
+			System.out.println("검색 결과가 없습니다.");
+		} else {
+			System.out.println("찾으신 회원 조회 결과입니다.");
+			
+			for(int i=0;i<search.length;i++) {
+				if(search[i]!=null)
+				System.out.println(search[i]);
+			}
+		}
 	}
 	
 	public void searchEmail() {
@@ -133,6 +147,12 @@ public class MemberMenu {
 	}
 	
 	public void printAll() {
-		
+		System.out.println("==== 출력 결과 =====");
+		Member[] m = mc.printAll();
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null)
+			System.out.println(m[i].inform());
+		}
+			
 	}
 }

@@ -46,8 +46,24 @@ public class MemberController {
 	}
 	
 	public Member[] searchName(String name) {
+		// 개선하기################
+		int count=0;
 		
-		return m;
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getName().equals(name)) {
+				count++;
+			}
+		}
+		if(count==0) return null;
+		Member[] search = new Member[count];
+		count=0;
+		
+		for(int i=0;i<m.length;i++) {
+			if(m[i]!=null&&m[i].getName().equals(name)) {
+				search[count++]=m[i];
+			}
+		}
+		return search;
 	}
 	
 	public Member[] searchEmail(String email) {
