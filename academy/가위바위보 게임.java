@@ -47,6 +47,11 @@ public class Game {
 					b=true;
 				}
 			}
+			
+			if(computer==1) System.out.println("컴퓨터 : 가위" +  " 나 : " + input);
+			if(computer==2) System.out.println("컴퓨터 : 바위" +  " 나 : " + input);
+			if(computer==3) System.out.println("컴퓨터 : 보" +  " 나 : " + input);
+		
 		} while(b);
 	}
 }
