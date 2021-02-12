@@ -37,7 +37,10 @@ public class Member {
 	public void setAge(int age) {this.age = age;}
 	
 	public String inform() {
-		return id+" "+name+" "+password+" "+email+" "+gender+" "+age;
+		return id+"\t"+name+"\t"+password+"\t"+email+"\t"+gender+"\t"+age;
 	}
-	
+	@Override
+	public String toString() {
+		return id+"\t"+name+"\t"+password+"\t"+email+"\t"+gender+"\t"+age;
+	}
 }
