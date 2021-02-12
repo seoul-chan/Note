@@ -1,0 +1,9 @@
+메뉴 선택에 따라 학생 또는 사원 정보를 입력하고 관리하는 코드 구현
+
+- 클래스 명 -
+Person : 사람의 공통 정보에 대한 클래스, Student & Employee의 부모클래스
+Student : 학생의 정보에 대한 클래스, Person의 자손클래스
+Employee : 사원의 정보에 대한 클래스, Person의 자손클래스
+PersonController : 프로그램의 흐름을 제어하는 클래스 (정보 입출력에 대한 메서드 호출 및 반환)
+PersonMenu : 콘솔 출력 화면 관리 클래스
+Run : 프로그램 실행 클래스
