@@ -38,13 +38,7 @@ public class MemberController {
 	public void insertMember(String id, String name, String password, String email, char gender, int age) {
 		for(int i=0;i<m.length;i++) {
 			if(m[i]==null) {
-				m[i] = new Member();
-				m[i].setId(id);
-				m[i].setName(name);
-				m[i].setPassword(password);
-				m[i].setEmail(email);
-				m[i].setGender(gender);
-				m[i].setAge(age);
+				m[i] = new Member(id, name, password, email, gender, age);
 				break;
 			}
 		}
@@ -60,7 +54,6 @@ public class MemberController {
 	}
 	
 	public Member[] searchName(String name) {
-		// 개선하기################
 		int count=0;
 		
 		for(int i=0;i<m.length;i++) {
@@ -68,6 +61,7 @@ public class MemberController {
 				count++;
 			}
 		}
+		
 		if(count==0) return null;
 		Member[] search = new Member[count];
 		count=0;
@@ -88,6 +82,7 @@ public class MemberController {
 				count++;
 			}
 		}
+		
 		if(count==0) return null;
 		Member[] search = new Member[count];
 		count=0;
@@ -154,9 +149,9 @@ public class MemberController {
 		int count = 0;
 		
 		for(int i=0;i<m.length;i++) {
-			if(m[i]==null) count++;
+			if(m[i]!=null) count++;
 		}
 		
-		return !(count==m.length)?m:null;
+		return (count!=0)?m:null;
 	}
 }
