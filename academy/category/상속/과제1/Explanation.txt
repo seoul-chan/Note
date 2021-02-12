@@ -1,0 +1,10 @@
+메뉴 선택에 따라 도형(원, 사각형)의 둘레 및 넓이를 구할 수 있는 코드 구현
+
+- 클래스 명 -
+Point : 도형의 좌표 값 정보에 대한 클래스, Circle & Rectangle의 부모클래스
+Circle : 원의 정보 관리에 대한 클래스, Point의 자손클래스
+Rectangle : 사각형의 정보 관리에 대한 클래스, Point의 자손클래스
+PointMenu : 콘솔 출력 화면 관리 클래스
+CircleController : 원의 둘레, 넓이 계산을 제어하는 클래스
+RectangleController : 사각형의 둘레, 넓이 계산을 제어하는 클래스
+Run : 프로그램 실행 클래스
