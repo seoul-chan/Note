@@ -13,7 +13,7 @@ public class Member {
 		this.gender=gender;
 	}
 	
-	public void setName(String naem) {this.name=name;}
+	public void setName(String name) {this.name=name;}
 	public void setAge(int age) {this.age=age;}
 	public void setGender(char gender) {this.gender=gender;};
 	public void setCouponCount(int couponCount) {this.couponCount=couponCount;}
@@ -25,7 +25,7 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		return name+age+gender;
+		return "[name="+name+", age="+age+", gender="+gender+", couponCount="+couponCount+"]";
 	}
 	
 }

@@ -20,6 +20,7 @@ public class LibraryMenu {
 		
 		Member mem = new Member(name,age,gender);
 		lc.insertMember(mem);
+		
 		while(true) {
 			System.out.println("==== 메뉴 ====");
 			System.out.println("1. 마이페이지");
@@ -27,11 +28,13 @@ public class LibraryMenu {
 			System.out.println("3. 도서 검색");
 			System.out.println("4. 도서 대여하기");
 			System.out.println("9. 프로그램 종료하기");
-			System.out.println("메뉴 번호");
+			System.out.print("메뉴 번호 : ");
 			
 			int cho = sc.nextInt();		
 			switch(cho) {
-				case 1 : lc.myinfo(); break;
+				case 1 : {
+					System.out.println(lc.myinfo()); break;
+				}
 				case 2 : selectAll(); break;
 				case 3 : searchBook(); break;
 				case 4 : rentBook(); break;
@@ -54,7 +57,8 @@ public class LibraryMenu {
 		Book[] searchList = lc.searchBook(sc.next());
 		
 		for(int i=0;i<searchList.length;i++)
-			System.out.println(i+"번 도서 : "+searchList[i]);
+			if(searchList[i]!=null)
+				System.out.println(i+"번 도서 : "+searchList[i]);
 	}
 	
 	public void rentBook() {
@@ -65,10 +69,10 @@ public class LibraryMenu {
 		int result = lc.rentBook(sc.nextInt());
 		
 		switch(result) {
-			case 0 : System.out.println("성공적으로 대여되었습니다.");
-			case 1 : System.out.println("나이 제한으로 대여 불가능입니다.");
+			case 0 : System.out.println("성공적으로 대여되었습니다."); break;
+			case 1 : System.out.println("나이 제한으로 대여 불가능입니다."); break;
 			case 2 : System.out.println("성공적으로 대여되었습니다. 요리학원 쿠폰이 발급되었으니 마이"
-					+ "페이지에서 확인하세요");
+					+ "페이지에서 확인하세요"); break;
 		}
 	}
 	
