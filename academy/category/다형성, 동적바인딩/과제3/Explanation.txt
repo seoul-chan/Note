@@ -1,1 +1,17 @@
+추상화 클래스, 인터페이스를 상속 및 구현을 통해 문자열 출력하기
 
+com.kh.practice.chap02_abstractNInterface.controller
+  PhoneController(Class) : GalaxyNote9, V40 객체를 생성하여 Run클래스에서 요청한 명령을 처리
+  
+com.kh.practice.chap02_abstractNInterface.model.vo
+  Phone(Interface)  : 전화 걸기, 받기 기능을 가지고 있는 CellPhone의 상위인터페이스
+  Camera(Interface) : 촬영 방식 기능을 가지고 있는 CellPhone의 상위인터페이스
+  CellPhone(Interface) : 충전 방식 기능을 가지고 있으며 Phone, Camera을 상속받는 인터페이스
+  TouchDisplay(Interface) : 터치 방식을 가지고 있는 인터페이스
+  SmartPhone(abstract) : 제조사 정보, 제원 출력을하며 CellPhone,TouchDisplay를 구현하는 추상클래스
+  NotePen(Interface) : 블루투스펜 탑재여부를 가지고 있는 인터페이스
+  GalaxyNote9(Class) : 핸드폰 기능을 출력하며 SmartPhone 추상클래스을 상속받고 NotePen인터페이스를 구현하는 클래스
+  V40(Class) : 핸드폰 기능을 출력하며 SmartPhone 추상클래스을 상속받고 NotePen인터페이스를 구현하는 클래스
+
+com.kh.practice.chap02_abstractNInterface.run
+  Run(Class) : 프로그램을 실행하는 클래스
