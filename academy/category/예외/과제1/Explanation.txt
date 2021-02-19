@@ -1,0 +1,8 @@
+- 사용자에게 문자열을 입력 받아 영문자 갯수 출력하기
+- 공백이 있을 경우 예외 발생
+
+- 클래스 
+Run : 프로그램 실행 클래스
+CharacterMenu : 화면 출력 클래스
+CharacterController : 영문자 갯수 확인 클래스 (공백 포함 시 예외 발생)
+CharCheckException : 예외 클래스
