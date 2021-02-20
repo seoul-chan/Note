@@ -1,6 +1,14 @@
 package com.io.model.vo;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable{
+	
+	//아래 코드는 자동 작성된 코드이다. 해당 코드가 없는 경우 
+	//Person에서 경고문이 뜨는데 Add generated serial Version ID 클릭 시 무작위 값을 출력해준다.
+	private static final long serialVersionUID = -1446892394112895351L; //무작위로 중복되지 않음 값 출력
+	
+	
 	private String name;
 	private int age;
 	private char gender;

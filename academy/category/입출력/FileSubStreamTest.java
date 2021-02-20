@@ -10,7 +10,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import com.io.model.vo.Person;
@@ -189,6 +192,55 @@ public class FileSubStreamTest {
 			}
 			
 		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// ***ObjectOutputStream
+	//Person 클래스에서 implements Serializable 추가하여 직렬화 처리가 가능하게 한다.
+	//추가 하지않을 경우 NotSerializableException 예외가 발생한다.
+	public void objectOutPutStreamTest() {
+		//생성된 객체를 한번에 저장하기.
+		Person p =new Person("김경찬",19,'남',180.5);
+		
+		Person[] persons = new Person[3]; 
+		persons[0] =new Person("김경찬",19,'남',180.5);
+		persons[1] =new Person("김경찬",20,'남',180.5);
+		persons[2] =new Person("김경찬",26,'남',180.5);
+		
+		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("obj.dat"))) {
+//			for(int i=0;i<persons.length;i++) {
+//				oos.writeObject(persons[i]);
+//			}
+			oos.writeObject(persons); // for문 없이 객체 주소 값 통째로 할 수 있다.(다형성)
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	// ***ObjectInputStream
+	public void objectInputStreamTest() {
+//		Person p=null;
+		Person[] persons = new Person[3];
+		
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("obj.dat"))){
+//			p = (Person)ois.readObject(); //불러온 객체 파일에 대입할 객체가 없을 수도 있기에 ClassNotFoundException예외 처리를 해주어야 한다.
+			
+//			for(int i=0;i<persons.length;i++) {
+//				persons[i] = (Person)ois.readObject();
+//			}
+			persons = (Person[])ois.readObject();
+			
+			for(Person p : persons) {
+				if(p.getAge()==26)
+					System.out.println(p);
+			}
+				
+			
+		}catch(IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
