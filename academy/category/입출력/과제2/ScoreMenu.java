@@ -3,6 +3,7 @@ package com.kh.practice.score.view;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.kh.practice.score.controller.ScoreController;
@@ -13,16 +14,22 @@ public class ScoreMenu {
 	
 	public void mainMenu() {
 		while(true) {
-			System.out.println("1. 성적 저장");
-			System.out.println("2. 성적 출력");
-			System.out.println("9. 끝내기");
-			System.out.print("메뉴 번호 : ");
-			
-			switch(sc.nextInt()) {
-				case 1 : saveScore(); break;
-				case 2 : readScore(); break;
-				case 9 : System.out.println("프로그램을 종료합니다.");return;
-				default : System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+			try {
+				System.out.println("1. 성적 저장");
+				System.out.println("2. 성적 출력");
+				System.out.println("9. 끝내기");
+				System.out.print("메뉴 번호 : ");
+				
+				switch(sc.nextInt()) {
+					case 1 : saveScore(); break;
+					case 2 : readScore(); break;
+					case 9 : System.out.println("프로그램을 종료합니다.");return;
+					default : System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+				}
+			} catch(InputMismatchException e) {
+				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+				sc.nextLine();
+				continue;
 			}
 		}
 	}

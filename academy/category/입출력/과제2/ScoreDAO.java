@@ -23,11 +23,12 @@ public class ScoreDAO{
 	}
 	
 	public DataInputStream readScore() throws FileNotFoundException{
-		DataInputStream dis=null;
+		DataInputStream dis = null;
 		
 		try {
 			dis = new DataInputStream(new FileInputStream("Student.dao"));
-		}catch(FileNotFoundException e) {
+			
+		} catch(FileNotFoundException e) {
 			throw new FileNotFoundException();
 		}
 		return dis;
