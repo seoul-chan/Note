@@ -1,7 +1,10 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +44,7 @@ public class MapController {
 		System.out.println(map);
 		System.out.println(map.get("가")); //null
 		
-		
+
 		/*
 		 * map에 있는 데이터 전체를 순회하는 2가지 방법
 		 * 1. key값을 통째로 가져와 key로 접근하는 방법
@@ -83,6 +86,8 @@ public class MapController {
 		//데이터 전체 지우기
 		map.clear();
 		
+		
+		
 		/*
 		 * map을 생성해서 key는 String(숫자), value Car객체
 		 * 1 : 모닝 흰색 5000 4
@@ -121,7 +126,15 @@ public class MapController {
 			
 			if(c.getPrice()>7000)
 				System.out.println(c.getName()+" "+c.getPrice()+" "+c.getPerson());
-			
-		}	
+		}
+		
+		//values() : Map을 Collection(List,Set)으로 반환
+		List list = new ArrayList(cars.values()); //Map -> List
+		System.out.println(list.get(0));
+		System.out.println(list.get(1));
+		
+		Set set = new HashSet(cars.values()); //Map -> Set
+		for(Object o : set)
+			System.out.println(o);		
 	}
 }
