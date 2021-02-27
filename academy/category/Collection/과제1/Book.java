@@ -28,21 +28,28 @@ public class Book implements Comparable {
 	@Override
 	public String toString() {
 		
-		return ""; 
+		return "["+title+"/"+author+"/"+category+"/"+price+"]"; 
 	}
 	@Override
 	public int hashCode() {
 		
-		return 0; 
+		return (title+author).hashCode(); 
 	}
 	@Override
 	public boolean equals(Object obj) {
-		
-		return true;
+		if(obj instanceof Book) {
+			Book b = (Book)obj;
+			if(title.equals(b.title) &&
+				author.equals(b.author)) return true;
+		}
+		return false;
 	}
 	@Override
 	public int compareTo(Object obj) {
-		
+		if(obj instanceof Book) {
+			Book b = (Book)obj;
+			return title.compareTo(b.title);
+		}			
 		return 0;
 	}
 }
