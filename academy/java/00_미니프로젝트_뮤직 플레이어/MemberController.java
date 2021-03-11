@@ -13,9 +13,17 @@ public class MemberController {
 	public void logOut() {
 		md.logOut();
 	}
-
-	public void updateMember() {
-		
+	
+	public boolean dupliId(String id) {
+		return md.dupliId(id);
+	}
+	
+	public Member myInfo() {
+		return md.myInfo();
+	}
+	
+	public boolean updateMember(Member m) {
+		return md.updateMember(m);
 	}
 	
 	public boolean signUp(Member m) {
