@@ -13,7 +13,79 @@ public class Main {
 	
 	
 	
-	CodeUp-1084
+	CodeUp-1091
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int m = sc.nextInt();
+		int d = sc.nextInt();
+		int n = sc.nextInt();
+		long sum = a;
+		for(int i=1;i<n;i++)
+			sum=sum*m+d;
+		System.out.println(sum);
+	}
+	
+	CodeUp-1090
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int r = sc.nextInt();
+		int n = sc.nextInt();
+		long sum = a;
+		for(int i=1;i<n;i++)
+			sum*=r;
+		System.out.println(sum);
+	}
+	
+	CodeUp-1089
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int d = sc.nextInt();
+		int n = sc.nextInt();
+		
+		for(int i=1;i<n;i++)
+			a+=d;
+		System.out.println(a);
+	}
+	
+	CodeUp-1088
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		for(int i=1;i<=a;i++) {
+			if(i%3==0) continue;
+			System.out.print(i+" ");
+		}
+	}
+	
+	CodeUp-1087
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int i=1;
+		long sum=0;
+		
+		while(true) {
+			sum+=i;
+			if(sum>=a) break;
+			i++;
+		}
+		System.out.println(sum);
+	}
+	
+	CodeUp-1086
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String[] a = sc.nextLine().split(" ");
+		long sum=1;
+		for(int i=0;i<a.length;i++)
+			sum*=Integer.valueOf(a[i]);		
+		System.out.printf("%.2f MB",sum/(8.0*1024*1024));
+	}
+	
+	CodeUp-1085
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] a = sc.nextLine().split(" ");
