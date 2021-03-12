@@ -1,7 +1,10 @@
 package com.test;
 
+import java.util.Scanner;
+
 public class Main {
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 		
 	}
 }
@@ -9,6 +12,183 @@ public class Main {
 /*
 	
 	
+	
+	CodeUp-1084
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String[] a = sc.nextLine().split(" ");
+		long sum=1;
+		for(int i=0;i<a.length;i++)
+			sum*=Integer.valueOf(a[i]);		
+		System.out.printf("%.1f MB",sum/(8.0*1024*1024));
+	}
+	
+	CodeUp-1084
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String a = br.readLine();
+			String[] b = a.split(" ");
+			int count=0;
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+			for(int i=0;i<Integer.valueOf(b[0]);i++) {
+				for(int j=0;j<Integer.valueOf(b[1]);j++) {
+					for(int k=0;k<Integer.valueOf(b[2]);k++) {
+						bw.write(i+" "+j+" "+k+"\n");
+						count++;
+					}
+				}
+			}
+			bw.write(String.valueOf(count));
+			bw.flush();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	CodeUp-1083
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a= sc.nextInt();
+		for(int i=1;i<=a;i++) {
+			if(i%3==0) System.out.print("X ");
+			else System.out.print(i+" ");
+		}
+	}
+	
+	CodeUp-1082
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a= sc.nextInt(16);
+		for(int i=1;i<=0xf;i++) {
+			System.out.printf("%X*%X=%X\n",a,i,a*i);
+		}	
+	}
+	
+	CodeUp-1081
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int first = sc.nextInt();
+		int second = sc.nextInt();
+		
+		for(int i=1;i<=first;i++) {
+			for(int j=1;j<=second;j++) {
+				System.out.println(i+" "+j);
+			}
+		}
+	}
+	
+	CodeUp-1080
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		int sum=0;
+		for(int i=0;;i++) {
+			sum+=i;
+			if(sum>=input) {
+				System.out.println(i);
+				break;
+			}
+		}
+	}
+	
+	CodeUp-1079
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		StringTokenizer st = new StringTokenizer(sc.nextLine()," ");
+		while(st.hasMoreTokens()) {
+			String s = st.nextToken();
+			System.out.println(s);
+			if(s.equals("q")) break;
+		}
+	}
+	
+	CodeUp-1078
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		int sum=0;
+		for(int i=0;i<=input;i++)
+			if(i%2==0) sum+=i;
+		System.out.println(sum);
+	}
+	
+	CodeUp-1077
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		for(int i=0;i<=input;i++) {
+			System.out.println(i);
+		}
+	}
+	
+	CodeUp-1076
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		char c = sc.next().charAt(0);
+		char count = 96;
+		do {
+			System.out.print((count+=1)+" ");
+		}while(c!=count);
+	}
+	
+	CodeUp-1075
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int i = sc.nextInt();
+		while(true) {
+			if(i<=0) break;
+			System.out.println(i-1);
+			i--;
+		}
+	}
+	
+	CodeUp-1074
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int i = sc.nextInt();
+		while(true) {
+			if(i==0) break;
+			System.out.println(i);
+			i--;
+		}
+	}
+	
+	CodeUp-1073
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			int i = sc.nextInt();
+			if(i==0) break;
+			System.out.println(i);
+		}
+	}
+	
+	CodeUp-1072
+	static StringTokenizer st;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int count=sc.nextInt();
+		sc.nextLine();
+		st = new StringTokenizer(sc.nextLine()," ");
+		loop(count);
+	}
+	
+	public static void loop(int count) {
+		if(count==0) return;
+		System.out.println(st.nextToken());
+		loop(--count);
+	}
+	
+	CodeUp-1071
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			int i=sc.nextInt();
+			if(i==0) break;
+				else System.out.println(i);
+		}
+	}
 	
 	CodeUp-1070
 	public static void main(String[] args) {
