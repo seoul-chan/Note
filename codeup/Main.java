@@ -1,12 +1,112 @@
 package com.test;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main {
 	public static void main(String[] args) {
-		
+		Scanner sc = new Scanner(System.in);
+		int[][] arr=new int[10][10];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		int x=1, y=1;
+		while(arr[x][y]!=2) {
+			System.out.println();
+			if(arr[x][y+1]==0) y++;
+			else x++;
+			arr[x][y]=9;
+			System.out.print(arr[x][y]+" ");
+		}
 	}
 }
 
 /*
+	
+	
+	
+	CodeUp-1098
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[][] arr = new int[sc.nextInt()][sc.nextInt()];
+		int n = sc.nextInt();	//È½¼ö
+		
+		for(int i=0;i<n;i++) {
+			int l=sc.nextInt();	//±æÀÌ
+			int d=sc.nextInt();	//¹æÇâ
+			int x=sc.nextInt()-1, y=sc.nextInt()-1;	//ÁÂÇ¥
+			arr[x][y]=1;
+			
+			for(int j=0;j<l-1;j++) {
+				if(d==0) arr[x][++y]=1;
+				else arr[++x][y]=1;
+			}
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	
+	CodeUp-1096(2)
+	public static void main(String[] args) {
+		BufferedReader bi = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw  =  new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		try {
+			int[][] arr=new int[19][19];
+			int count = Integer.valueOf(bi.readLine());
+			for(int i=0;i<count;i++) {
+				String[] s = bi.readLine().split(" ");
+				arr[Integer.valueOf(s[0])-1][Integer.valueOf(s[1])-1]=1;
+			}
+			for(int i=0;i<arr.length;i++) {
+				for(int j=0;j<arr.length;j++) {
+					bw.write(arr[i][j]+" ");
+				}
+				bw.write("\n");
+				bw.flush();
+			}	
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	CodeUp-1096
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int count= sc.nextInt();
+		int[][] arr = new int[19][19];
+		
+		for(int i=0;i<count;i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			arr[x-1][y-1]=1;
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	
+	CodeUp-1095
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int count= sc.nextInt();
+		int min = 24;
+		
+		for(int i=0;i<count;i++) {
+			int temp=sc.nextInt();
+			if(min>temp) min=temp;
+		}
+		System.out.println(min);
+	}
 	
 	CodeUp-1094
 	public static void main(String[] args) {
