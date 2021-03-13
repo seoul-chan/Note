@@ -1,17 +1,123 @@
 package com.test;
 
-import java.util.Scanner;
-
 public class Main {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		
 	}
 }
 
 /*
 	
+	CodeUp-1094
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		try {
+			int count = Integer.valueOf(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			int[] a = new int[count];
+			int i=0;
+			while(st.hasMoreTokens()) {
+				a[i]=Integer.valueOf(st.nextToken());
+				i++;
+			}
+			for(int j=count-1;j>=0;j--)
+				bw.write(a[j]+" ");
+			bw.flush();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	CodeUp-1093(2)
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		try {
+			int count = Integer.valueOf(br.readLine());
+			StringTokenizer s = new StringTokenizer(br.readLine()," ");
+			
+			int[] a = new int[23];
+			for(int i=0;i<a.length;i++)
+				a[i]=0;
+			
+			while(s.hasMoreTokens())
+				a[Integer.valueOf(s.nextToken())-1]++;
+
+			for(int i=0;i<a.length;i++)
+				bw.write(a[i]+" ");
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	CodeUp-1093
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int count = sc.nextInt();
+		int[] a = new int[23];
+		for(int i=0;i<a.length;i++)
+			a[i]=0;
+		
+		for(int i=0;i<count;i++)
+			a[sc.nextInt()-1]++;
+		
+		for(int i=0;i<a.length;i++)
+			System.out.print(a[i]+" ");
+//		System.out.println(Arrays.toString(a));
+	}
+		
+	CodeUp-1092(2)
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//3 7 9
+		int[] a = new int[3];
+		for(int i=0;i<a.length;i++)
+			a[i]=sc.nextInt();
+		
+		int day=1;
+		while(day%a[0]!=0||day%a[1]!=0||day%a[2]!=0) day++;
+		System.out.println(day);		
+	}
+	
+	CodeUp-1092
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//3 7 9
+		int[] a = new int[3];
+		for(int i=0;i<a.length;i++)
+			a[i]=sc.nextInt();
+		
+		int lcm1=a[0];
+		for(int i=1;i<a.length;i++)
+			lcm1=lcm(lcm1, a[i]);		
+		System.out.println(lcm1);
+	}
+	
+	//최대 공약수 - 유클리드 호제법
+	// 두 수 중 작은값, 두 수를 나눈 나머지를 구한다.
+	// 작은값%나머지 반복하여 작은 값이 0이 될때까지 한다.
+	public static int gcb(int a, int b) {
+		int r;
+		if(a<b) {
+			int temp=a;
+			a=b;
+			b=temp;
+		}
+		while(b!=0) {
+			r=a%b;
+			a=b;
+			b=r;
+		}
+		return a;
+	}
+	
+	//최소 공배수
+	// 두 수 a*b / 최소공배수 gcb 
+	public static int lcm(int a, int b) {
+		return a*b/gcb(a, b);
+	}
 	
 	CodeUp-1091
 	public static void main(String[] args) {
