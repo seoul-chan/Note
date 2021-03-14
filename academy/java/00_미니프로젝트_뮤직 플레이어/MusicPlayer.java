@@ -163,7 +163,6 @@ public class MusicPlayer {
 					case 0 : return;
 				}
 			meCon.updateMember(mem);
-			
 			}
 	}
 	
@@ -173,28 +172,32 @@ public class MusicPlayer {
 		while(true) {
 			System.out.println("\n===== 재생 목록 =====");
 			for(int i=0;i<fileList.length;i++) {
-				System.out.println(i+1+". "+fileList[i].substring(0, fileList[i].indexOf(".")));
+				System.out.println(i+1+". "+fileList[i].substring(0, fileList[i].lastIndexOf(".")));
 			}			
 			
 			System.out.println("===== 플레이 메뉴 =====");
-			System.out.println("6. 이전 곡");
-			System.out.println("7. 다음 곡");
-			System.out.println("8. 노래 정지");
-			System.out.println("9. 이전 메뉴");
+			System.out.println("6. 재생/일시정지");
+			System.out.println("7. 이전 곡");
+			System.out.println("8. 다음 곡");
+			System.out.println("9. 노래 정지");
+			System.out.println("10. 이전 메뉴");
 			System.out.print("재생하려는 음악 파일을 선택하세요 : ");
 			
 			int input = sc.nextInt();
 			
-			switch(input) {
-				case 6 : muCon.priviusPlay();break;
-				case 7 : muCon.nextPlay();break;
-				case 8 : muCon.stop();break;
-				case 9 : {
+			switch(input) {	//case 조건에는 상수만 가능.... 변수 불가...
+				case 6 : muCon.pause();break;
+				case 7 : muCon.priviusPlay();break;
+				case 8 : muCon.nextPlay();break;
+				case 9 : muCon.stop();break;
+				case 20 : muCon.tempPlay();break;
+				
+				case 10 : {
 					System.out.println("이전 메뉴로 돌아갑니다.");
 					return;
 				}
 				default : {
-					if(pass) muCon.play(input);
+					if(pass) muCon.play(input-1);
 					else System.out.println("로그인이 필요한 서비스입니다.");
 				}
 			}
