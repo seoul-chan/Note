@@ -1,9 +1,92 @@
 package com.test;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Main {
+	public static void main(String[] args) {
+		
+	}
+}
+
+/*
+	
+	// CodeUp-1099(3)
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		try {
+			int[][] arr=new int[10][10];
+			for(int i=0;i<arr.length;i++) {
+				StringTokenizer st = new StringTokenizer(br.readLine()," ");
+				for(int j=0;j<arr[i].length;j++) {
+					arr[i][j]=Integer.valueOf(st.nextToken());
+				}
+			}
+			int point=1;
+			boolean end = false;
+			for(int i=1;i<arr.length;i++) {
+				if(!end) {
+					for(int j=point;j<arr[i].length;j++) {
+						if(arr[i][j]==0) {
+							arr[i][j]=9;
+						}
+						else if(arr[i][j]==2) {
+							arr[i][j]=9;
+							end=true;
+							break;
+						} else {
+							point=j-1;
+							break;
+						}
+					}
+				} 
+			}
+			for(int i=0;i<arr.length;i++) {
+				for(int j=0;j<arr[i].length;j++) {
+					bw.write(arr[i][j]+" ");
+				}
+				bw.newLine();
+			}
+			bw.flush();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// CodeUp-1099(2)
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		try {
+			int[][] arr=new int[10][10];
+			for(int i=0;i<arr.length;i++) {
+				StringTokenizer st = new StringTokenizer(br.readLine()," ");
+				for(int j=0;j<arr[i].length;j++) {
+					arr[i][j]=Integer.valueOf(st.nextToken());
+				}
+			}
+			int x=1,y=1;
+			while(arr[x][y]!=2) {
+				arr[x][y]=9;
+				if(arr[x][y+1]==0||arr[x][y+1]==2) y++;
+				else x++;
+				if(x==8&&y==8) break;
+			}
+			arr[x][y]=9;
+			for(int i=0;i<arr.length;i++) {
+				for(int j=0;j<arr[i].length;j++) {
+					bw.write(arr[i][j]+" ");
+				}
+				bw.newLine();
+			}
+			bw.flush();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// CodeUp-1099
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int[][] arr=new int[10][10];
@@ -12,22 +95,23 @@ public class Main {
 				arr[i][j]=sc.nextInt();
 			}
 		}
-		int x=1, y=1;
+		int x=1,y=1;
 		while(arr[x][y]!=2) {
-			System.out.println();
-			if(arr[x][y+1]==0) y++;
-			else x++;
 			arr[x][y]=9;
-			System.out.print(arr[x][y]+" ");
+			if(arr[x][y+1]==0||arr[x][y+1]==2) y++;
+			else x++;
+			if(x==8&&y==8) break;
+		}
+		arr[x][y]=9;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
 		}
 	}
-}
-
-/*
 	
-	
-	
-	CodeUp-1098
+	// CodeUp-1098
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int[][] arr = new int[sc.nextInt()][sc.nextInt()];
@@ -52,7 +136,72 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1096(2)
+	// CodeUp-1097(2)
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		try {
+			StringTokenizer s;
+			int[][] arr = new int[19][19];
+			for(int i=0;i<arr.length;i++) {
+				s = new StringTokenizer(br.readLine()," ");
+				for(int j=0;j<arr[i].length;j++) {
+					arr[i][j]=Integer.valueOf(s.nextToken());
+				}
+			}
+			int count=Integer.valueOf(br.readLine());
+			for(int i=0;i<count;i++) {
+				s = new StringTokenizer(br.readLine()," ");
+				int x=Integer.valueOf(s.nextToken())-1, y=Integer.valueOf(s.nextToken())-1;
+				for(int j=0;j<arr.length;j++) {
+					if(arr[x][j]==1) arr[x][j]=0;
+					else arr[x][j]=1;
+					
+					if(arr[j][y]==1) arr[j][y]=0;
+					else arr[j][y]=1;
+				}
+			}
+			for(int i=0;i<arr.length;i++) {
+				for(int j=0;j<arr[i].length;j++) {
+					bw.write(arr[i][j]+" ");
+				}
+				bw.newLine();
+			}
+			bw.flush();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// CodeUp-1097
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[][] arr = new int[19][19];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		int count=sc.nextInt();
+		for(int i=0;i<count;i++) {
+			int x=sc.nextInt()-1, y=sc.nextInt()-1;
+			for(int j=0;j<arr.length;j++) {
+				if(arr[x][j]==1) arr[x][j]=0;
+				else arr[x][j]=1;
+				
+				if(arr[j][y]==1) arr[j][y]=0;
+				else arr[j][y]=1;
+			}
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	
+	// CodeUp-1096(2)
 	public static void main(String[] args) {
 		BufferedReader bi = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw  =  new BufferedWriter(new OutputStreamWriter(System.out));
@@ -76,7 +225,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1096
+	// CodeUp-1096
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int count= sc.nextInt();
@@ -95,7 +244,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1095
+	// CodeUp-1095
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int count= sc.nextInt();
@@ -108,7 +257,7 @@ public class Main {
 		System.out.println(min);
 	}
 	
-	CodeUp-1094
+	// CodeUp-1094
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -129,7 +278,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1093(2)
+	// CodeUp-1093(2)
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -143,7 +292,7 @@ public class Main {
 			
 			while(s.hasMoreTokens())
 				a[Integer.valueOf(s.nextToken())-1]++;
-
+	
 			for(int i=0;i<a.length;i++)
 				bw.write(a[i]+" ");
 			bw.flush();
@@ -152,7 +301,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1093
+	// CodeUp-1093
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int count = sc.nextInt();
@@ -160,15 +309,15 @@ public class Main {
 		for(int i=0;i<a.length;i++)
 			a[i]=0;
 		
-		for(int i=0;i<count;i++)
+		for(int i=0;i<// Count;i++)
 			a[sc.nextInt()-1]++;
 		
 		for(int i=0;i<a.length;i++)
 			System.out.print(a[i]+" ");
-//		System.out.println(Arrays.toString(a));
+	//		System.out.println(Arrays.toString(a));
 	}
 		
-	CodeUp-1092(2)
+	// CodeUp-1092(2)
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//3 7 9
@@ -181,7 +330,7 @@ public class Main {
 		System.out.println(day);		
 	}
 	
-	CodeUp-1092
+	// CodeUp-1092
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//3 7 9
@@ -219,7 +368,7 @@ public class Main {
 		return a*b/gcb(a, b);
 	}
 	
-	CodeUp-1091
+	// CodeUp-1091
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -232,7 +381,7 @@ public class Main {
 		System.out.println(sum);
 	}
 	
-	CodeUp-1090
+	// CodeUp-1090
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -244,7 +393,7 @@ public class Main {
 		System.out.println(sum);
 	}
 	
-	CodeUp-1089
+	// CodeUp-1089
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -256,7 +405,7 @@ public class Main {
 		System.out.println(a);
 	}
 	
-	CodeUp-1088
+	// CodeUp-1088
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -266,7 +415,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1087
+	// CodeUp-1087
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -281,7 +430,7 @@ public class Main {
 		System.out.println(sum);
 	}
 	
-	CodeUp-1086
+	// CodeUp-1086
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] a = sc.nextLine().split(" ");
@@ -291,7 +440,7 @@ public class Main {
 		System.out.printf("%.2f MB",sum/(8.0*1024*1024));
 	}
 	
-	CodeUp-1085
+	// CodeUp-1085
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] a = sc.nextLine().split(" ");
@@ -301,7 +450,7 @@ public class Main {
 		System.out.printf("%.1f MB",sum/(8.0*1024*1024));
 	}
 	
-	CodeUp-1084
+	// CodeUp-1084
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
@@ -324,7 +473,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1083
+	// CodeUp-1083
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a= sc.nextInt();
@@ -334,7 +483,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1082
+	// CodeUp-1082
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a= sc.nextInt(16);
@@ -343,7 +492,7 @@ public class Main {
 		}	
 	}
 	
-	CodeUp-1081
+	// CodeUp-1081
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int first = sc.nextInt();
@@ -356,7 +505,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1080
+	// CodeUp-1080
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -370,7 +519,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1079
+	// CodeUp-1079
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		StringTokenizer st = new StringTokenizer(sc.nextLine()," ");
@@ -381,7 +530,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1078
+	// CodeUp-1078
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -391,7 +540,7 @@ public class Main {
 		System.out.println(sum);
 	}
 	
-	CodeUp-1077
+	// CodeUp-1077
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -400,7 +549,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1076
+	// CodeUp-1076
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char c = sc.next().charAt(0);
@@ -410,7 +559,7 @@ public class Main {
 		}while(c!=count);
 	}
 	
-	CodeUp-1075
+	// CodeUp-1075
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
@@ -421,7 +570,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1074
+	// CodeUp-1074
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
@@ -432,7 +581,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1073
+	// CodeUp-1073
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
@@ -442,7 +591,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1072
+	// CodeUp-1072
 	static StringTokenizer st;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -458,7 +607,7 @@ public class Main {
 		loop(--count);
 	}
 	
-	CodeUp-1071
+	// CodeUp-1071
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
@@ -468,7 +617,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1070
+	// CodeUp-1070
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();		
@@ -486,7 +635,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1069
+	// CodeUp-1069
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char c = sc.next().charAt(0);		
@@ -499,7 +648,7 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1068
+	// CodeUp-1068
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();		
@@ -509,7 +658,7 @@ public class Main {
 		else if(a>=0&&a<=39) System.out.println("D");	
 	}
 	
-	CodeUp-1067
+	// CodeUp-1067
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();		
@@ -517,7 +666,7 @@ public class Main {
 		System.out.println(a%2==0?"even":"odd");
 	}
 	
-	CodeUp-1066
+	// CodeUp-1066
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -529,7 +678,7 @@ public class Main {
 		System.out.println(c%2==0?"even":"odd");	
 	}
 	
-	CodeUp-1065
+	// CodeUp-1065
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -540,7 +689,7 @@ public class Main {
 		System.out.print(c%2==0?c+"\n":"");
 	}
 	
-	CodeUp-1064
+	// CodeUp-1064
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -549,7 +698,7 @@ public class Main {
 		System.out.println(a>b?(b>c?c:b):(a>c?c:a));
 	}
 	
-	CodeUp-1063
+	// CodeUp-1063
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -557,7 +706,7 @@ public class Main {
 		System.out.println(a>b?a:b);
 	}
 	
-	CodeUp-1062
+	// CodeUp-1062
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -565,7 +714,7 @@ public class Main {
 		System.out.println(a^b);
 	}
 	
-	CodeUp-1061
+	// CodeUp-1061
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -573,7 +722,7 @@ public class Main {
 		System.out.println(a|b);
 	}
 	
-	CodeUp-1060
+	// CodeUp-1060
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -581,14 +730,14 @@ public class Main {
 		System.out.println(a&b);
 	}
 	
-	CodeUp-1059
+	// CodeUp-1059
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
 		System.out.println(~a);
 	}
 	
-	CodeUp-1058
+	// CodeUp-1058
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -596,7 +745,7 @@ public class Main {
 		System.out.println(a==0&&b==0?1:0);
 	}
 	
-	CodeUp-1057
+	// CodeUp-1057
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -604,7 +753,7 @@ public class Main {
 		System.out.println((a==1&&b==1)||(a==0&&b==0)?1:0);
 	}
 	
-	CodeUp-1056
+	// CodeUp-1056
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -612,7 +761,7 @@ public class Main {
 		System.out.println(a!=b?1:0);
 	}
 	
-	CodeUp-1055
+	// CodeUp-1055
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -620,7 +769,7 @@ public class Main {
 		System.out.println(a==1||b==1?1:0);
 	}
 	
-	CodeUp-1054
+	// CodeUp-1054
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -628,14 +777,14 @@ public class Main {
 		System.out.println(a==1&&b==1?1:0);
 	}
 	
-	CodeUp-1053
+	// CodeUp-1053
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
 		System.out.println(a==0?1:0);
 	}
 	
-	CodeUp-1052
+	// CodeUp-1052
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -643,7 +792,7 @@ public class Main {
 		System.out.println(a!=b?1:0);
 	}
 	
-	CodeUp-1051
+	// CodeUp-1051
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -651,7 +800,7 @@ public class Main {
 		System.out.println(a<=b?1:0);
 	}
 	
-	CodeUp-1050
+	// CodeUp-1050
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -659,7 +808,7 @@ public class Main {
 		System.out.println(a==b?1:0);
 	}
 	
-	CodeUp-1049
+	// CodeUp-1049
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -667,7 +816,7 @@ public class Main {
 		System.out.println(a>b?1:0);
 	}
 	
-	CodeUp-1048
+	// CodeUp-1048
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
@@ -675,14 +824,14 @@ public class Main {
 		System.out.println(a*1<<b);
 	}
 	
-	CodeUp-1047
+	// CodeUp-1047
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int a = sc.nextInt();
 		System.out.println(a<<1);
 	}
 	
-	CodeUp-1046
+	// CodeUp-1046
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		long a = sc.nextLong();
@@ -693,7 +842,7 @@ public class Main {
 		System.out.printf("%.1f",(a+b+c)/3.0);
 	}
 	
-	CodeUp-1045
+	// CodeUp-1045
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		long i = sc.nextLong();
@@ -707,39 +856,39 @@ public class Main {
 		System.out.printf("%.2f",(float)i/j);
 	}
 	
-	CodeUp-1044
+	// CodeUp-1044
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		long i = sc.nextLong();
 		System.out.print(++i);
 	}
 	
-	CodeUp-1043
+	// CodeUp-1043
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(sc.nextInt()%sc.nextInt());
 	}
 	
-	CodeUp-1042
+	// CodeUp-1042
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(sc.nextInt()/sc.nextInt());
 	}
 	
-	CodeUp-1041
+	// CodeUp-1041
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char c =sc.next().charAt(0);
 		System.out.print(++c);
 	}
 	
-	CodeUp-1040	
+	// CodeUp-1040	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("%d",-sc.nextInt());
 	}	
 	
-	CodeUp-1038 & 1039
+	// CodeUp-1038 & 1039
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		long i = sc.nextLong();
@@ -747,7 +896,7 @@ public class Main {
 		System.out.println(i+j);
 	}
 	
-	CodeUp-1037
+	// CodeUp-1037
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
@@ -755,64 +904,64 @@ public class Main {
 		System.out.print(c);		
 	}
 	
-	CodeUp-1036
+	// CodeUp-1036
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = sc.next().charAt(0);
 		System.out.print(i);		
 	}
 	
-	CodeUp-1035
+	// CodeUp-1035
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = Integer.valueOf(sc.next(),16);
 		System.out.printf(Integer.toOctalString(i));		
 	}
 	
-	CodeUp-1034
+	// CodeUp-1034
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int i = Integer.valueOf(sc.next(),8);
 		System.out.printf("%d",i);
 	}
 	
-	CodeUp-1033
+	// CodeUp-1033
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("%X",sc.nextLong());
 	}
 	
-	CodeUp-1032
+	// CodeUp-1032
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("%x",sc.nextLong());
 	}
 	
-	CodeUp-1031
+	// CodeUp-1031
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("%o",sc.nextLong());
 	}
 	
-	CodeUp-1030
+	// CodeUp-1030
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(sc.nextLong());
 	}
 	
-	CodeUp-1029
+	// CodeUp-1029
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("%.11f",sc.nextDouble());
 	}
 	
-	CodeUp-1028
+	// CodeUp-1028
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(sc.nextLong());
 	}
 	
-	CodeUp-1027
+	// CodeUp-1027
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] sArr = sc.next().split("\\.");
@@ -823,7 +972,7 @@ public class Main {
 		System.out.printf("%02d-%02d-%04d",iArr[2],iArr[1],iArr[0]);
 	}
 	
-	CodeUp-1026
+	// CodeUp-1026
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] sArr = sc.next().split(":");
@@ -834,7 +983,7 @@ public class Main {
 		System.out.println(iArr[1]);
 	}
 	
-	CodeUp-1025
+	// CodeUp-1025
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] sArr = sc.next().split("");
@@ -848,29 +997,21 @@ public class Main {
 		}
 	}
 	
-	CodeUp-1024
+	// CodeUp-1024
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char[] cArr = sc.next().toCharArray();
 		for(int i=0;i<cArr.length;i++)
 			System.out.println("'"+cArr[i]+"'");		
 	}
-	
-	CodeUp-1008
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.printf("\u250c\u252c\u2510\n"
-				+ "\u251c\u253c\u2524\n"
-				+ "\u2514\u2534\u2518");		
-	}
 
-	CodeUp-1020
+	// CodeUp-1020
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(sc.next().replace("-", ""));		
 	}
 
- 	CodeUp-1019
+ 	// CodeUp-1019
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] days = sc.next().split("\\.");
@@ -879,6 +1020,14 @@ public class Main {
 			day[i] = Integer.valueOf(days[i]);
 				
 		System.out.printf("%04d.%02d.%02d",day[0],day[1],day[2]);
+	}
+	
+	// CodeUp-1008
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.printf("\u250c\u252c\u2510\n"
+				+ "\u251c\u253c\u2524\n"
+				+ "\u2514\u2534\u2518");		
 	}
 */
 
