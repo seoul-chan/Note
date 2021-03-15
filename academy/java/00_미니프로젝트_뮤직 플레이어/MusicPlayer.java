@@ -1,6 +1,5 @@
 package music.play.list.view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import music.play.list.controller.MemberController;
@@ -92,6 +91,7 @@ public class MusicPlayer {
 			meCon.logOut();
 			System.out.println("로그아웃 되었습니다.");
 		}
+		muCon.stop();
 	}
 	
 	public void signUp() {
@@ -176,6 +176,26 @@ public class MusicPlayer {
 			}			
 			
 			System.out.println("===== 플레이 메뉴 =====");
+			System.out.println((fileList.length+1)+". 재생/일시정지");
+			System.out.println((fileList.length+2)+". 이전 곡");
+			System.out.println((fileList.length+3)+". 다음 곡");
+			System.out.println((fileList.length+4)+". 노래 정지");
+			System.out.println((fileList.length+5)+". 이전 메뉴");
+			System.out.print("재생하려는 음악 파일을 선택하세요 : ");
+			
+			int input = sc.nextInt();
+			
+			if(input==(fileList.length+1)) muCon.pause();
+			else if(input==(fileList.length+2)) muCon.priviusPlay();
+			else if(input==(fileList.length+3)) muCon.nextPlay();
+			else if(input==(fileList.length+4)) muCon.stop();
+			else if(input==(fileList.length+5)) {System.out.println("이전 메뉴로 돌아갑니다."); return;}
+			else {
+				if(pass) muCon.play(input-1);
+				else System.out.println("로그인이 필요한 서비스입니다.");
+			}
+			/*
+			System.out.println("===== 플레이 메뉴 =====");
 			System.out.println("6. 재생/일시정지");
 			System.out.println("7. 이전 곡");
 			System.out.println("8. 다음 곡");
@@ -190,7 +210,6 @@ public class MusicPlayer {
 				case 7 : muCon.priviusPlay();break;
 				case 8 : muCon.nextPlay();break;
 				case 9 : muCon.stop();break;
-				case 20 : muCon.tempPlay();break;
 				
 				case 10 : {
 					System.out.println("이전 메뉴로 돌아갑니다.");
@@ -201,7 +220,8 @@ public class MusicPlayer {
 					else System.out.println("로그인이 필요한 서비스입니다.");
 				}
 			}
-		}
+			*/
+		}//while
 	}	
 
 	public void signOut() {
@@ -219,6 +239,7 @@ public class MusicPlayer {
 				meCon.signOut();
 			}
 		}
+		muCon.stop();
 	}
 	
 	public void exit() {

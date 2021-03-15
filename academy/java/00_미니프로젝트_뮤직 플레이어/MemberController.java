@@ -40,7 +40,5 @@ public class MemberController {
 	
 	public void saveMember() {
 		md.saveMember();
-	}
-	
-	
+	}	
 }
