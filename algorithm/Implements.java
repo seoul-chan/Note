@@ -3,11 +3,21 @@ package com.algorithm;
 import java.util.Scanner;
 
 public class Implements {
+	static int d;
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int a=sc.nextInt(), b=sc.nextInt();
-		int[][] arr = new int[a][b];
-		int x=sc.nextInt(), y=sc.nextInt(), d=sc.nextInt();
+		
+		int a=sc.nextInt(),b=sc.nextInt();
+		int x=sc.nextInt(),y=sc.nextInt();
+		d=sc.nextInt();
+		int[][] arr=new int[a][b];
+		int[][] load=new int[a][b];
+		load[x][y]=1;
+		int nx,ny,count=1,tern=0;
+		
+		int[] dx={-1,0,1,0};
+		int[] dy= {0,1,0,-1};
 		
 		for(int i=0;i<a;i++) {
 			for(int j=0;j<b;j++) {
@@ -15,14 +25,100 @@ public class Implements {
 			}
 		}
 		
-		
-		
+		while(true) {
+			left();
+			nx=x+dx[d];
+			ny=y+dy[d];
+			if(arr[nx][ny]==0&&load[nx][ny]==0) {
+				load[nx][ny]=1;
+				x=nx; y=ny;
+				count++;
+				tern=0;
+				continue;
+			}else {
+				tern++;
+			}
+			
+			if(tern==4) {
+				nx=x-dx[d];
+				ny=y-dy[d];
+				if(arr[nx][ny]==0) {
+					x=nx; y=ny;					
+					tern=0;
+				} else {
+					break;
+				}
+			}
+		}
+		System.out.println(count);
+	}
+	
+	public static void left() {
+		d-=1;
+		if(d==-1) d=3;
 	}
 	
 	
 	
-	
 	/*
+	 	
+	 	
+	 	
+	 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a=sc.nextInt(), b=sc.nextInt();
+		int[][] arr = new int[a][b];
+		int[][] load = new int[a][b];
+		
+		int x=sc.nextInt(), y=sc.nextInt();	//케릭터 좌표
+		d=sc.nextInt();
+		load[x][y]=1;
+		int nx=0,ny=0; //임시 이동 좌표
+		
+		int count=1,tern_time=0;
+		int[] dx= {-1,0,1,0};
+		int[] dy= {0,1,0,-1};
+				
+		for(int i=0;i<a;i++) {
+			for(int j=0;j<b;j++) {
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		
+		while(true) {
+			left();
+			nx=x+dx[d];
+			ny=y+dy[d];
+			if(arr[nx][ny]==0&&load[nx][ny]==0) {
+				load[nx][ny]=1;
+				count++;
+				x=nx; y=ny;
+				tern_time=0;
+				continue;
+			} else {
+				tern_time+=1;
+			}
+			
+			if(tern_time==4) {
+				nx=x-dx[d];
+				ny=y-dx[d];
+				if(arr[nx][ny]==0) {
+					x=nx;
+					y=ny;
+				} else {
+					break;
+				}
+				tern_time=0;
+			}
+		}
+		System.out.println(count);
+	}
+	
+	public static void left() {
+		d-=1;
+		if(d==-1) d=3;
+	}
+	
 	 
 	 	public static void main(String[] args) {
 		// 체스판의 주어진 위치에서 이동할 가능한 횟수 출력
