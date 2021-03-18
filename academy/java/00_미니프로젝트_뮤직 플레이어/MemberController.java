@@ -14,6 +14,10 @@ public class MemberController {
 		md.logOut();
 	}
 	
+	public boolean logedIn() {
+		return md.logedIn();
+	}
+	
 	public boolean dupliId(String id) {
 		return md.dupliId(id);
 	}
@@ -40,5 +44,6 @@ public class MemberController {
 	
 	public void saveMember() {
 		md.saveMember();
-	}	
+	}
+	
 }
