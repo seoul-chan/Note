@@ -23,7 +23,7 @@ public class MusicDao {
 	//파일 전체목록 가져오기
 	public String[] musicList(){
 		File path = new File("Music\\");
-		musicList = path.list();
+		musicList = path.list();	//파일의 목록을 String[]형태로 반환, 파일 추가 될시 자동으로 재생 목록에 추가
 		return musicList;
 	}
 	
@@ -35,7 +35,7 @@ public class MusicDao {
 				return;
 			}
 			
-			stop();		// 기존 노래 정지 후 노래 재생
+			stop();		// 노래 재생을 위해 기존 노래 정지
 			current=input;
 			privius=true;		
 			playState=true;
