@@ -8,29 +8,18 @@ public class Main {
 	//18238번 - ZOAC2
 	public static void main(String[] args) throws IOException{
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		int cur1=0,cur2=25,count=0;
-		String str="",rStr="";
+		char[] input=br.readLine().toCharArray();
+		int cur=0, count=0;
 		
-		for(int i=0;i<26;i++)	//A-Z 
-			str+=(char) (65+i);
-		
-		for(int i=0;i<26;i++)	//Z-A
-			rStr+=(char) (90-i);
-		
-		String input=br.readLine();
-		for(int i=0;i<input.length();i++) {
-			String find=input.substring(i, i+1);
-			int point1=str.indexOf(find);	//A-Z에서 알파벳 위치
-			int point2=rStr.indexOf(find);	//Z-A에서 알파벳 위치
+		for(int i=0;i<input.length;i++) {
+			int target=input[i]-'A';	//char->int
+			int distance=Math.abs(target-cur);
 			
-			int count1=(point1>=cur1)?point1-cur1:str.length()-(cur1-point1);
-			cur1=point1; //A-Z에서 현재 위치 저장
+			if(distance>13) //이동거리가 13이상(절반)이면 뒤로 이동
+				distance=26-distance;
 			
-			int count2=(point2>=cur2)?point2-cur2:rStr.length()-(cur2-point2);
-			cur2=point2; //Z-A에서 현재 위치 저장
-			
-			if(count1<count2) count+=count1;
-			else count+=count2;
+			count+=distance;
+			cur=target;
 		}
 		System.out.println(count);
 	}
