@@ -13,19 +13,21 @@ public class Main {
     	int n=Integer.parseInt(st.nextToken());
     	int m=Integer.parseInt(st.nextToken());
     	int j=Integer.parseInt(br.readLine());
-    	int start=1, end=m, count=0, apple=0;
+    	int start=1, end=m, count=0, apple=0; //start~end : 바구니 길이
     	
     	for(int i=0;i<j;i++) {
+    		int temp=0;
     		apple=Integer.parseInt(br.readLine());
-    		if(apple>end) {
-    			count+=(apple-end);
-    			start+=(apple-end);
-    			end+=(apple-end);
-    		} else if(apple<start) {
-    			count+=Math.abs(apple-start);
-    			start+=(apple-start);
-    			end+=(apple-start);
-    		}                                                                                                                                                                                 
+    		if(apple>end) {	//바구니 오른쪽 이동
+    			temp=apple-end;
+    			start+=temp;
+    			end+=temp;
+    		} else if(apple<start) { //바구니 왼쪽 이동
+    			temp=start-apple;
+    			start-=temp;
+    			end-=temp;
+    		}
+			count+=temp;
     	}
     	System.out.println(count);
     }	
