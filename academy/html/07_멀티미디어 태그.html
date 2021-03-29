@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>오디오태그를 활용해보자</h1>
+    <!-- controls 속성을 작성해 주어야 오디오 출력 믹서가 출력된다. -->
+    <!-- 브라우저 별로 호환이 다르다. -->
+    <!-- 익스플로러는 mp3파일만 출력이 가능하고(엣지는 가능) autoplay는 크롬에서 제한된다.-->
+    
+    <audio src="audio/Kalimba.ogg" controls loop></audio>
+    <audio src="audio/major.mp3" controls autoplay></audio>
+
+    <h1>비디오 태그를 활용해 보자</h1>
+    <video src="video/Wildlife.webm" controls width="300" height="300"></video>
+    <!-- poster : 썸네일 이미지 -->
+    <video src="video/movie.ogv" controls width="300" height="300" poster="yanolja.png"></video>
+    <video src="video/video1.mp4" controls width="200" height="200" poster="yanolja.png"></video>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이미지태그</h1>
+    <p>
+        이미지태그는 단일 태그이며 속성으로 모든것을 설정한다.
+        src=" " : 이미지에 대한 경로(local, 외부(http))
+
+        width=" " : 넓이(px)
+        height=" " : 길이(px)
+        : width, height 생략 시 자동으로 px단위로 적용되며 이미지 원본 크기로 출력된다.
+        alt=" " : 이미지경로에 이미지가 없는 경우 출력될 문구를 지정
+    </p>
+    <h3>내부 경로에 있는 사진 불러오기</h3>
+    <!-- 내부 경로에 있는 사진 불러오기 -->
+    <img src="yanolja.png" alt="야놀자" width="300" height="150">
+    <!-- 경로를 상위 경로로 변경 해서 이미지가 없는 경우 alt확인 -->
+    <img src="../yanolja.png" alt="야놀자" width="300" height="150">
+    <h4>외부 경로에 있는 사진 불러오기</h4>
+    <img src="https://encrypted-tbn0.gstatic.com/
+    images?q=tbn:ANd9GcTNmpRPNDtTPSZFwo79Mxmo4wtJehas3jv42Q&usqp=CAU" alt="헤이즈">
+
+    <h3>이미지맵 사용하기</h3>
+    <p>
+        이미지의 영역을 분할하여 각 분할된 영역에서 다른 페이지를 호출할 수 있게 하는 기능
+        이미지를 영역으로 나누어 영역별 연결되는 링크를 다르게 할 수 있다.
+        map 태그에 name 속성을 작성
+        map 태그 내부에 area 속성을 작성
+    </p>
+    <img src="yanolja.png" width="300" height="150" alt="야놀자" usemap="#map">
+    <map name="map">
+        <area shape="rect" coords="00,00,150,75" href="http://www.naver.com" alt="" target="_self">
+        <area shape="rect" coords="300,00,150,75" href="http://www.daum.net" alt="" target="_blank">
+    </map>
+
+</body>
+</html>

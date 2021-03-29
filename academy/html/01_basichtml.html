@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+            head태그
+            페이지에 대한 주요정보를 설정
+            외부에서 볼러올 파일 지정, script, css에 대한 설정
+            페이지 작성환경, 저작자, 타이틀 등 작성
+        -->
+        <!-- meta태그 이용하기 -->
+        <!-- 페이지 기본 언어설정 -->
+        <meta http-equiv="content-language" content="ko"/>
+        <!-- 페이지 형식, 문자형식을 지정 -->
+        <!-- content-type -->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>   <!-- MIMEtype, content : 현재 설정된 파일의 형식을 의미함, charset : 인코딩 방식 정의-->
+        <!-- 문자열인코딩 -->
+        <meta charset="UTF-8">
+        <!-- 페이지를 자동으로 이동하는 옵션 -->
+        <!-- <meta http-equiv="refresh" content="3;http://www.naver.com"> 3초후에 작성한 URL 주소로 연결 -->
+        <!-- meta태그 name속성 -> 페이지에 대한 기본정보 설정 -->
+        <meta name="applecation-name" content="html구조">
+        <meta name="author" content="chan"> <!-- 작성자 이름 -->
+        <meta name="description" content="html에 대한 주요 구조">
+        <meta name="generator" content="vscode">
+        <meta name="keywords" content="web, html, html5, html구조">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- 페이지의 제목을 설정하는 태그 - title태그 -->
+        <title>HTML_PAGE</title>
+
+        <!-- link태그 - 외부에 있는 파일(css,icon)을 페이지로 불러오는 태그 -->
+        <!-- rel : 페이지와 불러올 파일의 관계를 의미, href : 파일의 경로 작성-->
+        <link rel="stylesheet" type="text/css" href="css/sample.css">
+
+        <!-- 파비콘설정하기 -->
+        <!-- 파비콘(favicon) : 브라우저 탭 안에 있는 아이콘 모양 -->
+        <link rel="icon" type="image/x-icon" href="https://www.iei.or.kr/khfavicon.ico">
+
+        <!-- style : 태그들의 모양을 꾸며주는 태그 -->
+        <!-- 선언하는 위치에 제한은 없으나 통상 head태그 안에 설정함
+            글자크기, 테두리설정, 글꼴, 배경색, 글자굵기... -->
+        <style>
+            p{
+               font-size: 20px;
+               color: chocolate;
+               font-weight: bolder;
+            }
+        </style>
+
+        <!-- script : 페이지를 더 동적으로 작업하는 기술 -->
+        <script>
+            alert('알림창');
+        </script>
+        <script src="js/sample.js"></script> <!-- 외부의 파일을 불러올 경우 -->
+
+        <!-- base태그 : 페이지의 default경로를 변경할 수 있다. -->
+        <base href="https://www.naver.com">
+    </head>
+    <body>
+        <!-- body 태그 : 페이지에 실제 출력할 내용의 태그를 작성 -->
+        <h1>HTML을 환영합니다.</h1>
+        <p>head에서 css가 적용된 p태그입니다.</p>
+        <a href="test.do">base경로 변경</a> <!-- 클릭 시 base태그에서 작성한 URL주소에 덧붙여 이동한다.-->
+    </body>
+</html>
