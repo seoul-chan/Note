@@ -18,6 +18,11 @@ public class DfsMetrix {
 		
 		// 노드 간의 연결정보 저장
 		for(int i=0;i<edge;i++) {
+			// StringTokenizer로 사용 가능
+//			StringTokenizer st=new StringTokenizer(sc.nextLine()," ");
+//			int start=Integer.parseInt(st.nextToken());
+//			int end=Integer.parseInt(st.nextToken());
+			
 			int start=sc.nextInt();	//현재 노드
 			int end=sc.nextInt();	//연결된 노드
 			
