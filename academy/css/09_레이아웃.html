@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>태그에 대한 영역크기 설정</h2>
+    <p>
+        width / height
+        구역은 세개의 구역으로 분할(border, padding, content)된다.
+        * 기본적으로 크기영역(width,height)은 content영역만 해당
+        크기설정은 절대값, 상대값으로 설정
+        단위 : px(절대값) / %(상대값)
+    </p>
+    <h3>절대크기 : 브라우저 창의 크기가 줄어도 고정된 크기를 유지한다.</h3>
+    <div class="container asize"></div>
+    <h3>상대크기 : 브라우저 창의 크기가 줄어들면 같이 줄어든다.</h3>
+    <div class="container rsize"></div>
+    <style>
+        .container{
+            border:1px red solid;
+        }
+        .asize{
+            width: 900px;
+            height: 200px;
+        }
+        .rsize{
+            width: 70%;
+            height: 200px;
+        }
+    </style>
+    <h2>태그별 배치속성</h2>
+    <p>
+        태그별로 block속성과 inline속성으로 구분할 수 있음.
+        block : 한 라인 전체를 차지함 -> 개행이 됨. width height 조정 가능
+        inline : 라인 안에서 여러 태그를 표현가능 -> 개행되지않음, width height 조정 불가능, 크기는 라인에서 지정하는대로 처리함
+        기본태그의 배치속성을 변경할 수 있음 -> display속성을 이용
+    </p>
+    <h2>div(block)속성배치</h2>
+    <div class="container basicsize">기본1</div>
+    <div class="container basicsize">기본2</div>
+    <div class="container basicsize">기본3</div>
+
+    <!-- div(block)임에도 불구하고 inline속성으로 변경되어 개행되지 않고 출력 -->
+    <h2>div속성을 inline속성으로 변경하기</h2>
+    <div class="container basicsize inline">inline &nbsp;&nbsp;&nbsp;&nbsp; div1</div>
+    <div class="container basicsize inline">inline div2</div>
+    <div class="container basicsize inline">inline div3</div>
+
+    <h2>div속성을 inline-block속성으로 변경하기</h2>
+    <div class="container basicsize inlineblock">inline div3</div>
+    <div class="container basicsize inlineblock">inline div3</div>
+
+    <style>
+        .basicsize{
+            width: 200px;
+            height: 200px;
+        }
+        .inline{
+            display: inline;
+        }
+        .inlineblock{
+            display:inline-block;
+        }
+    </style>
+
+    <h2>기본 span(inline)을 배치하기</h2>
+    <span class="container">span1</span>
+    <span class="container">span2</span>
+    <span class="container">span3</span>
+        
+    <h2>span에 block속성 변경하기</h2>
+    <span class="container basicsize block">block span1</span>
+    <span class="container basicsize block">block span2</span>
+    <span class="container basicsize block">block span3</span>
+
+    <h3>span에 inlineblock속성 변경하기</h3>
+    <span class="container basicsize inlineblock">block span1</span>
+    <span class="container basicsize inlineblock">block span2</span>
+    <span class="container basicsize inlineblock">block span3</span>
+
+    <style>
+        .block{
+            display: block;
+        }
+    </style>
+
+    <label class="block">아이디 <input type="text" name="userId"></label>
+    패스워드 <input type="password" name="password">
+
+    <h3>display:none</h3>
+    <p>
+        태그를 홈페이지에 출력하지 않게 하는 속성
+        코드상에는 태그가 있지만 실제페이지에서는 출력되지 않게 하는 것
+        코드가 있는 영역을 차지하지 않는다.
+    </p>
+    <div id="target" class="container basicsize">div1</div>
+    <div class="container basicsize none">div2</div>
+    <div class="container basicsize">div3</div>
+    <style>
+        .none{
+            display: none;
+        }
+        #target:hover+div{
+            display: block;
+            background-color: lightblue;
+        }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>색상</h1>
+    <p>
+        css로 색상을 표시할때는 색상영문명, 16진수RGB값, 0~255까지 RGB값
+        RGBA(색투명도결정), HSL/HSLA
+    </p>
+    <div class="container"></div>
+    <div class="container background"></div>
+    <style>
+        .background{
+            /* background-color: rgba(150, 80, 200, 0.5); */
+            background-color: hsla(255, 61%, 85%, 0.7);
+        }
+        .container{
+            width: 200px;
+            height: 200px;
+            border: 1px green solid;
+        }
+    </style>
+    <h3>background-color</h3>
+    <p>
+        태그마다 페이지에서 차지하는 각 영역이 있는데 그영역에 특정 색상을 표현할 수 있게 하는 속성
+    </p>
+    <div class="container bg">
+        <ul class="bg1">
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+            <li>jquery</li>
+        </ul>
+    </div>
+    <style>
+        .bg{
+            background-color: chocolate;
+        }
+        .bg1{
+            background-color: indigo;
+        }
+    </style>
+
+    <h3>background-clip</h3>
+    <p>
+        태그(element)가 차지하고 있는 영역에 대한 범위설정 속성
+        border-box : border의 영역까지 배경으로 설정
+        padding-box : padding의 영역까지 배경으로 설정
+        content-box : content의 영역까지 배경으로 설정
+    </p>
+    <div class="basicContainer">
+        <div class="container box border">border 영역</div>
+        <div class="container box padding">padding 영역</div>
+        <div class="container box content">content 영역</div>
+    </div>
+    <style>
+        .basicContainer{
+            /* 옆으로 출력 */
+            display: flex;
+        }
+        .box{
+            border: 10px gold dotted;
+            padding: 20px;
+        }
+        .border{
+            background-clip: border-box;
+            background-color: silver;
+        }
+        .padding{
+            background-clip: padding-box;
+            background-color: lightcyan;
+        }
+        .content{
+            background-clip: content-box;
+            background-color: darkcyan;
+        }
+    </style>
+
+    <h3>background-image</h3>
+    <p>
+        태그 영역에 배경으로 사진을 삽입하는 속성
+        기본적으로 사진의 크기와 영역의 크기비율대로 바둑판식으로 배치됨.
+    </p>
+    <div class="container2 backimg"></div>
+    <style>
+        .container2{
+            width: 600px;
+            height: 600px;
+            border: 5px gold dotted;
+        }
+        .backimg{
+            background-image: url("yanolja_50.png");
+        }
+        .backsize{
+            /* background-size: contain; */
+            /* background-size: cover; */
+            background-size: 300px 300px;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <h2>background-repeat</h2>
+    <p>
+        바둑판배경을 변경해주는 속성
+        repeat(default), repeat-x/repeat-y, no-repeat
+    </p>
+    <div class="container2 repeat"></div>
+    <style>
+        .repeat{
+            background-image:url(yanolja.png);
+            background-repeat: repeat-x;
+        }
+    </style>
+
+    <h2>background-size</h2>
+    <p>
+        배경이미지의 크기를 조정할 수 있는 속성
+        contain : 이미지가 영역안에 모두 들어갈 수 있게 확대, 축소 -> 이미지가 짤림없이 모두 들어감.
+        cover : 이미지로 영역을 모두 꽉차게 설정이 되게 확대, 축소하는 것 -> 일부만 출력될 수 있음
+        숫자/백분율 : 
+    </p>
+    <div class="container2 backimg backsize"></div>
+
+    <h2>background-position</h2>
+    <p>
+        배경이미지의 위치를 조정하는 속성
+        left|right|top|bottom|center||숫자
+    </p>
+    <div class="container2 backimg backsize imgposition"></div>
+    <style>
+        .imgposition{
+            /* background-position: right; */
+            /* background-position: center; */
+            /* background-position: right bottom; */
+            background-position: 200px 300px;
+        }
+    </style>
+
+    <h2>background-attachment</h2>
+    <p>
+        페이지가 스크롤에 의해 움직일때 배경의 위치를 설정하는 속성
+        scroll : 페이지가 움직이면 따라서 움직으는 속성 -> 페이지 이동하면 안보임
+        fixed : 페이지가 움직여도 설정한 위치에 있는 속성 -> 페이지가 이동해도 계속 보임
+    </p>
+    <div class="container2 backimg backsize imgposition attach"></div>
+    <style>
+        .attach{
+            background-attachment: fixed;
+            /* background-attachment: scroll; */
+        }
+    </style>
+
+    <h2>linear-gradient</h2>
+    <p>
+        선형 그라데이션 속성 설정
+        background:liner-gradient(각도||방향,시작색,끝색);
+    </p>
+    <div class="container lineg"></div>
+    <div class="container radig"></div>
+    <style>
+        .lineg{
+            /* background:linear-gradient(to right, red, blue); */
+            /* background:linear-gradient(45deg, red, blue 30%, green, lime 80%); */
+            /* 반복되게 설정 */
+            background:repeating-linear-gradient(45deg, red, blue 30%, green, lime 80%);
+        }
+        .radig{
+            background:radial-gradient(circle closest-side, red, blue 30%, green, lime 80%);
+        }
+    </style>
+</body>
+</html>

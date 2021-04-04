@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>문단정렬하기</h2>
+    <p>
+        text-align : left|right|center|justify;
+    </p>
+    <div class="container left">left : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container right">right : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container center">center : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container justify">justify : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container textintent">text-indent : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container lineheight">line-height : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <div class="container textoverflow">textoverflow : 흔들리는 꽃들속에서 네 샴푸향이 느껴진거야</div>
+    <style>
+        .container{
+            width: 300px;
+            height: 100px;
+            border: 1px red solid;
+        }
+        .left{
+            text-align: left;
+        }
+        .right{
+            text-align: right;
+        }
+        .center{
+            text-align: center;
+        }
+        .justify{
+            text-align: justify;
+        }
+        .textintent{
+            text-indent: 30px;
+        }
+        .lineheight{
+            line-height: 40px;
+        }
+        .textoverflow{
+            white-space: nowrap;
+            overflow: hidden;/*hidden으로 넘치는 텍스트 처리 후 ellipsis처리*/
+            text-overflow: ellipsis;
+        }
+    </style>
+</body>
+</html>

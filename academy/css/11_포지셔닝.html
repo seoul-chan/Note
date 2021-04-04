@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포지셔닝속성</title>
+</head>
+<body>
+    <h1>position속성</h1>
+    <p>
+        태그를 페이지상에서 원하는 위치에 배치할 수 있게 하는 속성
+        position속성은 위치를 지정하는 속성인 top, left, right, bottom과 같이 사용함.
+
+        position속성값
+        static : 기본값 position을 설정하지 않으면 기본설정
+        relative : 부모의 position속성이 static일때 부모태그의 왼쪽 꼭지점 지점이 기준이 됨
+        absolute : 부모의 position속성이 static일때 페이지의 왼쪽 꼭지점 지점이 기준이 됨(0,0)
+
+        * 부모의 position속성이 relative, absolute면 둘 다 부모의 왼쪽 꼭지점이 기준(0,0)
+    </p>
+    <div class="container">
+        <div class="innerdiv relative">innerdiv(relative)</div>
+        <div class="innerdiv2 absolute">innerdiv2(absolute)</div>
+    </div>
+    <div class="container basic"> <!--부모의 position 속성을 변경 시-->
+        <div class="innerdiv relative">부모 relative속성 innerdiv(relative)</div>
+        <div class="innerdiv2 absolute">부모 relative속성 innerdiv2(absolute)</div>
+    </div>
+    <div class="container basic"> <!--부모의 position 속성을 변경 시-->
+        <div class="innerdiv relative">부모 relative속성 innerdiv(relative)</div>
+        <div class="innerdiv2 absolute">부모 relative속성 innerdiv2(absolute)</div>
+        <div class="innerdiv fixed">부모 속성 상관없이 지정(fixed)</div>
+    </div>
+    <style>
+        .container{
+            border: 1px red solid;
+            width: 500px;
+            height: 400px;
+        }
+        .innerdiv{
+            border: 1px green solid;
+            width: 200px;
+            height: 200px;
+        }
+        .relative{
+            position: relative;
+            left: 100px;
+            top: 100px;
+        }
+        .innerdiv2{
+            border: 1px blue solid;
+            width: 200px;
+            height: 200px;
+        }
+        /* 부모 기준이 아닌 페이지를 기준으로 위치를 잡는다. */
+        .absolute{
+            position: absolute;
+            /* left: 50px;
+            top: 50px; */
+            left: 40%;
+            top: 30%;
+        }
+        .basic{
+            position: relative;
+        }
+        .fixed{
+            position: fixed;
+            top: 300px;
+            left: 100px;
+        }
+    </style>
+</body>
+</html>
+

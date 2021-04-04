@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록스타일</title>
+</head>
+<body>
+    <h3>기본표현스타일 적용하기</h3>
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <ul class="disc">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <ul class="square">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <ul class="none">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <ol class="leadzero">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ol>
+    <style>
+        .disc{
+            list-style-type: circle;
+        }
+        .square{
+            list-style-type: square;
+        }
+        .none{
+            list-style-type: none;
+        }
+        .leadzero{
+            list-style-type: decimal-leading-zero;
+        }
+    </style>
+
+    <h2>목록에 이미지넣기</h2>
+    <p>
+        list-style-image:url(이미지주소);
+        이미지 크기를 잘 맞춰야함
+    </p>
+    <ul class="imgli">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <style>
+        .imgli{
+            list-style-image: url("yanolja.png");
+            font-size: 30px;
+            list-style-position: inside;
+        }
+    </style>
+</body>
+</html>

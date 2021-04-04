@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>반응선택자</h2>
+    <p>
+        client의 움직임에 따라서 style이 적용되는것
+        클릭, 마우스가 지정한 태그에 올라갔을때.
+        active : 마우스를 지정한 태그(element)에 클릭했을 때
+        hover : 지정한 태그(element)에 마우스가 올라갔을 때
+    </p>
+    <nav>
+        <p id="activeTest">클릭하면 변해라!</p>
+        <p class="hoverTest">마우스 올라가면 변해라</p>
+    </nav>
+    <style>
+        .hoverTest:hover{
+            color: lime;
+            background-color: red;
+        }
+        #activeTest:active{
+            font-size: 30px;
+            color: hotpink;
+            background-color: brown;
+        }
+    </style>
+
+    <h2>반응선택자로 메뉴구성하기</h2>
+    <nav>
+        <ul>
+            <li>메인메뉴</li>
+            <li>게시판</li>
+            <nav>
+                <ul>
+                    <li>자유게시판</li>
+                    <li>모임게시판</li>
+                </ul>
+            </nav>
+        </ul>
+    </nav>
+    <style>
+        li+nav>ul{
+            height: 0px;
+            overflow: hidden; /* 내용을 가린다*/
+        }
+        li:hover+nav>ul{
+            height: 100px;
+        }
+        nav>ul>li{
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 30px;
+            color: white;
+        }
+        nav>ul{
+            background-color: lightgreen;
+        }
+    </style>
+
+    <h3>문자선택자</h3>
+    <ul>
+        <li>::first-letter : 첫번째 한글자만 style적용하는 것</li>
+        <li>::first-line : 첫번째 줄에 style적용하는 것(스크린 출력 기준)</li>
+        <li>::after : 태그의 끝문자에 문자를 추가</li>
+        <li>::before : 태그의 시작에 문자를 추가</li>
+        <li>::selection : 마우스가 드래그한 문자에 style적용</li>
+    </ul>
+    <div class="tt">
+        <p>
+            first-letter : 첫번째 한글자만 style적용하는 것<br>
+            first-line : 첫번째 줄에 style적용하는 것(스크린 출력 기준)
+        </p>
+        <p>
+            after : 태그의 끝문자에 문자를 추가<br>
+            before : 태그의 시작에 문자를 추가<br>
+            selection : 마우스가 드래그한 문자에 style적용
+        </p>
+    </div>
+    <style>
+        div.tt>p::first-letter{
+            font-size: 30px;
+            color: magenta;
+        }
+        div.tt>p::first-line{
+            background-color: aqua;
+            color: white;
+        }
+        div.tt>p::after{
+            content: "- kc -";
+        }
+        div.tt>p::before{
+            content: "- chan -";
+            color: black;
+            background-color: maroon;
+        }
+        div.tt>p::selection{
+            background-color: orange;
+            color: orangered;
+        }
+    </style>
+    <h3>구조선택자</h3>
+    <p>
+        선택자:first-child : 구조상 첫번째 자식인 선택자태그
+        선택자:last-child : 구조상 마지막 자식인 선택자 태그
+        선택자:ntn-child : 구조상 n번쨰 선택자 태그
+    </p>
+
+    <!-- 구조 1 -->
+    <div>
+        <h5>h5 1</h5> <!-- 구조1의 첫번째 자식-->
+        <h5>h5 2</h5> <!-- 구조1의 두번째 자식-->
+        <h5>h5 3</h5>
+        <h5>h5 4</h5>
+        <h5>h5 5</h5>
+        <!-- 구조 2 -->
+        <div>
+            <h5>div>h5 1</h5> <!-- 구조2의 첫번째 자식-->
+            <h5>div>h5 2</h5> <!-- 구조2의 두번째 자식-->
+            <h5>div>h5 3</h5>
+        </div>
+    </div>
+    <style>
+        /* 같은 구조(레벨)상의 h5중에서 첫 번째 자식이 아닌 레벨의 첫번째 자식이 h5인 경우인 자식에만 적용 */
+        h5:first-child{
+            background-color: palegreen;
+        }
+        h5:last-child{
+            color: gold;
+        }
+        /* n은 0부터 마지막까지 적용 -> 2n : 짝수번째 자식만 적용 */
+        /* n : 0 1 2 3 4 ~ */
+        h5:nth-child(2n){
+            background-color: skyblue;
+        }
+    </style>
+
+    <h3>type별 구조선택자</h3>
+    <p>
+        선택자:first-of-type : 선택자 태그 중 첫번째
+        선택자:last-of-type : 선택자 태그 중 마지막
+        선택자:nth-of-type : 선택자 태그 중 n번째
+    </p>
+
+     <!-- 구조 1 -->
+     <div>
+        <h4>h4 1</h4> <!-- 구조1의 첫번째 자식-->
+        <h4>h4 2</h4> <!-- 구조1의 두번째 자식-->
+        <h4>h4 3</h4>
+        <h4>h4 4</h4>
+        <h4>h4 5</h4>
+        <!-- 구조 2 -->
+        <div>
+            <h4>div>h4 1</h4> <!-- 구조2의 첫번째 자식-->
+            <h4>div>h4 2</h4> <!-- 구조2의 두번째 자식-->
+            <h4>div>h4 3</h4>
+        </div>
+    </div>
+    <style>
+        /* h4타입 중 첫번째 */
+        h4:first-of-type{
+            background-color: darkmagenta;
+        }
+        h4:last-of-type{
+            font-size: 20px;
+            color : lawngreen
+        }
+        h4:nth-of-type(2n){
+            text-decoration: overline;
+        }
+    </style>
+    
+    <h3>부정선택자</h4>
+    <p>
+        선택자A:not(선택자B) -> A선택자들 중 선택자B빼고 다
+    </p>
+
+    <div id="notTest">
+        <p>1</p>
+        <div>div 1</div>
+        <p>2</p>
+        <p>3</p>
+        <div>div 2</div>
+        <p>4</p>
+        <div>div 3</div>
+        <p>5</p>
+    </div>
+    <style>
+        /* div태그 이면서 id가 notTest의 모든 후손 태그 중 p태그가 아닌 태그*/
+        div#notTest *:not(p){
+            background-color: orangered;
+        }
+    </style>
+
+    <h3>여러선택자 사용하기 - ,를 이용해서 여러 선택자 선택가능</h3>
+    <div>
+        <input type="text" name="userId">
+        <h3>test</h3>
+    </div>
+    <style>
+        /* input type=text, div>h3인 선택자에 동시적용 */
+        input[type="text"],div>h3{
+            background-color: lightsalmon;
+            border: 4px yellow solid;
+        }
+    </style>
+
+    
+
+</body>
+</html>

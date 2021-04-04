@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <h3>padding설정하기</h3>
+    <div class="parent">
+        <div class="container">기본</div>
+        <div class="container paddingAll">콘텐츠내용설정</div>
+        <div class="container paddingPosition">콘텐츠내용설정</div>
+        <div class="container paddingAll">
+            <img src="yanolja.png" alt="" width="50" height="30">
+        </div>
+        <div class="container paddingTest">콘텐츠내용설정</div>
+    </div>
+    <style>
+        .parent{
+            display: flex;
+        }
+        .container{
+            border: 1px green solid;
+            width: 200px;
+            height: 100px;
+        }
+        .paddingAll{
+            padding: 10px; /* 4면이 모두 적용 됨 */
+        }
+        .paddingPosition{
+            /* 여백을 줄 위치를 지정함 */
+            padding-left: 20px;
+        }
+        .paddingTest{
+            padding:10px 0 0 20px;
+        }
+    </style>
+
+    <h3>margin설정하기 : element 사이의 간격을 조정한다.</h3>
+    <div class="container marginAll">모든면 적용</div>
+    <div class="container marginPostion">left 적용</div>
+    <div class="container marginTest">상하좌우 개별 적용</div>
+    <div class="container">
+        <div class="innnercontainer">innner div</div>
+    </div>
+    <div></div>
+    <style>
+        .marginAll{
+            margin:20px;
+        }
+        .marginPostion{
+            margin-left: 50px;
+        }
+        .marginTest{
+            margin: 10px 0 0 20px;
+        }
+        .innnercontainer{
+            border: 1px red solid;
+            width: 100px;
+            height: 100px;
+            margin-left: 10px;
+        }
+    </style>
+
+    <header>
+        <div>
+            <img src="https://svcstrg2.navitime.jp/imgfile/02301_14426602_05.jpg" alt="" width="100">
+        </div>
+        <div>
+            <nav>
+                <ul>
+                    <li>메인화면</li>
+                    <li>게시판</li>
+                    <li>갤러리</li>
+                    <li>자료실</li>
+                    <li>기타</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <style>
+        ul>li{
+            display: inline-block;
+            font-size: 30px;
+            color: burlywood;
+            margin-right: 30px;
+            letter-spacing: 10px;
+            font-weight: bolder;
+            font-family: "Gamja Flower";
+            cursor:pointer
+        }
+        header,header>div{
+            border: 1px black solid;
+            display: inline-block;
+        }
+    </style>
+</body>
+</html>

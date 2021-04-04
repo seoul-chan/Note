@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 스타일 적용하기</title>
+</head>
+<body>
+    <h1>글자색 변경하기</h1>
+    <p class="color">글자색 변경하기</p>
+    <style>
+        .color{
+            /* color:rgb(156,55,187); */
+            color:#FF00DD; /* 16진수로 지정 */
+        }
+    </style>
+
+    <h2>text-decoration</h2>
+    <p>문장에 윗줄, 아랫줄, 삭선, 줄없애기</p>
+    <h3 class="underline">아랫줄</h3>
+    <h3 class="overline">윗줄</h3>
+    <h3 class="deleteline">삭선</h3>
+    <a href="">a태그는 밑줄이 있다</a><br>
+    <a href="" class="a">a태그 밑줄 없애기</a>
+    <style>
+        .underline{
+            text-decoration: underline;
+        }
+        .overline{
+            text-decoration: overline;
+        }
+        .deleteline{
+            text-decoration: line-through;
+        }
+        .a{
+            text-decoration: none;
+            color: limegreen;
+        }
+        a:hover{
+            color: lightcoral;
+        }
+    </style>
+    <h3>text-transform</h3>
+    <p>영문을 변경해주는 속성</p>
+    <!-- class text,overline 동시 적용 -->
+    <h2 class="text overline">hello WOrld</h2>
+    <style>
+        .text{
+            text-transform: lowercase; /* 모든 영문자 소문자로 적용 */
+            text-transform: uppercase; /* 모든 영문자 대문자로 적용 */
+            text-transform: capitalize;/* 첫글자만 대문자 적용 */
+        }
+    </style>
+
+    <h2>text-shadow</h2>
+    <p>
+        문자열에 그림자효과 주기
+        text-shadow : 가로 세로 번짐 색상
+    </p>
+    <h1 class="shadow">Class</h1>
+    <style>
+        .shadow{
+            text-shadow: 5px 5px 2px skyblue, -10px -10px 3px orange;
+        }
+    </style>
+    
+    <h3>white-space</h3>
+    <p>
+        공백에 대한 설정하는 속성(띄어쓰기, 개행, 탭)
+    </p>
+    <div id="container" class="nowrap">white-space nowrap          테스트         합니다.</div>
+    <div id="container" class="pre">white-space pre          테스트         합니다.</div>
+    <div id="container" class="preline">white-space preline          테스트         합니다.</div>
+    <div id="container" class="prewrap">white-space prewrap          테스트         합니다.</div>
+    <style>
+        .nowrap{
+            white-space: nowrap;
+            overflow: hidden;/*영역 벗어나는 경우 히든처리*/
+        }
+        .pre{
+            white-space: pre;
+        }
+        .preline{
+            white-space: pre-line;
+        }
+        .prewrap{
+            white-space: pre-wrap;
+        }
+        #container{
+            width: 200px;
+            height: 100px;
+            border: red solid;
+        }
+    </style>
+
+    <h2>letter-spacing / word-spacing</h2>
+    <p class="letter">letter 글자 간격 조정</p>
+    <p class="word">word 단어 간격 조정</p>
+    <style>
+        .letter{
+            letter-spacing: 20px;
+        }
+        .word{
+            word-spacing: 20px;
+        }
+    </style>
+
+</body>
+</html>

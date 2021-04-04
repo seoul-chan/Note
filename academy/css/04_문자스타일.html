@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h2>글꼴 스타일 적용하기</h2>
+    <p>
+        글꼴을 선정하는 기준은 OS에 있는 값을 기준으로 설정이 가능하다.
+        그래서 다중선택이 가능하고 모두 없을 경우에는 브라우저가 기본으로 사용하는 글꼴이 적용됨
+
+    </p>
+    <div id="container">
+        <h2>글꼴적용하기</h2>
+        <p>
+            이것도 글꼴을 적용해보자
+        </p>
+    </div>
+    <style>
+        /* 편지체 글꼴은 없기에 휴먼편지체 적용 */
+        div#container>p{
+            font-family: "편지체","휴먼편지체";
+        }
+        div#container>h2{
+            font-family: "궁서체";
+        }
+    </style>
+
+    <h3 class="GamjaFlower">웹폰트를 이용하면 다양한폰트를 이용하여 사이트를 구현할 수 있다.</h3>
+    <style>
+        .GamjaFlower{
+            font-family: "Gamja Flower";
+        }
+    </style>
+
+    <h2>글꼴크기정하기</h2>
+    <p>안녕하세요 기본글자크기입니다.</p>
+    <p class="staticSize">30px크기입니다.</p>
+    <p class="relativeSize">2em크기 입니다.</p>
+    <div style="font-size : 20px">
+        <p class="relativeSize2">부모가 있는 2em크기 입니다.</p>
+    </div>
+    <p>기본굵기</p>
+    <p class="bold">bold 굵기</p>
+    <p class="bolder">bolder 굵기</p>
+    <p class="lighter">lighter 굵기</p>
+    <p class="weightsu">weightsu 굵기</p>
+    <style>
+        .staticSize{
+            font-size: 30px;
+        }
+        .relativeSize{
+            /* font-size: 2em - 바로 위 부모(body) 크기의 2배 (default 16px * 2 = 32px적용) */
+            font-size: 2em;
+        }
+        /* body{
+            /* 부모인 body의 font 크기 변경 시 2em=10px*2 적용  
+            font-size: 10px;
+        } */
+        .relativeSize2{
+            font-size: 2em;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .bolder{
+            font-weight: bolder;
+        }
+        .lighter{
+            font-weight: lighter;
+        }
+        /* 굵기를 숫자단위 세밀하게 조절할때 사용 */
+        .weightsu{
+            font-weight: 800;
+        }
+        .variant{
+            font-variant: small-caps;
+        }
+        .ital{
+            font-style: italic;
+            /* font-style: oblique; 도 기울어지는 문자이나 차이가 있다*/
+        }
+    </style>
+    <p class="variant">회원등급(member vip)</p>
+    <p class="ital">문자가 기울어짐</p>
+
+    <p class="fontall">여러 스타일을 한번에 적용하기</p>
+    <style>
+        .fontall{
+            font:italic small-caps bolder 50px "Gamja Flower"
+        }
+    </style>  
+</body>
+</html>
