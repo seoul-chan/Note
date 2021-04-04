@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그</title>
+</head>
+<body>
+    <h1>form태그에 대해 알아보자</h1>
+    <p>
+        form태그는 자식태그로 갖고있는 input태그들의 값을 특정 서버에 전송해주는 태그
+        주요 속성 : method, action
+        method : 전송방식을 결정(get, post)
+        action : 서비스를 요청할 주소
+    </p>
+    <h2>get/post방식 전송하기</h2>
+    <h4>get방식으로 전송하기</h4>
+    <!-- 
+        get방식은 id/password입력 시 주소에 노출되어 보인다
+        주소 뒤에 ?표시는 ?표시 이후 get방식으로 데이터를 전송하는 것이다.
+        그렇기에 get방식은 검색 시 많이 사용되고 ip,pw입력 시에는 post방식으로 사용한다.
+        get방식은 post방식보다 속도가 빠르다.
+     -->
+    <form action="08_하이퍼링크.html" method="get">
+        <input type="text" name="id" placeholder="아이디 입력">
+        <input type="password" name="password" placeholder="패스워드 입력"><br>
+        <input type="submit" value="로그인">
+    </form>
+
+    <h4>post방식으로 전송하기</h4>
+    <form action="08_하이퍼링크.html" method="post">
+        <input type="text" name="id" placeholder="아이디 입력">
+        <input type="password" name="password" placeholder="패스워드 입력"><br>
+        <input type="submit" value="로그인">
+    </form>
+    <a href="https://www.google.com/search?q=html">html</a>
+    <p>
+        method속성은 기본값 -> get방식 / method 미 기재 시 get방식으로 전송
+    </p>
+
+    <h1>입력양식 관련태그</h1>
+    <h2>input태그</h2>
+    <p>
+        사용자에게 값을 입력받을 수 있는 텍스트 상자 또는 체크 박스 등등을 만들수 있다.
+        입력화면은 type 속성에 따라 결정된다.
+        반드시 form태그에 있어야 하는 것은 아니다.
+    </p>
+
+    <form action="GET">
+    아이디 : <input type="text"><br>
+    비밀번호 : <input type="password"><br>
+    성별 : <input type="radio"> 남 <input type="radio"> 여 <br>
+
+    <input type="text" name="userid" size="10" placeholder="아이디를 입력하세요." maxlength="15" value="kh" autofocus>
+    <input type="password" name="userpwd" size="20" placeholder="비밀번호를 입력하세요." maxlength="15">
+    
+    <input type="submit" value="전송">
+    <input type="reset" value="다시입력">
+    </form>
+
+    <h3> type="search", type="url", type="email", type="tel"</h3>
+    <p>텍스트 필드와 비슷하지만 각각각의 정보에 맞게 기능을 제공하는 텍스트 상자
+        url : 사이트의 주소받는 입력창 text타입과 유사, 입력값에 http://있는지 체크
+        email : 이메일 입력창, @가 있는지(형식에 맞는지)체크
+    </p>
+    <form action="GET">
+    <label>검색 : </label>
+    <input type="search" name="searchtext" placeholder="검색할 내용 입력"> <br>
+
+    <label>홈페이지 : </label>
+    <input type="url" name="homepage" value="https://"> <br>
+
+    <label>이매일 : </label>
+    <input type="email" name="email" placeholder="이메일을 입력하세요"> <br>
+
+    <label>전화번호 : </label>
+    <input type="tel" name="phone" placeholder="전화번호를 입력하세요"> <br>
+
+    <label>색상 : </label>
+    <input type="text" name="color" list="mycolor">
+    <datalist id="mycolor">
+        <option value="black">검정색</option>
+        <option value="white">흰색</option>
+        <option value="sky">하늘색</option>
+    </datalist>
+
+    <input type="submit" value="전송">
+    <input type="reset" value="다시입력">
+    </form>
+
+    <h2>숫자와 관련된 input 태그</h2>
+    <form method="GET">
+        <h3>type="number"</h3>
+        <p>입력창에 숫자를 입력하는 것이 기본이지만, 브라우저에 따라 스핀박스가 표시되기도 함.</p>
+        <label>수량 : </label>
+        <input type="number" name="amount" max="100" value="0" step="5"><br>
+        
+        <h3>type="range"</h3>
+        <p>슬라이드 바를 통해서 숫자 지정가능</p>
+        <input type="range" name="point" min="0" max="100" value="50" step="10"><br>
+
+
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+    <br><br><br>
+
+    <form method="GET">
+        <h2>날짜/시간 관련된 input 태그</h2>
+        <h3>type="data/month/week/datetime/datetime-local"</h3>
+
+        <label>month : </label>
+        <input type="month" name="dateIn"><br>
+
+        <label>week : </label>
+        <input type="week" name="weekIn"><br>
+
+        <label>time : </label>
+        <input type="time" name="timeIn"><br>
+
+        <label>datetime : </label>
+        <input type="datetime" name="dtIn"><br>
+        
+        <label>datetime-local : </label>
+        <input type="datetime-local" name="dtIn"><br>
+        <br><br>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+    <form method="GET">
+        <h2>라디오 버튼과 체크박스 태그</h2>
+        <p>태그를 여러개 선언을 해서 하나의 용도록 사용할 경우 name 속성의 값이 같아야 함.
+            checkbox : 다중선택을 하는 로직
+            radio : 예시중 한가지만 선택 다중선택은 불가능하다.
+        </p>
+        <h3>type="radio"</h3>
+        <label>성별 : </label>
+        <input type="radio" id="male" name="gender" value="M">
+        <label for="male">남자</label>&nbsp;
+        
+        <input type="radio" id="female" name="gender" value="F">
+        <label for="female">여자</label><br>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+
+        <h3>type="checkbox"</h3>
+        <label>취미 : </label>
+
+        <input type="checkbox" id="baseball" name="hobby" value="baseball" checked>
+        <label for="baseball">야구</label> &nbsp;
+
+        <input type="checkbox" id="basketball" name="hobby" value="basketball" >
+        <label for="basketball">농구</label> &nbsp;
+
+        <input type="checkbox" id="football" name="hobby" value="football" >
+        <label for="football">축구</label> &nbsp;
+
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+    <form method="GET">
+        <h2>추가 input 태그</h2>
+        <h3>type="color"</h3>
+        <label>색상 선택 : </label>
+        <input type="color" name="color">
+
+        <h3>type="file"</h3>
+        <label>파일 선택 : </label>
+        <input type="file" name="uploadfile">
+
+        <h3>type="hidden"</h3>
+        <p>
+            사용자에게 보여줄 데이터는 아니지만 서비스를 실행할 때 반드시
+            보내야할 값을 설정할 때
+            value속성에 값을 반드시 입력
+        </p>
+        <label>안보임 : </label>
+        <input type="hidden" name="hiddenvalue" value="1">
+
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+    <h2>type : "button"</h2>
+    <p>버튼모양 출력을 해줌 -> 반드시 기능추가 (이벤트 처리) 자바스크립트와 연결해서 사용</p>
+
+    아이디 <input type="text" name="id">
+    <input type="button" value="아이디중복확인" onclick="test()">
+    <script>
+        function test() {
+            alert("누르지 마세요")
+        }
+    </script>
+
+    <form method="GET">
+        <h2>select 태그와 option태그</h2>
+        <label>국적 : </label>
+        <!-- multiple : ctrl 클릭 시 다중 선택 가능 -->
+        <select name="national" size="3" multiple>
+            <option value="ko">한국</option>
+            <option value="ch">중국</option>
+            <option value="jp">일본</option>
+            <option value="etc">기타</option>
+            <option selected>---</option>
+        </select>
+
+        <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+    <h2>textarea태그</h2>
+    <p>input type="text"와 비슷하지만 여러문장을 입력할 수 있다.</p>
+    <form method="GET">
+        <!-- 
+            style="resize: none;" : 입력 창 크기 변경 불가 옵션 
+            readonly : 텍스트 작성 불가 옵션
+        -->
+        <textarea placeholder="test" cols="30" rows="5"></textarea>
+        <textarea placeholder="test" cols="30" rows="5" style="resize: none;" readonly></textarea>
+        <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="다시입력">
+    </form>
+
+</body>
+</html>
