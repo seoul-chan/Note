@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나그네 펜션</title>
+    <style>
+        .layout{
+            border: 1px solid black;
+            height: 100px;
+        }
+
+        .logo{
+            width: 100px;
+            display: inline-block; 
+        }
+
+        #top{
+            position: fixed;
+            height: 80px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;  
+        }
+        
+        #topmenu{
+            margin: 0 auto;
+            /* 구현 필요 : 천천히 증가 */
+            transition-property: transform;
+            transition-timing-function: ease;
+            transition-timing-function: 5s;
+        }
+
+        #topmenu ul li{
+            list-style: none;
+            float: left;
+            line-height: 40px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .menuLink{
+            /* border: 1px solid blue; */
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100px;
+            font-size: 15px;
+            font-weight: bolder;
+        }
+
+        .menuLink:hover{
+            transform: scale(1.2);
+        }
+
+        .reservation{
+            /* border: 1px solid black; */
+            font-size: 15px;
+            width: 180px;
+            display: block;
+            float: right;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .reservation ul li{
+            list-style: none;
+            float: left;
+            line-height: 40px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .container{
+            border: 1px solid black;
+
+        }
+        .footer{
+            position: fixed;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+        }
+        .background{
+            display: flex;
+            flex-direction: column;
+            background-image: url(펜션전경2.jpg);
+            width: 1120px;
+            height: 900px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        table{
+            width: 700px;
+            border: 1px solid gray;
+            border-top: 2px solid orange;
+            border-collapse: collapse;
+        }
+        th{
+            border: 1px solid grey;
+            background-color: rgb(199, 194, 194);
+            font-size: 14px;
+            text-align: center;
+        }
+        td{
+            border: 1px solid grey;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 550;
+        }
+        .loginDiv{
+            
+        }
+        .login{
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <header>
+            <div id=top>
+                <div class="logo">
+                    <a href=""><img src="로고.png" alt="로고 이미지" width="100px" height="80px"></a>
+                </div>
+    
+                <div id=topmenu>
+                    <nav>
+                        <ul>
+                            <li><a class="menuLink" href="">ABOUT</a></li>
+                            <li><a class="menuLink" href="">ROOMS</a></li>
+                            <li><a class="menuLink" href="">PECIAL</a></li>
+                            <li><a class="menuLink" href="">ENJOY</a></li>
+                            <li><a class="menuLink" href="">GUIDE</a></li>
+                            <li><a class="menuLink" href="">TRAVEL</a></li>
+                        </ul>
+                    </nav>
+                </div>
+    
+                <div class="reservation">
+                    <ul>
+                        <li><a class="menuLink" href="">RESERVATION</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        
+        <br><br><br><br><br><br>
+    
+        <div class="loginDiv">
+            <div class="login">
+                <p>관리자 로그인</p>
+                <form action="GET">
+                    아이디 : <input type="text"><br>
+                    비밀번호 : <input type="password"><br>
+                    <input type="submit" value="로그인">
+        
+                </form>
+            </div>
+        </div>
+    
+        <div class="container">
+           <div class="">Room's - 벨로나</div>
+           <div class="">객실 정보보기</div>
+        </div>
+        <br>
+    
+        <div>    
+            <table>
+                <tr>
+                    <th>객실명</th>
+                    <th>기간</th>
+                    <th>주중</th>
+                    <th>금요일</th>
+                    <th>주말</th>
+                </tr>
+                <tr>
+                    <td rowspan="3">라벨로</td>
+                    <td>비수기</td>
+                    <td>119,000</td>
+                    <td>129,000</td>
+                    <td>210,000</td>
+                </tr>
+                <tr>
+                    <td>준성수기</td>
+                    <td>169,000</td>
+                    <td>179,000</td>
+                    <td>250,000</td>
+                </tr>
+                <tr>
+                    <td>주말</td>
+                    <td>209,000</td>
+                    <td>259,000</td>
+                    <td>299,000</td>
+                </tr>
+                <tr>
+                    <td>기준 인원</td>
+                    <td>최대 인원</td>
+                    <td colspan="3">유형</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td colspan="3">원룸형/침대</td>
+                </tr>
+            </table>
+        </div>
+    
+        <div>
+            예약 링크
+        </div>
+    
+        <div>
+            객실 사진
+        </div>
+    
+        <footer>
+            <div class="layout footer">
+    
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
