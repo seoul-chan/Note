@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float 속성</title>
+</head>
+<body>
+    <h1>float속성 활용하기</h1>
+    <p>
+        기본 static position에서 벗어나 왼쪽이나, 오른쪽 상단으로 배치시키는 속성을 말함.
+    </p>
+    <div class="float-container">
+        <div class="left">left</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="right">right</div>
+        <div class="right">right</div>
+        <div class="clear">basic</div>
+    </div>
+    <style>
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+            margin-right: 10px;
+        }
+        .float-container{
+            width: 600px;
+            /* height: 400px; */
+            height: auto;
+            border: 1px blue solid;
+        }
+        .float-container>div{
+            border:1px lime solid;
+            width: 100px;
+            height: 100px;
+        }
+        .clear{
+            clear: both;
+        }
+    </style>
+
+    <h1>div(block)태그를 수평정렬해주는 속성</h1>
+    <p>
+        수평 수직정렬할 때 display:flex속성을 이용할 수 있다.
+        display flex를 이용하면 편리하게 정렬이 가능함.
+        정렬할 div를 포함하는 container태그가 있어야 하고 container태그에 dispaly:flex속성을 설정하면 된다.
+    </p>
+    <div id="parent">
+        <div class="child">logo</div>
+        <div class="child">title</div>
+        <div class="child">login</div>
+        <!-- 
+            내부 div태그가 많은 경우 설정된 크기가 적용되지 않고 크기가 균등하게 적용된다. 
+            이를 방지하기 위해 flex-wrap: wrap을 적용한다.
+        -->
+        <div class="child">1</div>
+        <div class="child">2</div>
+        <div class="child">3</div>
+        <div class="child">4</div>
+    </div>
+
+    <div id="parent">
+        <div class="child c1">flex-grow 0</div>
+        <div class="child c2">flex-grow 2</div>
+        <div class="child c3">flex-grow 3</div>
+    </div>
+    <style>
+        #parent{
+            width: 800px;
+            height: auto;
+            border: 1px red solid;
+            margin-bottom: 50px;
+            display: flex;
+            /* 
+                자식 태그를 수평 정렬할 때 사용하는 속성
+                justify-content : space-between, space-around
+             */
+            /* justify-content: space-between; 양끝을 붙여서 양쪽 정렬 */
+            /* justify-content: space-around; */
+            /* justify-content: center; 수평 중앙 정렬*/
+            align-items: center; /*수직 수평 중앙 정렬*/
+            flex-direction: row; /*배치 순서 정의*/
+            flex-wrap: wrap; /* 자동 개행 */
+        }
+        div#parent>div{
+            border: 1px blue solid;
+            width: 200px;
+            height: 200px;
+        }
+        /* 비율로 영역을 분할 0:2:3 */
+        .c1{
+            flex-grow: 0;
+        }
+        .c2{
+            flex-grow: 2;
+        }
+        .c3{
+            flex-grow: 3;
+        }
+    </style>
+</body>
+</html>

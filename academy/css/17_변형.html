@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변형적용하기</title>
+</head>
+<body>
+    <h1>변형이용하기</h1>
+    <p>
+        transform속성을 이용해서 처리히게 되며 변형함수를 이용한다.
+    </p>
+    <h3>태그를 특정 지점으로 이동시키기</h3>
+    <p>
+        tranlate()함수를 이용함.
+    </p>
+    <img class="translate" src="yanolja_50.png" alt="" width="200px" height="200px">
+    <img class="transX" src="yanolja_50.png" alt="" width="200px" height="200px">
+    <img class="transY" src="yanolja_50.png" alt="" width="200px" height="200px">
+    <img class="transZ" src="yanolja_50.png" alt="" width="200px" height="200px">
+    <style>
+        img{
+            border: 1px solid black;
+            display: block;
+            width: 200px;
+            height: 200px;
+            margin-left: 50px;
+        }
+        .translate:active{
+            transform: translate(100px,200px);
+        }
+        .transX:active{
+            transform: translateX(200px); /*x축 이동*/
+        }
+        .transY:active{
+            transform: translateY(200px); /*y축 이동*/
+        }
+        .transZ:active{
+            transform: perspective(200px) translateZ(100px); /*z축 이동, perspective를 이용해 원근감 표현을 한다.*/
+        }
+    </style>
+   
+   <h2>태그 확인하기</h2>
+    <p>
+        scale()함수 비교하기
+        확대, 축소 비율을 인자로 넣음
+    </p>
+    <img class="scale" src="yanolja_50.png" alt="">
+    <img class="scaleX" src="yanolja_50.png" alt="">
+    <img class="scaleY" src="yanolja_50.png" alt="">
+    <style>
+        .scale:hover{
+            transform:scale(1.5); /*1.5배 크기 증가*/
+        }
+        .scaleX:hover{
+            transform:scaleX(1.5); /*x축 1.5배 크기 증가*/
+        }
+        .scaleY:hover{
+            transform:scaleY(1.5); /*y축 1.5배 크기 증가*/
+        }
+    </style>
+    
+    <h3>skew적용하기</h3>
+    <p>
+        각도대로 찌그러트리기
+        이미지뿐만 아니라 태그에는 다 사용하능하다.
+    </p>
+    <img class="skew" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <img class="skewX" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <img class="skewY" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <style>
+        .skew:hover{
+            transform: skew(10deg, 10deg); /* 각도를 정함 */
+        }
+        .skewX:hover{
+            transform: skewX(20deg); /* x축 각도를 정함 */
+        }
+        .skewY:hover{
+            transform: skewY(20deg); /* y축 각도를 정함 */
+        }
+    </style>
+
+    <h3>rotate</h3>
+    <p>태그를 회전시키는 것</p>
+    <img class="rotate" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <img class="rotateX" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <img class="rotateY" src="https://t1.daumcdn.net/cfile/tistory/992E50405C9C8D9D35" alt="">
+    <style>
+        .rotate:hover{
+            transform:rotate(45deg);
+        }
+        .rotateX:hover{
+            transform:perspective(200px) rotateX(45deg);
+        }
+        .rotateY:hover{
+            transform:perspective(200px) rotateY(45deg);
+        }
+    </style>
+
+    <h3>트랜지션적용하기</h3>
+    <p>
+        태그가 변형속에 의해 변형이 될 때 부드럽게 이어지면서 변형될 수 있게 해주는 속성
+        transition-property : 적용할 속성(height, transform)
+        transition-duration : 지속 시간(s)
+        transition-timing-function : linear, ease, ease-in, ease-out
+        transition : 위 속성을 한번에 설정하는 속성
+    </p>
+    <div class="basic transi transi2">트랜지션 적용하기</div>
+    <style>
+        .basic{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: khaki;
+            transition-property: width, transform, background-color;
+            transition-timing-function: ease;
+            transition-duration: 1s;
+        }
+        .transi:hover{
+            width: 200px;
+            background-color: blueviolet;
+        }
+        .transi2:active{
+            transform: translate(200px, 300px);
+        }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+    <title>애니메이션 적용하기</title>
+    <style>
+        @keyframes ani{
+            form{
+                /* 스타일 지정하기 */
+                background-color: orange;
+                font-size: 20px;
+                transform: rotate(360deg);
+            }to{
+                background-color: violet;
+                border-radius: 100px;
+                font-size: 50px;
+                transform: translate(200px,300px);
+            }
+        }
+        @keyframes ani2{
+            0%{
+                width: 100px;
+                height: 100px;
+                background-color: aqua;
+                transform: perspective(200px) rotateX(80deg);
+            }
+            20%{
+                background-color : tomato;
+                width: 500px;
+                height: 500px;
+            }
+            40%{
+                transform: scale(2);
+                border-radius: 200px;
+            }
+            60%{
+                width: 100px;
+                height: 100px;
+                transform: skew(45deg, 70deg);
+            }
+            100%{
+                background-color: magenta;
+                width: 300px;
+                height: 300px;
+                transform: translate(100px,100px);
+            }
+        }
+        .anitest{
+            animation-name: ani;
+            animation-duration: 4s;
+            animation-direction: alternate;
+            animation-iteration-count: 4;
+        }
+        .anitest2{
+            animation-name: ani2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+    </style>
+</head>
+<body>
+    <h1>애니메이션 적용하기</h1>
+    <!-- <div class="anitest">기본애니메이션 적용</div> -->
+    <!-- <div class="anitest2">부분별 애니메이션 적용</div> -->
+
+    <header>
+        <nav>
+            <ul>
+                <li>메인화면</li>
+                <li>게시판</li>
+                <li>갤러리</li>
+                <li>자료실</li>
+            </ul>
+        </nav>
+    </header>
+
+    <style>
+        header>nav>ul{
+            background-color: blanchedalmond;
+            height: 80px;
+            display: flex;
+        }
+        header>nav>ul>li{
+            display: inline-block;
+            font-family: Stylish;
+            font-size: 50px;
+            font-weight: bold;
+            margin-right: 20px;
+            color: lightskyblue;
+            cursor:pointer;
+            letter-spacing: 10px;
+            margin-top: 10px;
+        }
+        header>nav>ul>li:hover{
+            animation: menumove 0.5s infinite alternate;
+        }
+        @keyframes menumove{
+            form{
+                transform: translate(3px);
+                color: skyblue;
+                text-decoration: underline;
+                font-size: 40px;
+            } to{
+                transform: translate(-3px);
+                text-decoration: underline;
+                font-size: 40px;
+            }
+        }
+    </style>
+</body>
+</html>
