@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <h2>함수선언하기</h2>
+    <ul>
+        <li>
+            <p>선언적함수 : 선언시에 함수명을 작성하는 함수</p>
+            <p>function 함수명([매개변수,....]){처리로직} *매개변수는 변수명만 작성</p>
+        </li>
+        <li>
+            <p>익명함수 : 선언시에 함수명을 작성하지 않는 함수</p>
+            <p>function ([매개변수,....]){처리로직}</p>
+            <p>익명함수를 이용하려면 변수(일반변수, 매개변수)에 반드시 대입해야한다.</p>
+        </li>
+    </ul>
+
+    <h2>선언직함수</h2>
+    <p>
+        선언된 이름을 이용하여 함수를 호출할 수 있음
+        선언이 되면 window객체의 property로 등록이 됨.
+    </p>
+    <script>
+        //매개변수 있고 반환값이 없는 함수
+        function basicFunc() {
+            console.log("basic",arguments);
+            console.log("매개변수도 반환값도 없는 함수")
+        }
+
+        //함수 호출하기
+        basicFunc();
+
+        //매개변수가 있고 반환형은 없는 함수
+        //매개변수 선언은 let, var예약어 없이 이름만 명시
+        //다수일때는 ,로 구분한다.
+        function paramFunc(name, age) {
+            console.log("param",arguments);
+            console.log("이름 : "+name+" 나이 : "+age);
+            console.log(`이름 : ${name} 나이 : ${age}`); // ` : ''가 아닌 키보드 ~ 에 있는 글씨
+        }
+        //매개변수의 자료형에 상관없이 사용이 가능하다.
+        paramFunc("chan",30);
+        paramFunc(30,"chan");
+
+        //함수에 선언된 매개변수 갯수보다 적게 호출 시 없는 항목에 대해 undefined호출(에러X)
+        paramFunc("chan");
+        paramFunc();
+
+        //함수에 선언된 매개변수보다 더 많은 매개변수 호출 시 나머지 항목들은 버려진다.
+        paramFunc("chan",29,"chan@osp.com");
+
+        //function마다 호출시 보내는 매개변수를 보관하는 객체를 바인딩 시켜놓음
+        //arguments객체에 모든 매개변수를 저장해놓음
+
+        //반환형이 있는 선언적 함수
+        // {}안 return이 있으면 반환이 있는 함수, 없으면 없는 함수
+        function returnTest(){
+            return [1,2,3,4,5];
+        }
+        let arr=returnTest();
+        console.log(arr);
+
+        //반환형이 있고 매개변수가 있는 함수
+        
+        function returnParam(v,v1,v2,v3,v4){
+            return [v,v1,v2,v3,v4];
+        }
+        let temp=returnParam(11,12,13,14,15);
+        console.log(temp);
+        temp=returnParam("a","b","c","d","e");
+        console.log(temp);
+
+        //선언함수로 선언된 함수는 window객체에 property로 선언되어 있음
+        console.log(window);
+
+        //선언함수의 이름을 중복으로 선언 시 덮어쓰기가 됨!!!
+        // 이전에 선언한 함수도 덮어쓰기된 함수로 동작
+        function returnParam(){
+            return "ccccc";
+        }
+
+        temp=returnParam();
+        console.log(temp);
+
+
+    </script>
+</body>
+</html>

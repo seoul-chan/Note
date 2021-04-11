@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        자바스크립트 연산자는 자바와 동일하게 사용할 수 있다.
+        자바스크립트도 연산할 때 연산자의 양값의 자료형이 같아야 함
+        그러지 않을 경우 자동형변한 시킴
+    </p>
+    <script>
+        let su=10;
+        let strsu="10";
+        console.log(su+strsu);  //1010
+        console.log(su-strsu);  //0
+        console.log(su*strsu); //100
+        console.log(su==strsu); //true
+
+        let flag=true;
+        let strFlag="true";
+        console.log(flag==strFlag); //false
+
+        let dsu=3.14;
+        let strDsu="3.14";
+        console.log(dsu==strDsu);   //true
+    </script>
+
+    <input type="text" id="msg">
+    <button onclick="addMsg();">구문추가</button>
+    <div id="container1"></div>
+    <script>
+        function addMsg() {
+            let msg=document.getElementById("msg").value;
+            let container=document.getElementById("container1");
+            container.innerHTML+=msg;
+            document.getElementById("msg").value=""; //버튼 클릭 시 입력창 초기화
+        }
+    </script>
+
+    <h3>===연산자와 !==연산자</h3>
+    <p>
+        자바스크립트에서 동등 비교 시 자동으로 형변환되어 비교하는 현상이 있음
+        자료형까지 비교하고 싶을 때 사용하는 형식자
+        === : 자료형 동등비교
+        !== : 자료형 부정비교
+    </p>
+    <script>
+        let su3=100;
+        let strsu2="100";
+        console.log(su3==strsu2);   //true (100 <-> 100)
+        console.log(su3===strsu2);  //false (Number <-> String)
+        
+        console.log(su3!=strsu2);  //false (100 <-> 100)
+        console.log(su3!==strsu2);  //true (Number <-> String)
+    </script>
+
+</body>
+</html>
