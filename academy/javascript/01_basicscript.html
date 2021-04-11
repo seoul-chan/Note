@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본 자바스크립트 적용하기</title>
+    <!-- 위에서 부터 코드를 읽기에 head 경고창 먼처 뜬다. -->
+    <script>
+        alert("head안 태그"); //경고 알림창
+    </script>
+</head>
+<body>
+    
+    <h1>자바스크립트 선언하기</h1>
+    <p>
+        자바스크립트는 script태그 안에 작성하여 이용을 함
+        script태그는 선언된 위치에 상관없이 html페이지 안에 있으면 된다.
+        script태그는 여러 개 선언해도 상관이 없다. 단 위에서 순차적으로 실행한다.
+    </p>
+
+    <h2>자바 스크립트 이용하는 방식</h2>
+    <p>
+        자바스크립트를 이용하는 방식은 3가지 방식이 있음
+    </p>
+    <ol>
+        <li>
+            inline : 태그 내부의 이벤트 속성에 직접 javascript코드를 작성하는 것
+            * 간단한 구문만 사용
+        </li>
+        <li>internal : html페이지 내부의 script태그를 선언한고 script태그 안에 javascript코드를 작성하는 것</li>
+        <li>
+            external : xxx.js파일을 만들어 javascript코드를 작성하고 html페이지에서 script태그 scr속성으로 그 파일을 불러와 적용하는 것
+            * 내부로컬파일 / 외부 http통신 방식(url주소)으로 불러올 수도 있음
+        </li>
+    </ol>
+
+    <h3>inline방식 적용하기</h3>
+    <p onclick="alert('js의 세계에 오신것을 환영합니다.');">inline으로 자바스크립트 적용하기</p>
+
+    <h3>internal방식 적용하기</h3>
+    <script>
+        alert("internal방식으로 script적용1");
+        //오타로 인한 에러가 있는 경우 에러창이 뜨거나 하지는 않지만 해당 script는 더 이상 실행되지 않고 넘어간다.
+        // 크롬 개발자 도구의 console탭에서 에러 확인 가능
+        aler("internal방식으로 script적용2");
+        alert("internal방식으로 script적용3");
+    </script>
+
+    <h3>external방식 적용하기</h3>
+    <script src="js/test.js"></script>
+
+
+
+    <!-- script태그가 위에 있으면 element 호출시 에러가 있을 수 있기에 아래(body태그 아래)에 선언하는 것이 안전하다. (태그는 위에서 아래로 읽기에) -->
+    <script>
+        alert("body안 태그"); //경고 알림창
+    </script>
+</body>
+</html>
