@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>숫자 -> 문자로 변경</h3>
+    <script>
+        let su=19;
+        let name="chan";
+        // 문자열과 +연산시 자동으로 문자열로 형변환됨.
+        console.log(su+name,typeof(su+name));
+        console.log(su-name); //NaN
+
+        //숫자를 문자로 강제 형변환하기
+        //toString()함수를 이용
+        console.log(su.toString().charAt(0),typeof(su.toString))
+    </script>
+
+    <h3>문자를 숫자로 변경하기</h3>
+    <p>
+        Number()함수이용하기, parseInt()함수이용
+    </p>
+    <script>
+        let su1=19;
+        let strSu="20";
+        let strSalary="600원";
+        console.log(su1+strSu); //1920
+        console.log(su1+Number(strSu)); //39
+        console.log(1000+Number(strSalary)); //NaN
+        console.log(1000+parseInt(strSalary)); //1600
+    </script>
+    
+    <div id="target"></div>
+    <style>
+        #target{
+            width: 100px;
+            height: 100px
+        }
+    </style>
+    <script>
+        let div=document.getElementById("target");
+        div.style.widows="200px";
+        console.log(parseInt(div.style.width)+10);
+
+    </script>
+
+    <!-- input태그 두개에서 두수를 받아서 +하기, 연산하고 그 결과를 div출력하기 -->
+    <input type="text" id="su1">
+    <input type="text" id="su2">
+    <button onclick="addOp();">계산하기</button>
+    <div id="result"></div>
+    <script>
+        function addOp() {
+            let su1=document.getElementById("su1").value;
+            let su2=document.getElementById("su2").value;
+            document.getElementById("result").innerHTML=Number(su1)+Number(su2)};
+    </script>
+</body>
+</html>

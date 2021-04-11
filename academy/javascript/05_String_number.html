@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>String객체 이용하기</h1>
+    <p>
+        자바스크립트에서 " " || ' ' 문자열 -> String객체로 처리된다.
+        문자열에는 이용할 수 있는 다양한 함수가 존재한다.
+    </p>
+    <script>
+        //1. 영문자를 대문자, 소문자로 처리하는 함수
+        //toUpperCase(), toLowerCase();
+        let str='apple';
+        console.log(str);
+        console.log(str.toUpperCase());
+        console.log('APPLE'.toLowerCase());
+
+        //2. 문자열의 길이를 확인하는 property
+        //length
+        console.log('class'.length);
+        console.log(str.length);
+
+        //3. 문자열의 인덱스에 있는 문자를 출력하는 함수
+        //charAt();
+        console.log('class'.charAt(0));
+
+        //4. 특정문자의 위치를 찾는 함수
+        //indexOf(), lastIndexOf();
+        console.log("케이크".indexOf('크'));
+
+        let coffee='아메리카노';
+        console.log(coffee.lastIndexOf('카'));
+
+        //5. 특정 문자 잘라내는 함수
+        //substring();
+        console.log('저녁 식사'.substring(0,2));
+
+        //6. 구분자로 구분할 수 있는 문자열을 배열로 반환하는 함수
+        //split();
+        let dinner='볶음밥,시리얼,떡볶이,커피';
+        let dinnerArr=dinner.split(',');
+        console.log(dinnerArr);
+
+        //7. 문자열의 일부문자를 찾는 함수
+        //includes(); true/false
+        console.log("안녕하세요".includes("안녕"));
+
+        //8. 문자열을 특정문자로 변경하는 함수
+        //replace()/replaceAll()
+        console.log("안녕하세요하세요하세요".replace("하세요","히가세요.")); //원본 값이 변경되는 것은 아니다.
+        console.log("안녕하세요하세요하세요".replaceAll("하세요","히가세요.")); //원본 값이 변경되는 것은 아니다.
+
+        //9. 문자열의 공백을 제거하는 함수
+        //trim()
+        console.log("안녕            ".trim());
+    </script>
+
+    <input type="text" id="engName" onkeyup="engCheck();" placeholder="영문자이름">
+    <input type="text" id="hobby" onkeyup="engCheck();" placeholder=",구분해서 취미 작성">
+    <button onclick="hobbyTest()">배열로 저장</button>
+    <script>
+        function hobbyTest() {
+            let el=document.getElementById("hobby");
+            let valArr=el.value.split(",");
+            console.log(valArr);
+        }
+        function engCheck() {
+            let val=document.getElementById("engName");
+            val.value=val.value.toUpperCase();
+        }
+    </script>
+
+    <h2>숫자처리 객체</h2>
+    <p>
+        Number객체 : 숫자관련 함수를 가지고 있음
+        Math객체 : 랜덤값, 소수점처리함수, 수학적계산
+    </p>
+
+    <button onclick="numberTest();">Number객체함수</button>
+    <div id="numberTarget"></div>
+    <script>
+        function numberTest() {
+            //최대, 최소값 확인
+            let container=document.getElementById("numberTarget");
+            container.innerHTML+='최대값 : '+Number.MAX_VALUE+"<br>";
+            container.innerHTML+='최소값 : '+Number.MIN_VALUE+"<br>";
+            
+            //정수인지 실수인지 확인하는 함수
+            container.innerHTML+="1090은 정수 : "+Number.isInteger(1090)+"<br>";
+            container.innerHTML+="3.14은 정수 : "+Number.isInteger(3.14)+"<br>";
+        }
+    </script>
+
+    <button onclick="mathTest();">Math 객체함수</button>
+    <div id="mathContainer"></div>
+    <script>
+        function mathTest() {
+            let container=document.getElementById("mathContainer");
+            container.innerHTML+="랜덤값 : "+Math.random()+"<br>";
+            container.innerHTML+="랜덤값 : "+Math.floor(Math.random()*10)+"<br>";
+
+            //절대값처리
+            //abs함수
+            container.innerHTML+="절대값 10,-10"+Math.abs(10)+","+Math.abs(-10)+"<br>";
+
+            //소수점 처리 함수
+            //소수점 내림 함수
+            //floor()
+            container.innerHTML+="소수점 버리기 floor(123.656) : "+Math.floor(123.656)+"<br>";
+
+            //반올림함수
+            //round()
+            container.innerHTML+="소수점 반올림 round(123.656) : "+Math.round(123.656)+"<br>";
+
+            //올림함수
+            //ceil();
+            container.innerHTML+="소수점 올림 ceil(123.11) : "+Math.ceil(123.11)+"<br>";
+
+            // 매개변수에 숫자가 아닌 값을 넣을 경우
+            // 수학적 계산을 해야하는데 불가능한 값으로 연산 처리 시 NaN이라는 값을 출력한다. Not a Number
+            console.log(Math.ceil("십점이")); //NaN 출력
+            console.log(Math.ceil("십점이")==NaN); //false
+            console.log(Math.ceil("십점이")=='NaN'); //false
+            
+            //NaN값은 일반 동등비교연산으로 비교를 할 수 없다.
+            //NaN값을 비교할때는 isNaN()함수를 이용해서 비교를 함
+            console.log(isNaN(Math.ceil("십점이"))); //true
+        }
+    </script>
+
+</body>
+</html>
