@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윈도우 객체</title>
+</head>
+<body>
+    <h1>윈도우 객체</h1>
+    <p>
+        윈도우객체는 자바스크립트의 최상위 객체로 모든 객체와 함수를 가지고 있다.
+        brower가 열리면 자동으로 생성이 됨, 브라우저의 한개 탭에 한개 window객체가 생성된다.
+        <br><br>
+        윈도우객체의 주요자식객체<br>
+        BOM<br>
+        location : 브라우저에서 URL에 대한 정보를 가지고 있는 객체
+        navigator : 브라우저에 대한 정보를 가지고 있는 객체
+        screen : 사용자 화면에 대한 정보를 가지고 있는 객체
+        history : 페이지 이동 이력정보를 가지고 있는 객체 *함부로 수정불가
+        <br><br>
+        DOM<br>
+        document : html태그를 객체화한 객체
+    </p>
+
+    <script>
+        // 윈도우 함수 property 확인하기
+        console.log(window);
+    </script>
+
+    <h2>윈도우 함수 이용하기</h2>
+    <!-- window함수는 default이기에 window. 은 생략 가능하다. -->
+    <h3>window.open()</h3>
+    <p>
+        새창을 생성하는 함수<br>
+        open('','','')<br>
+
+        첫번째 : 가져올 페이지 주소(url) / 작성하지 않는 경우 흰화면이 출력
+        두번째 : 새창을 열때 어떻게 open할지 (_self,_blank);
+        세번째 : 윈도우 창에 대한 설정
+    </p>
+
+    <button onclick="newWin();">새창열기</button>
+    <script>
+        const newWin=()=>{
+            // open(); //새창을 여는 기본 설정 값은 _blank
+            // 새창에 매개변수 대입하기
+            // open("https://www.naver.com","_black","width=500 height=600");
+            
+            // open함수는 반환형으로 생성되어 window객체를 반환한다.
+            let val=open("12_객체.html","_black","width=500 height=600");
+            console.log(val);
+            // val.close();  //window 닫는 함수
+            console.log()
+            val.document.write("<h1>안녕하세요</h1>"); //덮어쓰기 되어 출력
+            
+        }
+    </script>
+    
+    <!-- 복사하기 -->
+    <button onclick="childWrite();">자식이 부모창에 데이터전송</button>
+    <button onclick="childClose();">자식창닫기</button>
+    <p>
+        open으로 열린 자식창에서는 opener property를 통해 부모의 window객체에 접근할 수 있다.
+    </p>
+    <script>
+        let ch;
+        const childClose=()=>{
+            ch.close();
+        }
+        const childWrite=()=>{
+            const child=open("","_blank","width=400,height=300");
+            ch=child;
+            let temp="<script>";
+                temp+="function sendData(){";
+                temp+="let con=opener.document.getElementById('parent');";
+                temp+="let val=document.getElementById('data').value;";
+                temp+="con.innerHTML='<h1>'+val+'</h1>';}";
+                temp+="</";
+                temp+="script>";
+                child.document.write("<html><head></head><body><h2>부모창에 전송할 내용</h2><input type='text' id='data'><button onclick='sendData();'>전송</button>"+temp+"</body></html>");
+        }
+    </script>
+
+    <h2>setTimeout() / setInterval()</h2>
+    <p>
+        setTimeout : 일정시간 후 특정한 로직(함수)을 한번만 실행하는 함수
+        3개의 매개변수가 있다
+        첫번째 : 로직(함수)
+        두번째 : 시간(ms : 1/1000)
+        [세번째 : 로직실행 시 전달할 값 설정] - 옵션
+        
+        setInterval : 일정시간 간격으로 특정한 로직(함수)을 반복적으로 실행하는 함수
+        첫번째 : 로직(함수)
+        두번째 : 시간(ms : 1/1000)
+        [세번째 : 로직실행 시 전달할 값 설정] - 옵션
+        <br>
+        clearTimeout() / clearInterval() : 실행을 중지 시키는 함수
+        * setTimeout||setInterval함수의 반환값이 id값이 됨
+    </p>
+    
+    <input type="radio" class="check" name="check" value="y">Y
+    <input type="radio" class="check" name="check" value="n">N<br>
+    <button onclick="setTimeoutTest();">timeoutTest</button>
+    <button onclick="setIntervalTest();">intervalTest</button>
+    <button onclick="stopInter();">stop</button>
+    <div id="countContainer">
+        <h1></h1>
+    </div>
+    <script>
+        const setTimeoutTest=()=>{
+            //radio버튼 가져오기
+            // n버튼 선택 후 버튼 클릭 시 창이 닫히지 않는 로직
+            let radio=document.querySelectorAll("[name=check]");
+            let flag=true;
+            for(let i=0;i<radio.length;i++){
+                if(radio[i].value=='y'&&radio[i].checked){
+                    flag=false;
+                    break;
+                } 
+            }
+
+            let child=open("","","width=600,height=300");
+            child.alert("이창은 3초후에 닫힙니다.");
+            const timefunc=setTimeout(()=>{
+                child.close();
+            },3000); // 코드를 읽은 후 3초 뒤
+            if(flag){
+                clearTimeout(timefunc);
+            }
+        }
+        let interId;
+        const setIntervalTest=()=>{
+            let target=document.querySelector("#countContainer>h1");
+            let count=0;
+            interId=setInterval(()=>{
+                target.innerHTML=count++;
+            },1000);
+        }  
+        const stopInter=()=>{
+            clearInterval(interId);
+        }
+    </script>
+
+    <h3>윈도우 크기, 위치 조정하기</h3>
+    <p>
+        크기 조정 : sizeTo(가로크기,세로크기);
+        위치 조정 : moveTo(x위치, y위치);
+    </p>
+    <button onclick="createWin();">윈도우 생성</button>
+    <button onclick="winSize();">윈도우 사이즈조정</button>
+    <button onclick="winMove();">윈도우 위치조정</button>
+
+    <script>
+        let childWin;
+        const createWin=()=>{
+            childWin=open("","","width=400,height=300");
+        }
+
+        const winSize=()=>{
+            childWin.resizeTo(Math.ceil(Math.random()*900+300),Math.ceil(Math.random()*900+300));
+        }
+
+        const winMove=()=>{
+            childWin.moveTo(Math.ceil(Math.random()*900+100),Math.ceil(Math.random()*900+100));
+        }
+    </script>
+
+    <h3>onload속성이용하기</h3>
+    <p>
+        onload : 페이지에 있는 모든 태그가 로드 된 이후에 실행하는 발생하는 이벤트속성 -> 함수를 대입한다.
+
+    </p>
+    <script>
+        onload=function(){
+            let text=document.querySelector("#target2>h2");
+            // #target2>h2를 읽기 전 이여서 에러가 발생해야 한다.
+            // 그러나 onload 설정으로 인해 페이지를 모두 읽은 후 마지막에 코드를 읽이에 정상으로 출력된다.
+            console.log(text);
+            console.log(text.innerHTML);
+        }
+        
+        // onload는 페이지에서 하나만 실행이 가능하다
+        // 여러개 작성된 경우 마지막 onload만 실행하기에 하나만 작성한다.
+        onload=function(){
+            console.log("이것도 실행가능?")
+        }
+
+    </script>
+    <div id="target2">
+        <h2>onload 속성으로 출력가능</h2>
+    </div>
+
+    <h3>window.open("","_self","")</h3>
+    <p>
+        윈도우가 열리는 방식을 _self로 설정하면 페이지를 이동하는 효과를 준다.
+    </p>
+    <button onclick="selfOpen();">selfOpen</button>
+    <script>
+        const selfOpen=()=>{
+            open("https://www.naver.com","_self","width=400,height=300")
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체활용하기</title>
+</head>
+<body>
+    <h2>객체의 선언 및 호출</h2>
+    <p>
+        자바스크립트에서 객체는 key(속성):value(속성값)형식으로 저장이 되며, 모든 자료형을 보관할 수 있다.
+        (숫자, 문자, 배열, 객체, 함수, undefined, boolean)
+    </p>
+
+    <h2>객체 선언/값 접근하기</h2>
+    <script>
+        // 기본 객체는 {}연산자를 통해서 생성함.
+        let obj={}; // 객체 생성
+        console.log(obj, typeof(obj));
+        
+        obj={
+            name:"chan",
+            age:30,
+            height:180,
+            birthday:new Date(),
+            hobby:["운동","독서","코딩"],
+            item:{
+                name:"키보드",
+                weight:0.2
+            },
+            toString:function(){
+                return `${this.name}, ${this.age}, ${this.birthday}, ${this.hobby}, ${this.item}`;
+            },
+            "get name":function(){
+                return this.name;
+            },
+            "^^*":function(){
+                alert("특수기호");
+            }
+        }
+        console.log(obj);
+    </script>
+
+    <script>
+        // 생성한 객체의 각 프로퍼티에 접근하기
+        // 접근할 때는 반드시 key값을 알고 있어야함.
+        // key값을 모를 경우 접근이 안되지만 for in문을 이용하여 접근할 수 있다.
+        // 2가지 방법
+        // 1. [""||'']이용 : []안에 키명칭을 문자열 리터럴로 대입, for in문으로 가져온 key명칭은 []를 이용해야 한다.
+        // 2. . 이용 : 기본적인 객체에 접근하는 접근 연산자로 .을 이용한다.
+        
+        // 방법 1
+        console.log(obj["name"]);
+        console.log(obj['age']);
+        // console.log(obj[height]); // 에러, ""||''가 없는 경우 변수로 인식해서 해당 변수 명을 찾으려고 함
+
+        // 방법 2
+        console.log(obj.name);
+        console.log(obj.age);
+        
+        // key값으로 띄어쓰기나 특수기호를 사용한 경우에는 반드시 []를 통해서만 접근이 가능하다.
+        console.log(obj.name);
+        console.log(obj["get name"]());
+        console.log(obj["^^*"]);
+
+
+        // 객체의 함수 값을 가지고 있는 속성 호출하기
+        console.log(obj["toString"]); // 함수 호출
+        console.log(obj["toString"]()); // 함수 호출 및 실행
+        
+        console.log(obj.toString());
+
+        // 객체의 배열에 접근하기
+        console.log(obj["hobby"][0]);
+        console.log(obj.hobby[1]);
+
+        // obj["hobby"].forEach((v,i)=>{
+        //     console.log(v);
+        // });
+        obj.hobby.forEach((v,i)=>{
+            console.log(v);
+        })
+
+        // 객체의 객체값을 가지고 있는 속성 접근하기
+        console.log(obj["item"].name);
+        console.log(obj["item"]["weight"]);
+
+        // 객체에 있는 모든속성에 접근하기
+        // for in문을 사용하기 -> for in문을 사용하면 key 값을 받아올 수 있음
+        for(let key in obj){
+            if(typeof(obj[key])=='function'){
+                console.log(obj[key]());
+            } else {
+                console.log(key);
+                // console.log(obj.key); 실행 불가
+                console.log(obj[key]);
+            }
+        }
+
+        // 배열에 for in문은 사용하지 않는다.
+        // key값이 음.... 객체에서 키값을 가져오는 전용 for문 이라서...??
+        // for(let key in [1,2,3,4,5]){
+        //     console.log(key)
+        // }
+    </script>
+
+    <h2>객체에 속성 추가/삭제하기</h2>
+    <p>
+        자바스크립트는 객체에 런타임 중에 속성을 추가하거나 삭제할 수 있다.
+    </p>
+    <script>
+        let addObj={};
+        console.log(addObj);
+        // 속성을 추가하기
+        addObj["title"]="가지";
+        console.log(addObj);
+
+        addObj["author"]="쿠로다 이오우";
+        console.log(addObj);
+
+        addObj.price=18000;
+        console.log(addObj);
+
+        // property 삭제하기
+        // 함수 -> delete함수를 이용한다.
+        delete(addObj["author"]);
+        console.log(addObj);
+
+        //객체 복사하기 -  얕은 복사, 깊은 복사
+        
+        // 얕은 복사
+        console.log("얕은 복사");
+
+        addObj=obj;
+        console.log("addObj",addObj);
+        console.log("obj",obj);
+
+        addObj.name="kkchan";
+        console.log("addObj",addObj);
+        console.log("obj",obj);
+
+        // 깊은 복사
+        console.log("깊은 복사");
+
+        let copyObj={};
+        for(let key in addObj){
+            copyObj[key]=addObj[key];
+        }
+        console.log("addObj",addObj);
+        console.log("copyObj",copyObj);
+
+        copyObj.name="chan";
+        console.log("addObj",addObj);
+        console.log("copyObj",copyObj);
+
+        // ES6 spread연산자 ... 나열연산자를 이용한 깊은 복사 방법
+        copyObj={...addObj};   // 깊은 복사
+        console.log("copyObj",copyObj);
+        console.log("addObj",addObj);
+        console.log({...addObj});
+
+        let arr=[1,2,3,4,5,6,7];
+        console.log(...arr);
+        copyArr=[...arr];
+        console.log("arr",arr);
+        console.log("copyArr",copyArr);
+        
+        const testSpread=function(su1, su2, su3, su4, su5){
+            console.log(arguments);
+            return su1+su2+su3+su4+su5;
+        }
+        testSpread(...arr);
+    </script>
+
+    <h1>객체 배열</h1>
+    <p>
+        배열 안에 [{},{},{},{}] -> 객체 배열<br>
+        DB에서 데이터를 가져왔을때, ArrayList
+    </p>
+    <button onclick="addStudent();">학생정보 가져오기</button>
+    <div id="container">
+        <table id="stuData"></table>
+    </div>
+
+    <script>
+        const s={
+            name:"chan",
+            age:30,
+            grade:1,
+            gradePoint:65
+        }
+        const s1={
+            name:"kim",
+            age:24,
+            grade:3,
+            gradePoint:85
+        }
+        const s2={
+            name:"kkkkk",
+            age:26,
+            grade:2,
+            gradePoint:90
+        }
+        let student=[s,s1,s2];
+        console.log(student);
+
+        const addStudent=()=>{
+            const table=document.getElementById("stuData");
+            table.innerHTML=`<tr><th>이름</th><th>나이</th><th>학년</th><th>성적</th><th>비고</th></tr>`;
+            
+            table.style.width="400px";
+            table.style.height="100px";
+            table.style.border="1px solid black"
+
+            for(let i=0;i<student.length;i++){
+                let temp="<tr>";
+                temp +=`<td>${student[i]["name"]}</td>`;
+                temp +=`<td>${student[i]["age"]}</td>`;
+                temp +=`<td>${student[i]["grade"]}</td>`;
+                temp +=`<td>${student[i]["gradePoint"]}</td>`;
+                temp+=`<td><botton onclick="alert('클릭')">상세보기</botton></td>`;
+                temp+=`</tr>`;
+                table.innerHTML+=temp; //innerHTML을 마지막에만 넣는 이유?? temp가 아닌 +=innerHTML로 작성하면 
+                                        // 크롬 브라우저가 중간마다 tbody를 삽입하여 출력이 이상하게 된다.
+            }
+        }
+    </script>
+
+    <h2>함수를 이용해서 객체 생성하기</h2>
+    <p>
+        2가지 방법으로 이용가능
+        1. 일반함수에서 매개변수로 받은 값을 이용해서 객체를 생성 후 반환 -> 함수호출
+        2. 생성자 함수를 이용하는 방법 -> new 연산자로 생성, 첫글자 대문자
+    </p>
+    
+    <script>
+        // 일반함수로 객체생성하기
+        const createStudent=(name, age, grade, gradePoint)=>{
+            let s={
+                name:name,
+                age:age,
+                grade:grade,
+                gradePoint:gradePoint
+            }
+            return s;
+        }
+        student.push(createStudent("김경찬",49,3,90));
+        student.push(createStudent("김경찬2",19,2,80));
+        console.log(student);
+
+        // 생성자함수 -> 자바에서 객체를 생성하는 방법과 동일한 방법이다.
+        // 생성자함수의 첫 글자는 대문자로 작성, 생성 시 new연산자를 이용한다.
+        function Student(name,age,grade,gradePoint){
+            this.name=name;
+            this.age=age;
+            this.grade=grade;
+            this.gradePoint=gradePoint;
+            this.toString=function(){   //객체 내에서 함수 사용 시 => 가 아닌 익명 함수로 사용 (this를 사용하기에)
+                return `${this.name}, ${this.age}, ${this.grade}, ${this.gradePoint}`;
+            }
+        }
+        student.push(new Student("홍길동",12,2,70));
+        student.push(new Student("마돈나",25,1,90));
+        // Student 객체인지 체크
+        console.log(student[0] instanceof Student); //false
+        console.log(student[student.length-1] instanceof Student);  //true
+
+    </script>
+
+    <h3>자바스크립트 객체의 캡슐화처리및 상속처리하기</h3>
+    <p>
+        값을 저장하는 변수에 직접 접근하는 것이 아니라 간접적으로 메소드를 통해서 접근 하는 것 -> 캡슐화
+        클로저를 이용해서 캡슐화를 할 수 있음
+    </p>
+    <script>
+        function Member(id,pw,email,name){
+            // this로 변수 선언할 경우 외부에서 직접 접근이 가능하기에 this가 아닌 let으로 사용한다.
+            // this.userId=id;
+            // this.password=pw;
+            // this.email1=email;
+            // this.name1=name;
+            
+            let userId=id;
+            let password=pw;
+            let email1=email;
+            let name1=name;
+
+            this.getUserId=function(){
+                return userId;
+            }
+            this.setUserId=function(id){
+                userId=id;
+            }
+        }
+        let m=new Member("user01","user01","user@user.com","유저");
+        console.log(m);
+        console.log(m.userId);
+        m.setUserId("user00");
+        console.log(m["getUserId"]());
+    </script>
+
+<!-- =============================================================================================== -->
+    
+    <h3>상속적용하기</h3>
+    <p>
+        이미 작성되어있는 객체를 가져다 쓰는 재활용을 의미
+    </p>
+    <script>
+        function Book(title, price, discountRate){
+            this.title=title;
+            this.price=price;
+            this.discountRate=discountRate;
+            // this.getSalPrice=function(){
+            //     return this.price-(price*discountRate);
+            // }
+        }
+
+        // 함수를  공용으로 사용할 수 있게 만들기
+        // prototype으로 등록하면 객체마다 별도로 저장하고 있는 것이 아닌 하나의 저장 공간에 공용으로 사용한다.
+        Book.prototype.getSalPrice=function(){
+            return this.price-(this.price*this.discountRate);
+        }
+        
+        let b=new Book("자바의 정석",35000,0.3);
+        console.log(b);
+        console.log(b.getSalPrice());
+
+        let b1=new Book("오라클의 정석",34000,0.4);
+        console.log(b1);
+        console.log(b1.getSalPrice());
+
+        // 상속 적용 하기
+        function Novel(title,price,discountRate,type){
+            this.base=Book;
+            this.base(title,price,discountRate);
+            this.type=type;
+        }
+        Novel.prototype=Book.prototype;
+        let n=new Novel("해리포터",25000,0.5,"소설");
+        console.log(n);
+        console.log(n.getSalPrice());
+
+    </script>
+
+</body>
+</html>

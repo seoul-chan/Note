@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <h2>브라우저에 대한 정보를 가지고 있는 객체들</h2>
+    <p>
+        screen, navigator, history, location이 있음
+        거의 대부분의 객체는 정보를 제공하는 용도로 사용
+    </p>
+    <h3>screen 객체</h3>
+    <p>
+        window객체의 property객체로 client화면에 대한 정보를 가지고 있는 객체
+    </p>
+    <button onclick="screenInfo();">스크린정보</button>
+    <div id="screenArea"></div>
+    <script>
+        const screenInfo=()=>{
+            let info=document.getElementById("screenArea");
+            console.log(window.screen);
+            console.log(screen);
+            for(let key in screen){
+                info.innerHTML+=`${key} -> ${screen[key]}<br>`
+            }
+        }
+    </script>
+
+    <h3>navigator객체</h3>
+    <p>
+        window객체의 property객체로 client브라우저에 대한 정보를 가지고 있음
+    </p>
+    <button onclick="naviInfo();">정보확인</button>
+    <div id="naviInfo"></div>
+    <script>
+        const naviInfo=()=>{
+            let area=document.getElementById("naviInfo");
+            console.log(navigator);
+            for(let key in navigator){
+                area.innerHTML+=`${key} -> ${navigator[key]}<br>`;
+            }
+        }
+    </script>
+
+    <script>
+        // 내 위치 위도 / 경도 알아보기
+        let area=document.getElementById("naviInfo");
+
+        navigator.geolocation.getCurrentPosition((position)=>{
+            console.log(position);
+            area.innerHTML+=`위도 : ${position.coords.latitude}<br>경도 : ${position.coords.longitude}`;
+        });
+    </script>
+
+    <h3>location객체</h3>
+    <p>
+        window객체의 property객체로 브라우저의 URL정보를 가지고 있는 객체
+        URL을 수정할 수 있는 함수도 가지고 있음. <- 페이지를 이동시키는 기능
+        * 주로 페이지를 변경할 때 많이 사용함
+        assign() / replace() / reload()
+        주소에 대한 정보는 location.href속성에 저장
+    </p>
+    <button onclick="locationInfo();">정보확인</button>
+    <div id="locInfo"></div>
+    <script>
+        const locationInfo=()=>{
+            let area=document.getElementById("locInfo");
+            for(let key in location){
+                area.innerHTML+=`${key} -> ${location[key]}<br>`;
+            }
+        }
+    </script>
+
+    <h4>페이지 이동시키기</h4>
+    <p>href속성을 변경해서 이동하기</p>
+    <button onclick="location.href='https://www.youtube.com'">유튜브로 이동</button>
+
+    <p>함수를 이용해서 이동하기</p>
+    <p>
+        assign() : 이동 시 기록남김(뒤로가기 가능)
+        replace() : 이동 시 기록 남기지 않음 (뒤로가기 불가능)
+    </p>
+    <button onclick="location.assign('https://www.youtube.com')">유튜브</button>
+    <button onclick="location.replace('https://www.netflix.com')">넷플릭스</button>
+    <button onclick="location.reload();">새로고침</button>
+
+    <h3>history객체</h3>
+    <p>
+        페이지가 이동한 이력에 대한 정보를 가지고 있는 객체
+        * script코드로 수정이 불가능함 (브라우저 영역)
+    </p>
+    
+    <button onclick="history.back();">뒤로가기</button>
+    <button onclick="history.forward();">앞으로가기</button>
+    <script>
+        console.log(history);
+    </script>
+
+    <br>
+    <input type="text" id="url">
+    <button onclick="openUrl();">새창으로 열기</button>
+    <button onclick="replaceOpen();">현재창</button>
+
+    <script>
+        // 사용자가 입력한 페이지로 이동하는 로직작성
+        // 1. 새창을 열어서 이동
+        // 2. location객체를 이용해서 (뒤로가기 불가능)
+
+        // 1.
+        const openUrl=()=>{
+            let url=document.getElementById("url");
+            open(url.value,"_blank","width=400,height=300");
+        }
+
+        // 2.
+        const replaceOpen=()=>{
+            let url=document.getElementById("url").value;
+            location.replace(url);
+        }
+    </script>
+</body>
+</html>

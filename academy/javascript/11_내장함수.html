@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장 함수</title>
+</head>
+<body>
+    <h2>인코딩관련 내장함수</h2>
+    <p>
+        문자열에 대한 인코딩, 디코딩하는 함수
+        네트워크 상에서 정보를 공유하기 위해서 문자에 대한 처리
+    </p>
+    <p>
+        인코딩/디코딩은 서로 쌍으로 이루어져있음<br>
+        escape()/unscape : 영문, 숫자, 일부특수기호(@,*,-,_,.,/)제외한 모든 문자를 인코딩 처리<br>
+        encodeURI/decodeURI : escape에서 인터넷 주소에 사용되는 일부 특수기호(:,;,/,=,&)는 빼고 인코딩처리함.
+        encodeURIComponent / decodeURIComponent : 알파벳, 숫자르르 제외한 모든 문자를 인코딩처리
+    </p>
+    <button onclick="test();">인코딩처리하기</button>
+    <div id="area"></div>
+    <script>
+        const test=()=>{
+            let uri="http://www.naver.com?test=한글입니다.123";
+            let escode=escape(uri);
+            let enURI=encodeURI(uri);
+            let enURICom=encodeURIComponent(uri);
+            let area=document.getElementById("area");
+            area.innerHTML+=`escape : ${escode}<br>`;
+            area.innerHTML+=`encodeURI : ${enURI}<br>`;
+            area.innerHTML+=`encodeURIComponent : ${enURICom}<br>`;
+
+            area.innerHTML+=`unescape : ${unescape(escode)}<br>`;
+            area.innerHTML+=`decodeURI : ${decodeURI(enURI)}<br>`;
+            area.innerHTML+=`decodeURIComponent : ${decodeURIComponent(enURICom)}<br>`;
+
+        }
+    </script>
+
+    <h2>문자열로 작성된 js코드를 동적으로 변환해주는 함수</h2>
+    <p>
+        eval()
+    </p>
+    <button onclick="evalTest();">eval</button>
+    <div id="target"></div>
+    <textarea name="code" id="code" cols="30" rows="5"></textarea>
+
+    <script>
+        const evalTest=()=>{
+            let temp="let a=10;";
+            temp+="let b=20;";
+            temp+="document.getElementById('target').innerHTML=a+b;";
+            
+            console.log(temp);  //문자열로만 인식
+            eval(temp); //문자열에서 js코드 인식
+            eval(document.querySelector('#code').value); //textarea에 작성한 js코드 실행
+        }
+    </script>
+
+    <h3>날짜처리 객체</h3>
+    <p>
+        Date : 자바스크립트에서 날짜를 처리하는 객체
+    </p>
+    <div id="area4"></div>
+    <script>
+        let today=new Date(); //오늘 날짜를 가져오는 것
+        let container=document.getElementById("area4");
+        container.innerHTML=today+"<br>";
+
+        // 년, 월, 일 따로 출력하는 방법
+        container.innerHTML+=`${today.getFullYear()}년 <br>`;
+        container.innerHTML+=`${today.getMonth()+1}년 <br>`; //월은 0부터 시작
+        container.innerHTML+=`${today.getDate()}일 <br>`;
+
+        // 요일 -> day
+        // 0=일요일, 1=월요일
+        // 분기문 사용해서 변경 후 출력 필요
+        container.innerHTML+=`${today.getDay()}요일 <br>`;
+
+        // 시간 출력
+        container.innerHTML+=`${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}<br>`;
+
+        // 원하는 날짜를 출력하고 싶을 때
+        let birthDay=new Date(1992,10-1,30,11,22);
+        container.innerHTML+=`${birthDay}<br>`;
+    </script>
+
+    <div id="container2">
+        <h1>현재시간 : <span id="time"></span></h1>
+    </div>
+
+    <script>
+        setInterval(()=>{
+            const time=new Date();
+            const area=document.querySelector("#container2>h1>span#time");
+            area.innerHTML=`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+        },1000); //ms, 1초 한번씩 앞에 있는 함수가 자동으로 실행된다.
+    </script>
+
+</body>
+</html>
