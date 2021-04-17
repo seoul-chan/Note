@@ -425,5 +425,120 @@
         }
     </script>
 
+    <h3>클래스속성관리하기</h3>
+    <p>
+        태그를 특정구분자로 묶을때, 스타일적용할때
+        1. className : 문자열 리터럴로 다수의 클래스를 표현
+        2. classList : 다중 class로 선언했을때 다중값을 배열방식으로 관리
+    </p>
+    <style>
+        .back1{
+            background-color: navy;
+            color:pink;
+        }
+        .back2{
+            background-color: lime;
+            color:magenta;
+        }
+        .font{
+            font-size: 30px;
+            font-weight: bolder;
+            text-shadow: 3px 3px 5px gray;
+        }
+    </style>
+    <h2 id="target1" class="a b">오늘은 금요일 금요일</h2>
+    <button onclick="addClass();">back1</button>
+    <button onclick="addClass2();">back2</button>
+    <button onclick="removeClass();">remove</button>
+    <script>
+        const addClass=()=>{
+            //클래스속성을 수정할때는 className속성/classList속성을 이용할 수 있음
+            console.log(document.getElementById("target1").className);
+            let e=document.getElementById("target1");
+            e.className="font back2";
+        }
+        const removeClass=()=>{
+            //font삭제하기
+            let e=document.getElementById("target1");
+            // let c=e.className;
+            // console.log(c,typeof(c));
+            // if(c.includes("font")){
+            //     e.className=c.replace("font","");
+            // }
+            //classList를 이용하면 편리하게 삭제할 수 있음.
+            //remove();
+            console.log(e.classList);
+            e.classList.remove("font");
+        }
+        const addClass2=()=>{
+            //기존 클래스에 back1를 추가하기
+            let e=document.getElementById("target1");
+            //e.className+=" back1";
+            //classList이용하면 편하게 이용할 수 있음 -> add()함수 이용
+            e.classList.add("back1");
+        }
+    </script>
+
+    <h3>태그 삭제하기</h3>
+    <p>
+        페이지에 출력된 태그를 삭제하는 기능이용하기
+        태그.remove() : 태그삭제
+        부모태그.removeChile(자식태그) : 자시자식을 삭제하는 함수
+    </p>
+    <button onclick="removeTest();">객체삭제하기</button>
+    <button onclick="removeChildTest();">자식객체 삭제하기</button>
+    <div id="removeChild">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        const removeTest=()=>{
+            let lis=document.querySelectorAll("#removeChild li");
+            lis[lis.length-1].remove();
+        }
+        const removeChildTest=()=>{
+            let ul=document.querySelector("#removeChild ul");
+            const l=ul.children.length;
+            for(let i=0;i<l;i++){
+                ul.removeChild(ul.children[0]);
+            }
+        }
+        // 리스트(li)클릭시 클릭한 li삭제
+        let lis=document.querySelectorAll("#removeChild>ul>li");
+        for(let i=0;i<lis.length;i++){
+            lis[i].addEventListener("click",(e)=>{
+                e.target.remove();
+                // e.target.nextElementSibling.remove(); // 클릭한 리스트의 다음리스트 지우기
+            });
+        }
+    </script>
+
+    <!-- 이미지 3개를 넣고 버튼을 클릭하면 이미지 위치가 변경될수 있게한다. -->
+
+    <div id="imgContainer">
+        <img src="https://t1.daumcdn.net/cfile/blog/25676A355301991A0F" alt="이미지1">
+        <img src="https://t1.daumcdn.net/cfile/blog/2147A9355301991A21" alt="이미지2">
+        <img src="https://t1.daumcdn.net/cfile/blog/267D17355301991A03" alt="이미지3">
+    </div>
+    <button onclick="rotateImg();">이미지돌리기</button>
+    <button onclick="stop();">중지</button>
+    <script>
+        const rotateImg=()=>{
+            id=setInterval(()=>{
+                let imgs=document.querySelectorAll("#imgContainer>img");
+                document.getElementById("imgContainer").appendChild(imgs[0]);
+            },100)
+        }
+        const stop=()=>{
+            clearInterval(id);
+            let imgs=document.querySelectorAll("#imgContainer>img");
+            imgs[Math.floor(imgs.length/2)].style.border="3px solid red";
+        }
+    </script>
+
 </body>
 </html>
