@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제4</title>
+</head>
+<body>
+    <h2>테이블 생성하기</h2>
+    <button id="createTable">테이블추가</button>
+    <button id="">추가</button>
+    <div id="container"></div>
+
+    <script>
+        document.getElementById("createTable").addEventListener("click",function(){
+            let row=prompt("몇행?");
+            let col=prompt("몇열?");
+            
+            let table=document.createElement("table");
+            for(let i=0;i<row;i++){
+                let tr=document.createElement("tr");
+                for(let j=0;j<col;j++){
+                    let td=document.createElement("td");
+                    let txt=document.createTextNode(` ${i+1}행 ${j+1}열`);
+                    let btn=document.createElement("button");
+                    
+                    btn.setAttribute("id","exe");
+                    btn.innerText="실행";
+
+                    td.appendChild(btn);
+                    td.appendChild(txt);
+                    td.style.border="1px solid black";
+                    tr.appendChild(td);
+                    
+                    // 실행버튼 클릭 시 수행
+                    let count=1;
+                    btn.addEventListener("click",function(e){
+                        console.log(e);
+
+                        // table=e.target.parentElement.parentElement.parentElement;
+                        let newTr=document.createElement("tr");
+                        let trCount=table.childElementCount;
+                        let tdCount=table.children[0].childElementCount;
+                        
+                        // console.log(count);
+                        if(count>tdCount) count=tdCount;
+                        for(let i=0;i<count;i++){
+                            let newTd=document.createElement("td");
+                            newTd.innerText=`${trCount+1}행 ${i+1}열`;
+                            newTd.style.border="1px solid black";
+
+                            if(tdCount!=count&&i==count-1)
+                                newTd.setAttribute("colspan",tdCount+1-count);
+                            newTr.appendChild(newTd);
+                        }
+                        count++;
+                        table.appendChild(newTr);
+                    });
+                }
+                table.style.borderCollapse="collapse";
+                table.appendChild(tr);
+            }
+            document.getElementById("container").appendChild(table);
+        });
+
+    </script>
+</body>
+</html>

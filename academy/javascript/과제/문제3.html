@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제3</title>
+</head>
+<body>
+    <h2>댓글추가하기</h2>
+    <input type="text" name="" id="input">
+    <button id="addTxt">등록</button>
+    <br>
+    <div id="container"></div>
+    <script>
+        document.getElementById("addTxt").addEventListener("click",function(){
+            let input=document.getElementById("input").value;
+            let div=document.createElement("div");
+            let p=document.createElement("p");
+            let btn=document.createElement("button");
+
+            p.innerText=input;
+            btn.innerText="답글";
+            btn.addEventListener("click",function(){
+                let dat=document.createElement("input");
+                let enter=document.createElement("button");
+                enter.innerText="확인";
+                
+                div.appendChild(dat);
+                div.appendChild(enter);
+                
+                enter.addEventListener("click",function(){
+                    datP=document.createElement("p");
+                    datP.innerText="\u00A0\u00A0\u00A0\u00A0\u00A0"+dat.value;
+                    div.appendChild(datP);
+                    div.removeChild(dat);
+                    div.removeChild(enter);
+                })
+
+                // let addP=document.createElement("p");
+                // addP.innerText="11";
+                // div.appendChild(addP);
+            })
+            p.appendChild(btn);
+            div.appendChild(p);
+            document.getElementById("container").appendChild(div);
+            document.getElementById("input").value="";
+        });
+    </script>
+
+    <!-- <P>CCC  <button>DD</button></P>
+    <span>sdsds</span>
+    <button>dd</button>
+    <span>sdsds</span>
+    <button>dd</button> -->
+</body>
+</html>

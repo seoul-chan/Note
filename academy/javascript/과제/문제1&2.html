@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제1&2</title>
+</head>
+<body>
+    <button id="createTable">테이블생성</button>
+    <div id="container"></div>
+    <button id="addTr">행추가하기</button>
+    <script>
+        document.getElementById("createTable").addEventListener("click",function(){
+            let con=document.getElementById("container");
+            let table=document.createElement("table");
+            
+            for(let i=0;i<5;i++){
+                let tr=document.createElement("tr");
+                for(let j=0;j<5;j++){
+                    let td=document.createElement("td");
+                    if(j==4){ //마지막 열인 경우 버튼 추가
+                        let btn=document.createElement("button");
+                        btn.innerText="변경";
+                        // 변경 버튼 클릭 시 바로 아래 행 생성
+                        btn.addEventListener("click",function(e){
+                            target=e.target.parentElement.parentElement;
+
+                            let newTr=document.createElement("tr");
+                            for(let j=0;j<5;j++){
+                                let td=document.createElement("td");
+                                td.innerText="생성";
+                                td.style.border="1px solid black";
+                                newTr.appendChild(td);
+                            }
+                            target.insertAdjacentElement("afterend",newTr);
+                        });
+                        td.appendChild(btn);
+                    }else{
+                        td.innerText=`${i+1}행 ${j+1}열`;
+                    }
+                    td.style.border="1px solid black";                    
+                    tr.appendChild(td);                   
+                }
+                table.style.borderCollapse="collapse";
+                table.appendChild(tr);
+            }
+            document.getElementById("container").appendChild(table);
+        });
+
+        // 행추가 버튼 클릭 시 마지막 행 추가
+        document.getElementById("addTr").addEventListener("click",function(){
+            let table=document.getElementById("container").children;
+            let trCount=table[0].childElementCount;
+
+            let tr=document.createElement("tr");
+            for(let i=0;i<5;i++){
+                let td=document.createElement("td");
+                td.innerHTML=`${trCount+1}행 ${i+1}열`
+                td.style.border="1px solid black";
+                tr.appendChild(td);
+            }
+            console.log(table);
+            table[0].appendChild(tr);
+        });
+    </script>
+</body>
+</html>

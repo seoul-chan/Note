@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제5</title>
+</head>
+<body>
+    <h2>이미지 회전하기</h2>
+    <input type="text" name="" id="address" placeholder="이미지 주소를 입력하세요">
+    <button id="addImg">이미지 추가</button>
+    <div id="imgContainer">
+        <img src="https://t1.daumcdn.net/cfile/blog/25676A355301991A0F" width="150px" height="150px" alt="이미지1">
+        <img src="https://t1.daumcdn.net/cfile/blog/2147A9355301991A21" width="150px" height="150px" alt="이미지2">
+        <img src="https://t1.daumcdn.net/cfile/blog/267D17355301991A03" width="150px" height="150px" alt="이미지3">
+    </div>
+    <button id="rotate">이미지 회전</button>
+    <button id="stop">이미지 중지</button>
+    
+    <script>
+        document.getElementById("addImg").addEventListener("click",function(){
+            
+
+            let newImg=document.createElement("img");
+            let address=document.getElementById("address").value;
+            newImg.src=address;
+            newImg.width="150";
+            newImg.height="150";
+            newImg.alt="이미지";
+
+            document.getElementById("imgContainer").appendChild(newImg);
+        })
+
+        document.getElementById("rotate").addEventListener("click",function(){
+            let imgs=document.querySelectorAll("#imgContainer>img");
+            imgs[Math.floor(imgs.length/2)].style.border="0px";
+            
+            id=setInterval(()=>{
+                let imgs=document.querySelectorAll("#imgContainer>img");
+                document.getElementById("imgContainer").appendChild(imgs[0]);
+            },50);
+        })
+
+        document.getElementById("stop").addEventListener("click",function(){
+            clearInterval(id);
+            let imgs=document.querySelectorAll("#imgContainer>img");
+            imgs[Math.floor(imgs.length/2)].style.border="3px solid red";
+        })
+    </script>
+</body>
+</html>
