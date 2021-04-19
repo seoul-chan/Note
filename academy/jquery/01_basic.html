@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquer작성하기y</title>
+    <!-- <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>  CDN 방식-->
+    <script src="js/jquery-3.6.0.min.js"></script> <!-- 다운로드 방식-->
+    <script>
+        // ready함수를 적용하는 방법 => onload
+        $(document).ready(function(){
+            $("p").css("backgroundColor","yellow");
+        });
+        $(document).ready(function(){
+            $("h1").css("backgroundColor","green");
+        });
+        $(function(){
+            $("h2+p").css("textShadow","3px 3px 5px red")
+        })
+        $(()=>{
+            $("h2").css("backgroundColor","purple");
+        })
+    </script>
+</head>
+<body>
+    <h1>jQuery적용하기</h1>
+    <p>
+        jquery는 jquery파일이 있어야 사용할 수 있다.
+        jQuery를 적용하는 방법에는 두가지가 있다.
+        1. CDN방식 : http통신으로 파일을 제공하는 서버에서 받아오는 것<br>
+        2. 파일다운로드 : 정해진 경로에 js파일을 다운해서 불러오는 것
+    </p>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <script>
+        $("p").css("color","red");  //jquery적용으로 한번에 가능
+    </script>
+
+    <h2>jquery활용방식</h2>
+    <p>
+        jquery를 이용하려면 주로onload와 비슷한 속성인 ready()함수안에 넣어서 이용함.
+    </p>
+
+    <h2>jquery 사용문법(DOM)</h2>
+    <p>
+        $("선택자").jquery함수명(매개변수);
+        jQuery("선택자").jquery함수명(매개변수);
+
+        jQuery는 chaining 방식으로 사용할 수 있다.
+        jQuery("선택자").jquery함수명(매개변수).jquery함수명().jquery함수명()....;
+    </p>
+    <p>
+        Element를 가져오는 방법
+        $("선택자")||jQuery("선택자") => jquery방식의 element를 불러옴.
+    </p>
+    <p id="jq">p1</p>
+    <p id="jq">p2</p>
+    <p>p3</p>
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <button onclick="checkElement();">Element객체 확인</button>
+    <script>
+        const checkElement=()=>{
+            // jQuery방식으로 element불러오기
+            // id불러오기
+            console.log($("#jq"));
+            $("#jq").css("backgroundColor","lime");
+            
+            // js방식으로 element를 불러오기
+            $(document.getElementById("jq")).css("color","magenta");
+
+            // jquery방식 태그로 불러오기
+            console.log($("li"));
+            // 다수의 Element를 가지고 있을때는 인덱스 번호로 접근이 가능함
+            // 인덱스번호로 접근했을때는 jsElement로 가져온것으로 jquery함수를 사용할 수 없음
+            console.log($($("li")[0]).css("backgroundColor","blue"));
+            console.log($("li")[1]);
+            // jquery방식으로 다수의 값을 가져와 함수를 적용하면 가져온 Element모두가 적용됨(자동으로 for문을 실행해서 다 적용시킴)
+            $("li").css("fontSize","30px");
+        }
+    </script>
+    
+</body>
+</html>
