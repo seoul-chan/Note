@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice_04</title>
+</head>
+<body>
+    <h2>기본 문법 문제</h2>
+    <p>문제1. 다음 보기에 있는 텍스트 필드에 작성한 문자열의 길이를 알아올 수 있도록 구현하시오.</p>
+    <fieldset style="height: 40px;">
+        <legend>보기</legend>
+        <input type="text" id="txt" placeholder="글자를 작성해보세요.">
+    </fieldset>
+    <div id="container1"></div>    
+    <button onclick="confirm1();">확인하기</button>
+    <br>
+    
+    <p>문제2. 다음 보기에 있는 문자열을 ,(콤마)를 기준으로 잘라내어 하나하나 출력하시오.</p>
+    <fieldset style="height: 40px;">
+        <legend>보기</legend>
+        <p id="menu" style="margin: 0px;">콜라,사이다,햄버거,피자,한약</p>
+    </fieldset>
+    <div id="container2"></div>
+    <button onclick="confirm2();">확인하기</button>
+
+    <style>
+        div{
+            width: 100%;
+            height: 150px;
+            border: 2px solid red;
+        }
+    </style>
+    <script>
+        const confirm1=()=>{
+            let p=document.createElement("p");
+            let txt=document.getElementById("txt").value;
+            p.innerText=`보기의 문자열 길이는 ${txt.length}글자 입니다.`
+            document.getElementById("container1").appendChild(p);
+        }
+
+        const confirm2=()=>{
+            let str=document.getElementById("menu");
+            str=str.innerHTML.split(",");
+            let p=document.createElement("p");
+            
+            for(let i=0;i<str.length;i++){
+                p.innerHTML+=(i+1)+"."+str[i]+"<br>";
+            }
+            document.getElementById("container2").appendChild(p);
+        }
+
+    </script>
+</body>
+</html>

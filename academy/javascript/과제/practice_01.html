@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice_01</title>
+</head>
+<body>
+    <h1>행 열 갯수 각각 입력받아 테이블 만들기</h1>
+    <button onclick="createTable();">테이블 생성</button>
+    <div id="container"></div>
+    <script>
+        const createTable=()=>{
+            let row=prompt("테이블 행의 갯수는?")
+            let col=prompt("테이블 열의 갯수는?")
+            console.log(row);
+            console.log(col);
+
+            const tagTable=document.createElement("table")
+            let count=1;
+            for(let i=0;i<row;i++){
+                const tagTr=document.createElement("tr")    
+                for(let i=0;i<col;i++){
+                    const tagTd=document.createElement("td")
+                    tagTd.setAttribute("style","border:1px solid black");
+                    tagTd.innerText=count++;
+                    tagTr.appendChild(tagTd);
+                }
+                tagTable.appendChild(tagTr);
+            }
+            tagTable.setAttribute("style","border:1px solid black");
+            document.getElementById("container").appendChild(tagTable);
+        }
+    </script>
+</body>
+</html>
