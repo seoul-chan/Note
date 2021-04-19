@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유효성검사</title>
+</head>
+<body>
+    <p>
+        프로그램 로직상 정해져있는 값대로 입력을 받았는지 확인과정 유효성검사
+        아이디를 4글자이상 8이하 영문자, 숫자, 특수기호 포함할 것
+    </p>
+    <form action="">
+        아이디 <input type="text" id="userId" name="userId" placeholder="첫글자는 영소문자 4~15자 한개이상 숫자 포함하고 영문,숫자로만 만들 것"><br>
+        패스워드 <input type="password" id="password" name="password"><br>
+        회원 이름 <input type="text" id="userName" name="userName"><br>
+        <input type="submit" value="회원가입" onclick="return validate();">
+    </form>
+    <script>
+        const validate=()=>{
+            let userId=document.getElementById("userId");
+            // let reg=/^[a-z][\da-zA-Z]{3,14}/;
+            // if(!reg.test(userId.value)){
+            //     alert("첫글자 영문자이고 숫자, 영문으로 4~15글자로 작성")
+            //     return false;
+            // }
+            // if(!/[0-9]/.test(userId.value)){
+            //     alert("숫자를 반드시 포함해야합니다.")
+            //     return false;
+            // }
+
+            let reg=/^[a-z](?=.*[\d])[a-zA-Z\d]{3,14}$/;
+            if(reg.test(userId.value)){
+                alert("첫 글자 영소문자이고 숫자, 영문으로 4~15글자로 작성하고 숫자를 반드시 포함해야 합니다.")
+                return false;
+            }
+
+            // 숫자/문자/특수문자를 포함한 8~15자리 이내 암호
+            let pwReg=/^.*(?=^.{8,15$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9가-힣 ])/;
+            let pw=document.getElementById("password").value;
+            if(!pwReg.test(pw)){
+                alert("형식을 지켜주세요");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
