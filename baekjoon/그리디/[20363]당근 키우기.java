@@ -3,7 +3,6 @@ package com.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
  
 public class Main {
 	// 20363번 - 당근 키우기	
