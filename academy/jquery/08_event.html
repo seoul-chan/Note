@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트객체정보확인</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>
+        이벤트객체는 이벤트가 발생했을때 관련 정보를 가지고 있는 객체
+        이벤트 핸들러(함수)의 매개변수에 자동으로 대입됨.
+        이벤트 객체는 방생한 이벤트에 따라 다름.
+        * on, 간편이벤트 -> 자동으로 넣어줌
+        * 인라인으로 이벤트를 설정한 경우 안됨! ex) onclick="test(event);"
+    </p>
+    <button onclick="eventTest(event);">inline형식이벤트</button>
+    <button id="btn">on으로 이벤트연결</button>
+    <button id="btn2">간편함수로 이벤트연결</button>
+    <input type="text" name="" id="key">
+    <script>
+        const eventTest=(e)=>{
+            console.log(e);
+        }
+        $("#btn").on("click",(e)=>{
+            console.log(e);
+        });
+        $("#btn2").click((e)=>{
+            console.log(e);
+        });
+        $("#key").keyup((e)=>{
+            console.log(e);
+        })
+    </script>
+    <h3>이벤트 jquery방식으로 연결하기</h3>
+    <p>
+        1. on()함수를 이용하기 : 상세하게 설정이 가능함
+        2. 간편함수 이용하기 : 간단하게 기본적인 사항만 처리할 경우
+    </p>
+    
+    <h4>on함수 이용이벤트처리하기</h4>
+    <div id="onTest">on함수이용 이벤트적용하기</div>
+    <div id="manyEvent">다수 이벤트 연결하기</div>
+    <script>
+        $("#onTest").on("click",(e)=>{
+            $(e.target).css({
+                "width":"200px",
+                "height":"200px",
+                "backgroundColor":"gold",
+                "color":"cornflowerblue",
+                "border":"3px dashed pink"
+            });
+        });
+        
+        // 다수 이벤트 연결
+        $("#manyEvent").on({
+            "click":(e)=>{
+                $(e.target).css("fontSize","30px");
+            },
+            "mouseenter":(e)=>{
+                $(e.target).css("color","red").html("마우스 in");
+            },
+            "mouseleave":(e)=>{
+                $(e.target).html("마우스 out");
+            }
+        });
+    </script>
+
+    <div id="imgcontainer">
+        <img src="image.jpg" alt="이미지" width="100" height="100" class="test">
+        <img src="image.jpg" alt="이미지" width="100" height="100" class="test">
+        <img src="image.jpg" alt="이미지" width="100" height="100" class="test">
+        <img src="image.jpg" alt="이미지" width="100" height="100" class="test">
+    </div>
+    <script>
+        $("#imgcontainer").on("click",(e)=>{
+            $(e.target).css({
+                "width":"200px",
+                "height":"200px"
+            })
+        })
+
+        // on으로 이벤트 설정시 특정값을 event객체에 넣을 수 있음
+        $(".test").each((i,v)=>{
+            $(v).on("mouseenter",{id:i},(e)=>{
+                console.log(e.data.id);
+            })
+        })
+    </script>
+
+    <h3>한번만 실행되는 이벤트</h3>
+    <p>
+        one() : 이벤트를 한번만 실행시키는 함수
+    </p>
+    <h4 id="oneTest">한번만 클릭할 수 있음</h4>
+    <script>
+        $("#oneTest").one("click",(e)=>{
+            alert("한번 실행하면 끝")
+        });
+    </script>
+
+    <h3>간단한 이벤트처리</h3>
+    <p>
+        이벤트연결을 위해 지정함수를 만들어 놓음.
+        함수의 매개변수에 이벤트핸들러(함수)를 넣으면 로직이 실행됨
+    </p>
+
+    <h4>윈도우크기변경시 이벤트설정</h4>
+    <script>
+        $(window).resize((e)=>{
+            console.log(window.innerWidth);
+        });
+    </script>
+
+    <h4>keyup(), change()</h4>
+    <form action="">
+        <select name="title" id="title">
+            <option value="title">title</option>
+            <option value="content">content</option>
+            <option value="writer">writer</option>
+        </select>
+        <input type="text" id="keyword">
+        <br><br>
+        <input type="password" id="pw">
+        <input type="password" id="pwck"><span id="result"></span>
+    </form>
+    <script>
+        $("#title").change((e)=>{
+            $(e.target).next().focus();
+        });
+        $("#pwck").blur((e)=>{  //포커스가 벗어날 때 실행
+            console.log($(e.target).val());
+            let pw=$(e.target).prev().val();
+            let ck=$(e.target).val();
+            if(ck.length>4){
+                if(ck==pw){
+                    $(e.target).next().html("비밀번호가 일치합니다.").css("color","green");
+                }else{
+                    $(e.target).next().html("비밀번호가 일치하지 않습니다.").css("color","red");
+                }
+            }
+        })
+    </script>
+
+    <h3>이벤트삭제하기</h3>
+    <p>
+        off() : 연결된 이벤트를 삭제하기
+    </p>
+    <p id="pTarget">이것타켓</p>
+    <button id="execBtn">실행</button>
+    <button id="removeBtn">이벤트삭제</button>
+    <script>
+        // 이벤트 클릭 시 실행
+        // $("#execBtn").click((e)=>{
+        //     let fontsize=$(e.target).prev().css("fontSize");
+        //     $(e.target).prev().css("fontSize",(parseInt(fontsize)+10)+"px");
+        // });
+        
+        // 이벤트 제거 함수
+        $("#removeBtn").click((e)=>{
+            $(e.target).prev().off("click");
+        });
+
+        // 5번 클릭 시 이벤트 제거
+        const countFunc=(()=>{
+            let count=0;
+            return (e)=>{
+                let fontsize=$(e.target).prev().css("fontSize");
+                $(e.target).prev().css("fontSize",(parseInt(fontsize)+10)+"px");
+                if(++count==5){
+                    $(e.target).off("click");
+                }
+            }
+        })();
+        $("#execBtn").click(countFunc);
+    </script>
+
+    <h4>bubbling효과</h4>
+    <p>
+        이벤트 처리할때 동일이벤트가 부모태그에 설정되어있으면 자식태그에 이벤트가 발생했더라도 부모도 같이 발생되는 현상
+    </p>
+    <div id="parent">parent
+        <div id="child">child
+            <span>안녕</span>
+        </div>
+    </div>
+    <script>
+        // 자식 객체인 안녕(span) 클릭 시 bubbling효과로 인해 parent까지 이벤트가 발생한다.
+        // e.stopPropagation();를 사용하여 bubbling효과를 방지할 수 있다.
+        // e.stopPropagation();는 javascript 객체임
+        $("#parent").click((e)=>{
+            alert("parent");
+        })
+        $("#child").click((e)=>{
+            alert("child");
+            e.stopPropagation();
+        });
+        $("#child>span").click((e)=>{
+            alert("span");
+            e.stopPropagation();
+        });
+    </script>
+    <style>
+        #parent{
+            border: 1px solid blue;
+            background-color: cornflowerblue;
+        }
+        #child{
+            border: 1px solid red;
+            background-color: skyblue;
+            margin: 30px;
+        }
+        #child>span{
+            border: 1px solid green;
+            background-color: orange;
+            display: inline-block;
+            margin: 30px;
+        }
+    </style>
+
+    <h4>hover</h4>
+    <p>
+        mouseenter, mouseleave
+        hover((e)=>{enter},()=>{leave});
+    </p>
+    <p id="hoverTest">hover 테스트</p>
+    <script>
+        $("#hoverTest").hover(
+            (e)=>{          // 마우스가 들어왔을 때
+                $(e.target).css({
+                    "fontSize":"30px",
+                    "color":"magenta"
+                })
+        },(e)=>{            // 마우스가 나갔을 때
+            $(e.target).css({
+                "fontSize":"20px",
+                "color":"lightgreen"
+            })
+        })
+    </script>
+
+</body>
+</html>

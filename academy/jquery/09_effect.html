@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>effect</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>animate함수 이용하기</h1>
+    <p>jquery함수를 이용해서 간단하게 animation적용하는 것</p>
+    <div id="target"></div>
+    <script>
+        $("#target").click((e)=>{
+            $(e.target).animate({
+                // left:"200px" 왼쪽에서 200px 멀어짐 (position 적용 시)
+                left:"200px","height":"300px","width":"300px","opacity":"0.1"   //opacity : 투명도
+            },3000,()=>{
+                // 애미메이션 끝나고 실행
+                e.target.innerHTML="애니메이션 끝"
+            });
+        })
+    </script>
+    <style>
+        #target{
+            width: 100px;
+            height: 100px;
+            background-color: lightpink;
+            /* position: absolute; */
+        }
+    </style>
+
+    <h2>show / hide</h2>
+    <p>
+        특정태그를 보이게/안보이게 하는 함수
+    </p>
+    <button id="showTest">show</button>
+    <button id="hideTest">hide</button>
+    <button id="toggleTest">toggle</button><br><br>
+    <img src="image.jpg" alt="" width="200" height="200">
+
+    <script>
+        $("#showTest").click((e)=>{
+            $(e.target).nextAll("img").show(1000);
+        });
+        $("#hideTest").click((e)=>{
+            $(e.target).nextAll("img").hide(1000);
+        });
+        $("#toggleTest").click((e)=>{
+            $(e.target).nextAll("img").toggle(1000);
+        });
+    </script>
+
+    <h3>슬라이딩이용하기</h3>
+    <button id="slideUpTest">slideUp</button>
+    <button id="slideDownTest">slideDown</button>
+    <button id="slideToggleTest">slideToggle</button>
+    <div class="a"></div>
+    <script>
+        $("#slideUpTest").click((e)=>{
+            $(".a").slideUp(500);
+        });
+        $("#slideDownTest").click((e)=>{
+            $(".a").slideDown(500);
+        });
+        $("#slideToggleTest").click((e)=>{
+            $(".a").slideToggle();
+        });
+    </script>
+    <style>
+        .a{
+            width: 300px;
+            height: 30px;
+            border: 1px dotted limegreen;
+            background-color: lightcoral;
+        }
+    </style>
+
+    <h2>슬라이드구현하기</h2>
+    <div class="cont">첫번째질문</div>
+    <p class="contents">질문 1</p>
+    <div class="cont">두번째질문</div>
+    <p class="contents">질문 2</p>
+    <div class="cont">세번째질문</div>
+    <p class="contents">질문 3</p>
+    <div class="cont">네번째질문</div>
+    <p class="contents">질문 4</p>
+    <div class="cont">다섯번째질문</div>
+    <p class="contents">질문 5</p>
+
+    <script>
+        $(".cont").click((e)=>{
+            $(e.target).next().slideToggle(0);
+            $(e.target).prev().slideUp(0);
+        })
+    </script>
+
+    <style>
+        div{
+            width: 300px;
+            height: 30px;
+            background-color: lightblue;
+            color: white;
+            border: 1px solid deepskyblue;
+        }
+        div+p{
+            margin: 0;
+            padding: 0;
+            width: 300px;
+            height: 80px;
+            border: 2px dashed lightcoral;
+            background-color: blanchedalmond;
+        }
+    </style>
+
+    <h3>fade</h3>
+    <p>
+        태그를 점점희미하게 사라지게하는 함수(fadeOut)
+        점점 진하게 나타나게 하는 함수(fadeIn)
+        태그를 특정지점까지 희미하게 하는 함수(fadeTo)
+            fadeTo(시간,투명도)
+    </p>
+    <button id="fadein">fadein</button>
+    <button id="fadeout">fadeout</button>
+    <button id="toggleF">toggle</button><br>
+    <img src="image.jpg" alt="" width="200" height="200">
+    <br><br><br><br><br>
+    <script>
+        $("#fadein").click((e)=>{
+            $(e.target).nextAll("img").fadeIn(1000);
+        });
+        $("#fadeout").click((e)=>{
+            $(e.target).nextAll("img").fadeOut(1000);
+        });
+        $("#toggleF").click((e)=>{
+            $(e.target).nextAll("img").fadeToggle(1000);
+        });
+        $("#toggleF").next().next().hover((e)=>{
+            $(e.target).fadeTo(1000,0.3);
+        },(e)=>{
+            $(e.target).fadeTo(1000,1);
+        })
+    </script>
+</body>
+</html>
