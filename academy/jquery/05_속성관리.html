@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성관리하기</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>태그에있는 속성관리</h1>
+    <p>
+        attr()함수를 이용해서 속성을 추가하거나 확인할 수 있다.
+    </p>
+    <ul>
+        <li>attr("속성명"):태그속성에 있는 값을 확인</li>
+        <li>atrr("속성명","속성값"):태그속성에 값넣기</li>
+        <li>attr("속성명",function(i,v){}):태그속성에 함수에서 반환되는 값 넣기</li>
+        <li>attr({속성명:속성값,속성명:속성값}):객체에 선언된 속성을 일괄로 적용하는것</li>
+    </ul>
+
+    <button onclick="sizeChange();">크기 변경</button>
+    <div id="container">
+        <img src="https://woman.chosun.com/up_fd/wc_news/2021-04/bimg_org/1111.jpg" alt="" width="200px" height="200px">
+        <img src="https://woman.chosun.com/up_fd/wc_news/2021-04/bimg_org/1111.jpg" alt="" width="200px" height="200px">
+        <img src="https://woman.chosun.com/up_fd/wc_news/2021-04/bimg_org/1111.jpg" alt="" width="200px" height="200px">
+        <img src="https://woman.chosun.com/up_fd/wc_news/2021-04/bimg_org/1111.jpg" alt="" width="200px" height="200px">
+    </div>
+    <script>
+        const sizeChange=()=>{
+            // 태그에 설정된 속성값을 확인할 수도 있다.
+            console.log($("#container>img").attr("width"));
+            console.log($("#container>img").attr("height"));
+            
+            // 이전 크기에서 100px만큼씩 커지게 하기
+            let size=parseInt($("#container>img").attr("height"));
+            $("#container>img").attr("width",(size+100));
+            $("#container>img").attr("height",(size+100));
+        }
+    </script>
+
+    <button onclick="funcParam();">callback함수이용변경</button>
+    <script>
+        const funcParam=()=>{
+            $("#container>img").attr("src",(i,v)=>{
+                console.log(i,v);
+
+                switch(i%3){
+                    case 0 : src="https://i.kfs.io/album/global/66629345,0v1/fit/500x500.jpg"; break;
+                    case 1 : src="http://www.economytalk.kr/news/photo/201906/187694_65612_840.jpg"; break;
+                    case 2 : src="http://img.vogue.co.kr/vogue/2019/12/style_5de76f9cea85a-771x930.jpg"; break;
+                }
+                return src;
+            })
+        }
+    </script>
+
+    <button onclick="objParam();">객체이용변경</button>
+    <script>
+        const objParam=()=>{
+            $("#container>img").first().attr({
+                "src": "https://file.mk.co.kr/meet/neds/2021/03/image_readtop_2021_295277_16169803014590074.jpg",
+                "width":"300px",
+                "height":"300px"
+            })
+        }
+    </script>
+
+    <button onclick="removeTest();">속성삭제</button>
+    <script>
+        const removeTest=()=>{
+            $("#container>img").removeAttr("src");
+        }
+    </script>
+
+<h2>checkbox, radio에서 check한거 확인하기</h2>
+<input type="checkbox" value="java">java
+<input type="checkbox" value="oracle">oracle
+<input type="checkbox" value="html">html
+<button onclick="checkBoxValue();">check한 값 가져오기</button>
+<script>
+    const checkBoxValue=()=>{
+        // value값을 가져올때 사용하는 함수 -> val();
+        console.log($("input[type=checkbox]").val());
+        $("input[type=checkbox]").each((i,v)=>{
+            // console.log($(v).attr("checked"));
+            // checked값은 attr()함수를 이용해서 가져올 수 없음
+            // 내부에 있는 속성을 가져오는 방법 -> prop()함수
+            console.log($(v).prop("checked"));
+        });
+        // checked가 되어있는 것을 가져올때는 선택자를 이용할 수 있음
+        // :checked
+        $("input[type=checkbox]:checked").each((i,v)=>{
+            console.log($(v).val());
+        });
+    }
+</script>
+
+<h2>css함수()</h2>
+<p>
+    태그의 스타일을 추가, 변경, 확인할 때 사용하는 함수<br>
+    css("css속성명") : css 속성에 있는 값 확인<br>
+    css("css속성명","값") : css 속성에 값을 대입<br>
+    css({객체}) : 여러스타일을 객체로 반영하는 것<br>
+    css(function(i,v)){return 값}) : 반환된 값으로 속성적용
+</p>
+
+<div id="container1">
+    <h3>test1</h3>
+    <h2>test2</h2>
+    <h1>test3</h1>
+    <p>test4</p>
+</div>
+<button onclick="checkStyle();">css속성값 확인하기</button>
+<script>
+    const checkStyle=()=>{
+        $("div#container1").children().each((i,v)=>{
+            console.log($(v).css("fontSize"));  //태그별 적용되어 있는 fontSize확인
+            if(parseInt($(v).css("fontSize"))<30){
+                $(v).css("fontSize","40px");
+            }
+        });
+    }
+</script>
+
+<button onclick="addStyle();">객체를 이용해서 css속성 적용하기</button>
+<script>
+    const addStyle=()=>{
+        $("div#container1").children().last().css({
+            "fontSize":"20px",
+            "textDecoration":"overline",
+            "textShadow":"3px 3px 5px yellow",
+            "border" :"3px dotted magenta"
+        });
+    }
+</script>
+
+<button onclick="funcAddStyle();">함수를 이용해서 css속성 적용하기</button>
+<script>
+    const funcAddStyle=()=>{
+        $("div#container1").children().css("backgroundColor",(i,v)=>{
+            let color;
+            switch(i%4){
+                case 0 : color="red"; break;
+                case 1 : color="orange"; break;
+                case 2 : color="yellow"; break;
+                case 3 : color="purple"; break;
+            }
+            return color;
+        })
+    }
+</script>
+</body>
+</html>

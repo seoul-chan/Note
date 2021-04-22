@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그 생성/삭제</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>태그 생성하기</h1>
+    <ul>
+        <li>html() 함수이용 : 매개변수 태그를 문자로 넣어서 생성</li>
+        <li>jquery - $() : $("<p>")</li>
+        <li>js - document.createElement() : document.createElement("p")</li>
+    </ul>
+    <button onclick="addElement();">객체추가</button>
+    <div id="container"></div>
+    <script>
+        const addElement=()=>{
+            // 태그생성하기
+            console.log($("<div>"));
+            // append() 마지막 자식으로 매개변수를 넣는것 == appendChild
+            $("#container").append($("<div>").html("새로 생성한 div").css({
+                "fontSize" :"30px",
+                "textShadow" : "3px 3px 5px yellow"
+            }));
+            
+            console.log($("<img src='' width='200' height='200'>"));
+            $("#container").append($("<img src='' width='200' height='200'>"));
+        }
+    </script>
+
+    <select name="tag" id="tag">
+        <option value="h1">h1</option>
+        <option value="h2">h2</option>
+        <option value="h3">h3</option>
+        <option value="h4">h4</option>
+    </select>
+    <button onclick="addElement2();">태그추가</button>
+    <div id="container1"></div>
+    <script>
+        const addElement2=()=>{
+            let tag=$("#tag").val();
+            console.log(tag);
+            $("#container1").append($("<"+tag+">").html("추가 추가").css({
+                "color":"lime",
+                "backgroundColor":"magenta",
+                "text-style":"overline"
+            }).attr({
+                "id":"p1",
+                "class":"ps"
+            }));            
+        }
+    </script>
+
+    <h2>생성한 태그 페이지에 추가하기 넣기</h2>
+    <p>
+        jQuery에 의해 생성된 태그는 메모리상에서 객체로 존재함.
+        그 객체는 페이지에 존재하는 태그에 연결해줘야 페이지에서 볼 수 있음.
+    </p>
+    <ul>
+        <li>
+            자식객체로 추가하기
+            <ol>
+                <li>부모태그.append(추가태그)/추가할태그.appendTo(부모태그)
+                     : 부모의 맨 마지막 자식으로 추가할 태그를 추가하는 기능
+                </li>
+                <li>부모태그.prepend(추가할태그) / 추가할태그.prependTo(부모태그)
+                     : 부모의 맨처음 자식으로 추가할 태그를 추가하는 기능
+                </li>
+            </ol>
+        </li>
+        <li>
+            형제객체로 추가하기
+            <ol>
+                <li>선택태그.before(추가태그) / 추가태그.insertBefore(선택태그) : 
+                    선택태그의 앞에 추가태그를 추가함</li>
+                <li>선택태그.after(추가태그) / 추가태그.insertAfter(선택태그) : 
+                     선택태그의 뒤에 추가태그를 추가함</li>
+            </ol>
+        </li>
+    </ul>
+
+    <div class="container">
+        <p>나는 p태그</p>
+    </div>
+    <button onclick="appendTest();">append</button>
+    <button onclick="prependTest();">prepend</button>
+    <style>
+        .container{
+            border:1px solid red;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        const appendTest=()=>{
+            let mark=$("<mark>").html("새로운 mark태그").css("display","block");
+            $(".container").append(mark);
+        }
+        const prependTest=()=>{
+            let a=$("<a href='https://www.naver.com'>네이버</a>").css("display","block");
+            $(".container").prepend(a);
+        }
+    </script>
+
+    <div class="container" id="target"></div>
+    <button onclick="afterTest();">after</button>
+    <button onclick="beforeTest();">before</button>
+    <script>
+        const afterTest=()=>{
+            let h3=$("<h3>").html("h3h3h3");
+            $("#target").after(h3); //div안이 아닌 밑에 추가
+        }
+        const beforeTest=()=>{
+            let hr=$("<hr>").html("hrhrhr");
+            $("#target").before(hr);
+        }
+    </script>
+
+    <h2>객체 추가2</h2>
+    <p>
+        prependTo
+        appendTo
+        insertBefore
+        insertAfter
+    </p>
+
+    <button onclick="prependToTest()">prependTo</button>
+    <button onclick="insertAfterTest()">insertAfter</button>
+    <script>
+        const prependToTest=()=>{
+            $("<table>").append(
+                    $("<tr>").append(
+                        $("<td>").html("이건테이블")
+                        )
+                        .append(
+                            $("<td>").html("이건2열"))
+                        ).prependTo($(".container"));
+        }
+        const insertAfterTest=()=>{
+            $("<ul>").append(
+                        $("<li>").html("안녕")
+                    )
+                    .append(
+                        $("<li>").html("하이")
+                    ).insertAfter($(".container"));
+        }
+    </script>
+
+    <style>
+        table{
+            border: 1px solid black;
+        }
+        table td{
+            border: 1px solid black;
+        }
+    </style>
+
+    <h3>태그를 이동하기</h3>
+    <p>
+        현재 페이지에 있는 태그를 이동시킬 수도 있다.
+        append, prepend, after, before, appendTo, prependTo, insertAfter, insertBefore를 이용해
+        이동 시킬 수 있다.
+    </p>
+    <div id="container4" class="container">
+        <h3>h1</h3>
+        <h3>h2</h3>
+        <h3>h3</h3>
+        <h3>h4</h3>
+    </div>
+    <button onclick="changeTag();">태그순서변경</button>
+    <button onclick="outLine();">밖으로 나가!</button>
+    <script>
+        const changeTag=()=>{
+            $("div#container4>h3").first().appendTo($("#container4"));
+        }
+        const outLine=()=>{
+            $("#container4>h3").first().insertBefore($("#container4"));
+        }
+    </script>
+
+    <p>
+        이미지 세개를 추가하고 이미지의 경로는 input태그에서 받은 값으로 처리
+        이미지 크기는 200px, 200px, div#container5 대입
+        button addImg(); 이벤트연결 * 이미지는 3개만 등록될 수 있게 하기
+        button rotateTest(); 이벤트연결 순서 순차적으로 변경되는 기능
+    </p>
+    <button onclick="addImg();">이미지추가</button>
+    <div id="container5"></div>
+    <button onclick="rotateTest();">이미지 회전</button>
+    <input type="text" id="imgSrc">
+    <script>
+        const addImg=()=>{
+            let src=$("#imgSrc").val();
+            console.log(src);
+            $("<img width='200' height='200'>").attr("src",src).appendTo($("#container5"));
+        }
+        const rotateTest=()=>{
+            W
+        }
+    </script>
+
+    <h3>태그를 복사, 제거하는 함수</h3>
+    <p>
+        태그.clone([true])  : 태그를 복사하는 기능
+        true : 그 태그에 연결되어 있는 아벤트복사
+        false : 이벤트는 빼고 복사
+    </p>
+    <div id="clone-test">
+        <div id="item1" class="item">
+            <span>안녕</span>
+        </div>
+    </div>
+    <script>
+        $("#item1").click((e)=>{
+            console.log($(e.target).clone());//default:false
+            let copy=$(e.target).clone(true);
+            $("#clone-test").append(copy);
+        });
+
+        $("#item1").hover((e)=>{
+            $(e.target).addClass("lime");
+        },(e)=>{
+            $(e.target).removeClass("lime");
+        });
+
+    </script>
+    <style>
+        .item{
+            width:100px;
+            height:100px;
+            display:inline-block;
+            margin:5px 5px 0px 0px;
+            text-align: center;
+            line-height:100px;
+            background-color:yellowgreen;
+        }
+        .item span{
+            font-size:24px;
+            font-weight:bolder;
+            color:white;
+        }
+        .lime{
+            background-color:lime;
+        }
+    </style>
+    <h3>삭제하기</h3>
+    <p>
+        empty() : 모든 자식태그 삭제
+        remove() : 태그를 잘라내기, 연관이벤트 삭제
+        detach() : 태그를 잘라내기, 연관이벤트 유지
+    </p>
+
+    <button onclick="emptyTest();">empty</button>
+    <button onclick="removeTest();">remove</button>
+    <button onclick="detachTest();">detach</button>
+    <div id="remove-test" class="box">
+        <div id="item2" class="item">
+            <span>안녕</span>
+        </div>
+        <p>자식</p>
+    </div>
+    <div id="result" class="box"></div>
+
+    <script>
+        const emptyTest=()=>{
+            const e=$("#remove-test").empty();  //모든 자식 제거, 선택된 태그가 반환됨
+        }
+        const removeTest=()=>{
+            const e=$("#item2").remove();
+            $("#result").append(e);
+        }
+        const detachTest=()=>{
+            const e=$("item2").detach();
+            console.log(e);
+            $("#result").append(e);
+        }
+        $("#item2").hover((e)=>{
+            $(e.target).addClass("lime");
+        },(e)=>{
+            $(e.target).removeClass("lime");
+        })
+    </script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            padding: 5px 10px 15px 10px;
+            margin: 10px;
+        }
+        #remove-test{
+            border: 2px solid red;
+        }
+        #result{
+            border: 2px dotted wheat;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>
+                <input type="file" name="upload">
+            </td>
+            <td>
+                <button id="addFile">추가</button>
+                <button id="deleteFile">삭제</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        $("#addFile").click((e)=>{
+            const tr=$(e.target).parent().parent().clone(true);
+            $("table").append(tr);
+        });
+        $("#deleteFile").click((e)=>{
+            $(e.target).parents("tr").remove();
+        });
+    </script>
+
+    <div id="aaa"></div>
+    <div id="bbb"></div>
+    <div id="ccc"></div>
+    <style>
+        #aaa{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+            background-color: #FF5500;
+        }
+        #bbb{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+            background-color: #FF6A00;
+        }
+        #ccc{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+            background-color: orangered;
+        }
+    </style>
+
+
+</body>
+</html>

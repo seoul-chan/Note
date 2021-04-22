@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문구수정하기</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>텍스트노드 수정하기</h1>
+    <p>
+        1. html() : innerHTML값 수정하는 것과 동일<br>
+            html("값") -> textnode를 값으로 수정해라
+            html() -> textnode를 출력해라
+            
+        2. text() : innerHTML값과 동일<br>
+            text("값") -> textnode를 값으로 수정해라
+            text() -> textnode를 출력해라
+        * html()/text()차이는 html태그가 값으로 들어갔을때 해석을 할지말지 결정
+    </p>
+    <div id="container">
+        <p>안녕</p>
+        <p>하이</p>
+        <p>hello</p>
+        <p>hi</p>
+    </div>
+    <button onclick="checkText();">태그문자확인</button>
+    <button onclick="checkText2();">태그문자확인</button>
+    <script>
+        // html() : html태그 해석되어 출력
+        const checkText=()=>{
+            $("#container").children().each((i,v)=>{
+                console.log($(v).html());
+                $(v).html($(v).html()+"<mark>문자열 더하기</mark>");
+            })
+        }
+        // text() : html태그 또한 문구로 출력
+        const checkText2=()=>{
+            $("#container").children().each((i,v)=>{
+                console.log($(v).html());
+                $(v).text($(v).text()+"<mark>문자열 더하기</mark>");
+            });
+        }
+    </script>
+
+    <br><br><br>
+    <select name="title" id="title">
+        <option value="라면">라면</option>
+    </select>
+    <button onclick="addMenu();">옵션추가</button>
+    <input type="text" name="" id="op">
+    <script>
+        const addMenu=()=>{
+            let select=$("#title").html();
+            // let option="<option value='만두'>만두</option>";
+            
+            // 작성한 input값으로 메뉴 추가  ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ
+            //  sssssssssssssssssssssssssssssssssssss확인해보긴ㄴㄴㄴㄴㄴㄴㄴㄴ
+            let val=$("#op").val();
+            if($(val.trim().length!=0)){
+                if($("#title").children().length<5){    //최대 메뉴 갯수 설정
+                    let option=`<option value=${val}>${val}</val>`;
+                        $("#title").html(`${select}${option}`);
+                }else{
+                    alert("메뉴를 5개 이상 추가할 수 없습니다.")
+                }
+                console.log(val.trim().length);
+            }else{     // 공백입력 시 알림창 출력
+                alert("메뉴를 입력하세요.");
+            }
+            $("#op").val("");   // 작성 후 입력란 비우기
+        }
+    </script>
+
+    
+    
+
+
+</body>
+</html>
