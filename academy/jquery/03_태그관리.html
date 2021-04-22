@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery에서 태그관리</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        // let jq=$.noConflict();  //jquery변수를 $->jq로 변경
+    </script>
+</head>
+<body>
+    <h2>each함수 이용하기</h2>
+    <p>
+        배열 전체를 순회하는 함수로 자바의 forEach문과 동일(배열, 객체 가능)
+        기본배열에서 사용이 가능하고
+        $()jQuery방식의 Element를 가져온 객체(배열 형식의 객체)에도 사용할 수 있다.
+    </p>
+    <ul>
+        <li>
+            배열<br>
+            $.each(배열,callback함수(i,v));
+        </li>
+        <li>Element객체(배열)<br>
+            $("선택자").each(callback함수(i,v));
+        </li>
+    </ul>
+    <h3>
+        선택된 Element each함수를 이용해서 순회하기
+    </h3>
+    <div id="container">
+        <h1>item-0</h1>
+        <h1>item-1</h1>
+        <h1>item-2</h1>
+        <h1>item-3</h1>
+        <h1>item-4</h1>
+    </div>
+    <button onclick="changeColor();">변경</button>
+    <script>
+        const changeColor=()=>{
+            // console.log($("div#container>h1").html());  //html()은 자동 for문 적용이 되지 않는다.
+            $("#container>h1").each((i,v)=>{    //each를 이용해서 순회하기
+                console.log(i,v);
+                let color="";
+                switch(i%2){
+                    case 0 : color="yellow";break;
+                    case 1 : color="red";break;
+                }
+                $(v).css("textShadow",`2px 2px 5px ${color}`);   //each안해도 순회 적용은 가능하나 예를 위해 사용
+            });
+        }
+    </script>
+
+    <h2>배열 자료형에 each함수 적용하기</h2>
+    <script>
+        let food=["참외","계란말이","추어탕","족발"];
+        food.forEach((v,i)=>{   // forEach문으로 순회
+            console.log(v,i);
+        });
+
+        $.each(food,(i,v)=>{    // each문으로 순회
+            console.log(i,v);
+        });
+    </script>
+
+    <h3>객체를 병합하는 함수</h3>
+    <p>
+        $.extend(객체,객1,객2,객3....) : 여러개의 객체를 합칠때 사용하는 함수
+    </p>
+    <button onclick="addObj();">객체합치기</button>
+    <script>
+        const addObj=()=>{
+            let person={
+                name : "김경찬",
+                age : 29
+            }
+            let item={
+                itemName:"설탕",
+                weight:10
+            }
+
+            // 두 객체를 합치기
+            for(let key in item){
+                person[key]=item[key];
+            }
+            console.log(person);
+
+            // 간편하게 extend함수를 이용하면 된다.
+            $.extend(person,item,{key:"test",value:"1111"}); //객체 추가 시에도 합칠 수 있다.
+            console.log(person);
+
+        }
+    </script>
+
+    <h3>$ 충돌 방지하기 - noConflict()</h3>
+    <p>
+        <!-- let jq=$.noConflict();  head태그에 설정 -->
+        noConflict()함수로 head 태그에 선언하면 모든 영역에 적용이 된다.
+        body태그에 선언할 경우 선언한 위치 아래부터 적용이 된다.
+    </p>
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 속성 관리하기</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>클래스 속성 관리하기</h1>
+    <p>
+        jquery가 제공하는 함수를 통해서 class속성에 값을 추가, 삭제할 수 있는것
+    </p>
+    <ul>
+        <li>addClass("클래스이름"):태그에 매개변수 값의 클래스를 추가</li>
+        <li>removeClass("클래스이름"):태그에 매개변수 값과 일치하는 클래스가 있으면 삭제</li>
+        <li>toggleClass("클래스이름"):태그에 매개변수 값과 일치하는 클래스가 있으면 삭제 없으면 추가</li>
+    </ul>
+    <style>
+        .a0{
+            color:aquamarine;
+        }
+        .a1{
+            color:lime;
+        }
+        .a2{
+            color:coral;
+        }
+        .a3{
+            color:cornflowerblue;
+        }
+        .a4{
+            background-color: lightseagreen;
+        }
+    </style>
+    <div id="container">
+        <h1 class="a">h1</h1>
+        <p>p1</p>
+        <p>p2</p>
+        <span class="a">span</span>
+        <h2>h2</h2>
+    </div>
+    <button onclick="addClassTest();">class추가하기</button>
+    <script>
+        const addClassTest=()=>{
+            // $("#container").children().addClass("a0");   //"#container 자식들에 a0클래스 추가
+            $("#container").children().each((i,v)=>{
+                $(v).addClass("a"+i);
+            })
+
+            // addClass의 매개변수에는 함수가 들어갈 수 있음
+            // 함수에서 리턴하는 값이 클래스도 들어감
+            // $("#container").children().addClass((i,v)=>{
+            //     return "a3";
+            // })
+        }
+    </script>
+
+    <button onclick="removeClassTest();">class제거</button>
+    <script>
+        const removeClassTest=()=>{
+            // $("#container").children().removeClass("a"); // class Name
+            $("#container").children().removeClass((i,v)=>{ // 함수사용가능
+                return "a"+i;
+            });
+        }
+    </script>
+
+    <button onclick="toggleClassTest();">toggle적용</button>
+    <script>
+        const toggleClassTest=()=>{
+            // $("#container").children().toggleClass("a3");
+            // toggleClass내부에 forEach문이 내장되어 있나??
+            console.log($("#container").children());
+            $("#container").children().toggleClass((i,v)=>{
+                console.log(i,v,"a"+i);
+                return "a"+i;
+            });
+        }
+    </script>
+</body>
+</html>

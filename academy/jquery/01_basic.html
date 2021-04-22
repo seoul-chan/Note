@@ -86,5 +86,167 @@
         }
     </script>
     
+    <h2>선택자를 활용하기</h2>
+    <p>
+        jQuery에서는 element(tag)를 불러올때 선택자를 활용한다.
+        $("선택자") <- document.querySelectAll();이 간단해진다.
+    </p>
+
+    <div id="container"></div>
+    <p class="tt">p1</p>
+    <p class="tt">p2</p>
+    <p class="tt">p3</p>
+    <h3 class="tt">h3</h3>
+    <h3>h3</h3>
+    <script>
+        // 아이디와 클래스 element가져오기
+        console.log($("#container"));
+        console.log($(".tt"));
+
+        // 여러 선택자 이용하기 - ,를 이용해 구분하여 여러 선택자를 사용할 수 있다.
+        // 가져오는 순서는 선택자를 작성한 순서가 아닌 태그가 선언된 순서로 가져온다.
+        $(function(){
+            console.log($(".tt,#container").css("backgroundColor","skyblue"));
+        })
+    </script>
+
+    <h4>:first, :last, :even, :odd</h4>
+    <p>
+        선택자:first -> 선택자로 선택된 element 중 0번 인덱스 태그<br>
+        선택자:last -> 선택자로 선택된 element중 마지막 인덱스 태그<br>
+        선택자:even -> 선택자로 선택된 element중 짝수인덱스 태그<br>
+        선택자:odd -> 선택자로 선택된 element중 홀수 인덱스태그<br>
+    </p>
+    <script>
+        $(function(){
+            let temp=$(".tt");
+            console.log(temp);
+
+            temp=$(".tt:first");    // .tt중 첫 번째 element(p1)
+            console.log(temp);
+
+            temp=$(".tt:last");    // .tt중 마지막 element(h3))
+            console.log(temp);
+
+            // 짝수인덱스 선택
+            temp=$(".tt:even");
+            console.log(temp);
+            temp.css("backgroundColor","gray");
+
+            // 홀수 인덱스 선택
+            temp=$(".tt:odd");
+            console.log(temp);
+            temp.css("backgroundColor","green");
+        })
+    </script>
+    <table id="target">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+        </tr>
+    </table>
+    <style>
+        table{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("table#target td:even").css("backgroundColor","purple"); // 짝수 칸만 적용
+            $("table#target td:odd").css("backgroundColor","lime"); // 홀수 칸만 적용
+        })
+    </script>
+
+    <table id="target2">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+        </tr>
+    </table>
+    <script>
+        $(function(){
+            $("table#target2 tr:odd").css("backgroundColor","lightgray");
+        })
+    </script>
+
+    <h3>:eq :gt :lt</h3>
+    <ul>
+        <li>선택자:eq(n) -> 선택된 태그 중 n번 인덱스 태그</li>
+        <li>선택자:gt(n) -> 선택된 태그 중 n번 인덱스 보다 큰 인덱스를 가진 태그</li>
+        <li>선택자:lt(n) -> 선택된 태그 중 n번 인덱스 보다 작은 인덱스를 가진 태그</li>
+    </ul>
+    
+    <ul id="target3">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <script>
+        $(function(){
+            let litemp=$("ul#target3>li");
+            console.log(litemp);
+
+            litemp=$("ul#target3>li:eq(5)"); //5번 인덱스 li태그
+            litemp.css("backgroundColor","skyblue");
+            console.log(litemp);
+
+            litemp=$("ul#target3>li:gt(5)"); //5번 인덱스 번호 보다 큰 인덱스의 li태그
+            console.log(litemp.css("backgroundColor","yellow"));
+
+            litemp=$("ul#target3>li:lt(5)"); //5번 인덱스 번호 보다 작은 인덱스의 li태그
+            console.log(litemp.css("color","brown"));
+        })
+    </script>
+    
 </body>
 </html>
