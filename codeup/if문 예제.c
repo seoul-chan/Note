@@ -1,10 +1,72 @@
+#include <stdio.h>
+int main() {
+
+	int a, b;
+	scanf("%d %d", &a, &b);
+	char c1[100] = "";
+
+	if (a % 2 == 1) {
+		strcat(c1, "È¦¼ö+");
+	}
+	else {
+		strcat(c1, "Â¦¼ö+");
+	}
+
+	if (b % 2 == 1) {
+		strcat(c1, "È¦¼ö=");
+	}
+	else {
+		strcat(c1, "Â¦¼ö=");
+	}
+
+	if ((a + b) % 2 == 1) {
+		strcat(c1, "È¦¼ö");
+	}
+	else {
+		strcat(c1, "Â¦¼ö");
+	}
+	printf("%s", c1);
+}
+
+/*
+// 1161 : È¦¼ö¿Í Â¦¼ö ±×¸®°í ´õÇÏ±â
+#include <stdio.h>
+int main() {
+
+	int a,b;
+	scanf("%d %d", &a,&b);
+	char c1[100] = "";
+
+	if (a % 2 == 1) {
+		strcat(c1, "È¦¼ö+");
+	}
+	else {
+		strcat(c1, "Â¦¼ö+");
+	}
+
+	if (b % 2 == 1) {
+		strcat(c1, "È¦¼ö=");
+	}
+	else {
+		strcat(c1, "Â¦¼ö=");
+	}
+
+	if ((a + b) % 2 == 1) {
+		strcat(c1, "È¦¼ö");
+	}
+	else {
+		strcat(c1, "Â¦¼ö");
+	}
+	printf("%s", c1);
+}
+
 // 1160 : ¾Æ¸£¹ÙÀÌÆ® °¡´Â ³¯
 #include <stdio.h>
 int main() {
 
 	int a;
 	scanf("%d", &a);
-	if (a == 1 || a == 3 || a == 5 || a == 7) {
+	if (a==1||a==3||a==5||a==7) {
 		printf("oh my god");
 	}
 	else {
@@ -12,7 +74,6 @@ int main() {
 	}
 }
 
-/*
 // 1159 : Æ¯º°ÇÑ °ø ´øÁö±â 3
 #include <stdio.h>
 int main() {
