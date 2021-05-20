@@ -23,13 +23,16 @@ public class Main {
 		}
 		
 		int start=1,end=1, distance=0, max=0;
-		while(start!=n) {
+		System.out.println("k : "+k);
+		while(start<n) {
 			if(end>n||count[arr[end]]>=k) {
 				count[arr[start]]--;
+				System.out.println("start : "+start);
 				start++;
 			} else if(count[arr[end]]<k) {
 				count[arr[end]]++;
-				end++;				
+				System.out.println("end : "+end);
+				end++;		
 			}
 			distance=end-start;
 			max=Math.max(max, distance);
